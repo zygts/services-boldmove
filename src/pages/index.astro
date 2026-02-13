@@ -22,23 +22,21 @@ const sections = home.data.cardSections;
 		/>
 		))}
     </main>
-    
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-<script>
+
+    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+<script is:inline>
   if (window.netlifyIdentity) {
     window.netlifyIdentity.on("init", () => {
       const h = window.location.hash || "";
-      // invita: #invite_token=...
-      // recovery: #recovery_token=...
-      // confirmation: #confirmation_token=...
       if (h.includes("invite_token=") || h.includes("recovery_token=") || h.includes("confirmation_token=")) {
-        // El widget abre el flujo correcto según el token
         window.netlifyIdentity.open("signup");
       }
     });
     window.netlifyIdentity.init();
   }
 </script>
+
 
   </body>
 </html>
