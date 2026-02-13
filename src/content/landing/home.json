@@ -63,5 +63,10 @@
         }
       ]
     }
-  ]
+  ],
+  "fullWidthCard": {
+    "title": "dsadsa",
+    "headline": "dasdasdsa",
+    "body": "dsadsas"
+  }
 }
