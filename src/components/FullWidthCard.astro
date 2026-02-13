@@ -1,0 +1,39 @@
+---
+type Icon = { icon: string; iconAlt?: string };
+
+type Props = {
+  title: string;
+  headline: string; // puede incluir \n
+  body: string;
+  icons: Icon[];
+};
+
+const { title, headline, body, icons } = Astro.props;
+
+const normalizedIcons = Array.isArray(icons) ? icons.slice(0, 2) : [];
+---
+
+<section class="fwc card-section">
+  <h2 class="card-title">{title}</h2>
+
+  <div class="fwc__card card">
+    <div class="fwc__icons" aria-hidden={normalizedIcons.length === 0 ? "true" : undefined}>
+      {normalizedIcons.map((i) => (
+        <img class="fwc__icon" src={i.icon} alt={i.iconAlt ?? ""} loading="lazy" />
+      ))}
+    </div>
+
+    <div class="fwc__headline">
+      {/* Conserva saltos de línea del CMS */}
+      <h3 class="fwc__headlineText">{headline}</h3>
+    </div>
+
+    <div class="fwc__body">
+      <p class="fwc__bodyText">{body}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  
+</style>

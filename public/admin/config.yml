@@ -16,18 +16,32 @@ collections:
         file: "src/content/landing/home.json"
         format: "json"
         fields:
-          - label: "Card Sections"
-            name: "cardSections"
+          - label: "Full Width Card"
+            name: "fullWidthCard"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Headline", name: "headline", widget: "text", hint: "Use a line break for DECK / PACKAGES" }
+              - { label: "Body", name: "body", widget: "text" }
+              - label: "Icons (2)"
+                name: "icons"
+                widget: "list"
+                fields:
+                  - { label: "Icon", name: "icon", widget: "image" }
+                  - { label: "Alt", name: "iconAlt", widget: "string", required: false }
+
+          - label: "Three Columns Cards"
+            name: "threeColumnsCards"
             widget: "list"
             summary: "{{fields.title}}"
             fields:
               - { label: "ID", name: "id", widget: "string" }
               - { label: "Title", name: "title", widget: "string" }
-              - label: "Items"
+              - label: "Items (3)"
                 name: "items"
                 widget: "list"
                 fields:
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Body", name: "body", widget: "text" }
                   - { label: "Icon", name: "icon", widget: "image" }
-                  - { label: "Icon Alt", name: "iconAlt", widget: "string", required: false }
+                  - { label: "Alt", name: "iconAlt", widget: "string", required: false }

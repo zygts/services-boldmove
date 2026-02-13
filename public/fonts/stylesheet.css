@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Druk Wide LCG Super';
+    src: url('DrukWideLCG-Super.woff2') format('woff2'),
+        url('DrukWideLCG-Super.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Druk Cond LCG Super';
+    src: url('DrukCondLCG-Super.woff2') format('woff2'),
+        url('DrukCondLCG-Super.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Druk Text LCG Super';
+    src: url('DrukTextLCG-Super.woff2') format('woff2'),
+        url('DrukTextLCG-Super.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+

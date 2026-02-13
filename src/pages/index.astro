@@ -1,9 +1,10 @@
 ---
 import { getEntry } from "astro:content";
-import CardsSection from "../components/CardsSection.astro";
+import FullWidthCard from "../components/FullWidthCard.astro";
+import ThreeColumnsCard from "../components/ThreeColumnsCard.astro";
 
 const home = await getEntry("landing", "home");
-const sections = home.data.cardSections;
+const { fullWidthCard, threeColumnsCards } = home.data;
 ---
 
 <!doctype html>
@@ -11,27 +12,36 @@ const sections = home.data.cardSections;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Sandbox</title>
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Services — Boldmove</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ipc3zqt.css">
   </head>
+
   <body style="margin:0;background:#0b0b0c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
-    <main style="max-width:1200px;margin:0 auto;padding:46px 18px;">
-      {sections.map(section => (
-		<CardsSection
-			title={section.title}
-			items={section.items}
-		/>
-		))}
+    <main>
+      <FullWidthCard
+        title={fullWidthCard.title}
+        headline={fullWidthCard.headline}
+        body={fullWidthCard.body}
+        icons={fullWidthCard.icons}
+      />
+
+      {threeColumnsCards.map((section) => (
+        <ThreeColumnsCard title={section.title} items={section.items} />
+      ))}
     </main>
 
     <script is:inline>
-  (function () {
-    const h = window.location.hash || "";
-    if (h.includes("invite_token=") || h.includes("recovery_token=") || h.includes("confirmation_token=")) {
-      window.location.replace("/admin/index.html" + h);
-    }
-  })();
-</script>
-
-
+      (function () {
+        const h = window.location.hash || "";
+        if (
+          h.includes("invite_token=") ||
+          h.includes("recovery_token=") ||
+          h.includes("confirmation_token=")
+        ) {
+          window.location.replace("/admin/index.html" + h);
+        }
+      })();
+    </script>
   </body>
 </html>

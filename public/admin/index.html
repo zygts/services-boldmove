@@ -7,17 +7,23 @@
     <title>Admin</title>
   </head>
   <body>
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
     <script>
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            window.netlifyIdentity.on("login", () => {
-              document.location.href = "/admin/index.html";
+      // Solo cargar Netlify Identity en producción
+      if (location.hostname.endsWith("netlify.app") || location.hostname.endsWith("boldmove.tv")) {
+        const s = document.createElement("script");
+        s.src = "https://identity.netlify.com/v1/netlify-identity-widget.js";
+        s.onload = function () {
+          if (window.netlifyIdentity) {
+            window.netlifyIdentity.on("init", (user) => {
+              if (!user) {
+                window.netlifyIdentity.on("login", () => {
+                  document.location.href = "/admin/index.html";
+                });
+              }
             });
           }
-        });
+        };
+        document.head.appendChild(s);
       }
     </script>
 
