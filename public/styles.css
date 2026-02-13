@@ -372,9 +372,28 @@ html {
 }
 
 .pk__price {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-block: 1rem 3rem;
+}
+
+.pk__priceNow {
     font-family: 'Druk LCG';
     font-size: 6.5rem;
     letter-spacing: 0.02em;
+}
+
+.pk__priceWas {
+  font-size: 3rem;
+  opacity: 0.5;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+  font-family: 'Druk LCG';
+  display: none;
 }
 
 .pk__cta {

@@ -75,12 +75,12 @@ const toCents = (eur: number) => Math.round(eur * 100);
         <p class="pk__desc">{p.description}</p>
 
         <div
-          class="pk__price"
-          data-standard-cents={toCents(p.standardPrice)}
-        >
-          {/* Se rellena por JS (pero ponemos fallback) */}
-          €{p.standardPrice}
-        </div>
+            class="pk__price"
+            data-standard-cents={toCents(p.standardPrice)}
+            >
+            <span class="pk__priceNow">€{p.standardPrice}</span>
+            <span class="pk__priceWas" aria-hidden="true"></span>
+            </div>
 
         <button class="pk__cta" type="button">{p.ctaLabel}</button>
 
@@ -178,13 +178,32 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
         function renderPrices() {
         const discounted = !!toggle?.checked;
+        
         cards.forEach((card) => {
-            const priceEl = card.querySelector(".pk__price");
-            if (!priceEl) return;
+            const priceWrap = card.querySelector(".pk__price");
+            if (!priceWrap) return;
 
-            const cents = calcCardPriceCents(card, discounted);
-            priceEl.textContent = fmt.format(priceFromCents(cents));
-        });
+            const nowEl = priceWrap.querySelector(".pk__priceNow");
+            const wasEl = priceWrap.querySelector(".pk__priceWas");
+            if (!nowEl || !wasEl) return;
+
+            const discounted = !!toggle?.checked;
+
+            // precio "antes" = base + writing (sin descuento)
+            const wasCents = calcCardPriceCents(card, false);
+            // precio "ahora" = con o sin descuento
+            const nowCents = calcCardPriceCents(card, discounted);
+
+            nowEl.textContent = fmt.format(priceFromCents(nowCents));
+
+            if (discounted) {
+                wasEl.textContent = fmt.format(priceFromCents(wasCents));
+                wasEl.style.display = "inline";
+            } else {
+                wasEl.textContent = "";
+                wasEl.style.display = "none";
+            }
+            });
 
         root.setAttribute("data-mode", discounted ? "discount" : "standard");
         }
