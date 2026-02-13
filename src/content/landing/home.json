@@ -42,7 +42,7 @@
             "text": "3 Days of Design"
           }
         ],
-        "title": "KNIGHT",
+        "title": "Knight",
         "id": "knight",
         "image": "/uploads/knight.jpg",
         "writing": {
@@ -93,7 +93,7 @@
             "text": "3 Days of Design"
           }
         ],
-        "title": "BLITZ",
+        "title": "Blitz",
         "id": "blitz",
         "image": "/uploads/knight.jpg",
         "writing": {
@@ -108,12 +108,7 @@
       },
       {
         "badge": "Most Popular",
-        "additionalFeatures": [
-          {
-            "icon": "/uploads/icon-check.png",
-            "text": "Free text polish (3h)"
-          }
-        ],
+        "additionalFeatures": [],
         "ctaLabel": "Select Gambit",
         "standardPrice": 5075,
         "imageAlt": "",
@@ -122,13 +117,9 @@
           {
             "icon": "/uploads/icon-1.png",
             "text": "Concept moodboard"
-          },
-          {
-            "icon": "/uploads/icon-2.png",
-            "text": "2 Days of Visual Research"
           }
         ],
-        "title": "GAMBIT",
+        "title": "Gambit",
         "id": "gambit",
         "image": "/uploads/knight.jpg",
         "writing": {
@@ -149,7 +140,7 @@
         "imageAlt": "",
         "requirements": "",
         "mainFeatures": [],
-        "title": "CHECKMATE",
+        "title": "Checkmate",
         "id": "checkmate",
         "image": "/uploads/knight.jpg",
         "writing": {
@@ -178,6 +169,45 @@
         "iconAlt": ""
       }
     ]
+  },
+  "upgradeSection": {
+    "title": "UPGRADE YOUR PACKAGE",
+    "card": {
+      "badge": "",
+      "additionalFeatures": [
+        {
+          "icon": "/uploads/icon-check.png",
+          "text": "Fixed, Condensed Schedule"
+        }
+      ],
+      "ctaLabel": "Upgrade My Deck",
+      "standardPrice": 1500,
+      "imageAlt": "",
+      "requirements": "Text and source visuals must be provided",
+      "mainFeatures": [
+        {
+          "icon": "/uploads/icon-1.png",
+          "text": "Mini Concept Moodboard"
+        },
+        {
+          "icon": "/uploads/icon-4png.png",
+          "text": "2 Hours of Writing"
+        },
+        {
+          "icon": "/uploads/icon-3.png",
+          "text": "2 Days of Design"
+        },
+        {
+          "icon": "/uploads/icon-2.png",
+          "text": "Half a Day of Visual Research and Mapping"
+        }
+      ],
+      "title": "Pimp my Deck",
+      "id": "premium-upgrade",
+      "image": "/uploads/video.png",
+      "description": "Take your deck to the next level with premium features and enhanced design."
+    },
+    "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
   },
   "threeColumnsCards": [
     {

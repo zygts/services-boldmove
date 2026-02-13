@@ -45,6 +45,41 @@ collections:
                   - { label: "Body", name: "body", widget: "text" }
                   - { label: "Icon", name: "icon", widget: "image" }
                   - { label: "Alt", name: "iconAlt", widget: "string", required: false }
+          
+          - label: "Upgrade Section"
+            name: "upgradeSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "text" }
+
+              - label: "Card"
+                name: "card"
+                widget: "object"
+                fields:
+                  - { label: "ID", name: "id", widget: "string" }
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Image", name: "image", widget: "image" }
+                  - { label: "Image Alt", name: "imageAlt", widget: "string", required: false }
+                  - { label: "Standard Price (number)", name: "standardPrice", widget: "number" }
+                  - { label: "CTA Label", name: "ctaLabel", widget: "string" }
+                  - { label: "Badge (optional)", name: "badge", widget: "string", required: false }
+
+                  - label: "Main Features"
+                    name: "mainFeatures"
+                    widget: "list"
+                    fields:
+                      - { label: "Icon", name: "icon", widget: "image" }
+                      - { label: "Text", name: "text", widget: "string" }
+
+                  - label: "Additional Features"
+                    name: "additionalFeatures"
+                    widget: "list"
+                    fields:
+                      - { label: "Icon", name: "icon", widget: "image" }
+                      - { label: "Text", name: "text", widget: "string" }
+
+                  - { label: "Requirements", name: "requirements", widget: "text", required: false }
 
           - label: "Packages Section"
             name: "packagesSection"
@@ -105,3 +140,6 @@ collections:
 
                   # Requirements (text block)
                   - { label: "Requirements", name: "requirements", widget: "text", required: false }
+
+                  - { label: "Footer Text", name: "footerText", widget: "text" }
+

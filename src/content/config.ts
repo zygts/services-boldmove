@@ -68,6 +68,33 @@ const landing = defineCollection({
 
     }),
 
+    upgradeSection: z.object({
+      title: z.string(),
+      card: z.object({
+        id: z.string(),
+        title: z.string(),
+        description: z.string(),
+        image: z.string(),
+        imageAlt: z.string().optional().default(""),
+        standardPrice: z.number(),
+        ctaLabel: z.string(),
+        badge: z.string().optional().default(""),
+        mainFeatures: z.array(z.object({ icon: z.string(), text: z.string() })).default([]),
+        writing: z
+          .object({
+            label: z.string().default("CUSTOM WRITING"),
+            unitLabel: z.string().default("writing days"),
+            minDays: z.number().int().default(0),
+            maxDays: z.number().int().default(0),
+            pricePerDay: z.number().default(0),
+          })
+          .optional(),
+        additionalFeatures: z.array(z.object({ icon: z.string(), text: z.string() })).default([]),
+        requirements: z.string().default(""),
+      }),
+      footerText: z.string(), 
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({

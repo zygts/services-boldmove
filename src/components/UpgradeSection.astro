@@ -1,0 +1,124 @@
+---
+type Feature = {
+  icon: string;
+  text: string;
+};
+
+type UpgradeCard = {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  imageAlt?: string;
+  standardPrice: number;
+  ctaLabel: string;
+  badge?: string;
+  mainFeatures?: Feature[];
+  additionalFeatures?: Feature[];
+  requirements?: string;
+};
+
+type Props = {
+  title: string;
+  card: UpgradeCard;
+  locale?: string;   // opcional, por si luego quieres formatear distinto
+  currency?: string; // opcional
+};
+
+const { title, card, footerText, locale = "en-GB", currency = "EUR" } = Astro.props;
+
+const fmt = new Intl.NumberFormat(locale, {
+  style: "currency",
+  currency,
+  maximumFractionDigits: 0,
+});
+---
+
+<section class="up">
+  <h2 class="up__title">{title}</h2>
+    <img
+      class="up__arrow"
+      src="images/arrow.webp"
+      alt=""
+      aria-hidden="true"
+      loading="lazy"
+    />
+  <div class="up__card" data-id={card.id}>
+    <div class="up__media">
+      {card.image && (
+        <img
+          class="up__img"
+          src={card.image}
+          alt={card.imageAlt ?? ""}
+          loading="lazy"
+        />
+      )}
+    </div>
+
+    <div class="up__main">
+      {card.badge && <div class="up__badge">{card.badge}</div>}
+
+      <h3 class="up__name">{card.title}</h3>
+      <p class="up__desc">{card.description}</p>
+
+      <div class="up__price">{fmt.format(card.standardPrice)}</div>
+
+      <button class="up__cta" type="button">
+        {card.ctaLabel}
+      </button>
+    </div>
+
+    <div class="up__features">
+      <div class="up__block">
+        <div class="up__blockTitle">MAIN FEATURES</div>
+
+        {(card.mainFeatures ?? []).length > 0 ? (
+          <ul class="up__list">
+            {(card.mainFeatures ?? []).map((f) => (
+              <li class="up__item">
+                <img class="up__icon" src={f.icon} alt="" loading="lazy" />
+                <span class="up__text">{f.text}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="up__empty">—</p>
+        )}
+      </div>
+    </div>
+
+    <div class="up__side">
+      <div class="up__block">
+        <div class="up__blockTitle">ADDITIONAL FEATURES</div>
+
+        {(card.additionalFeatures ?? []).length > 0 ? (
+          <ul class="up__list">
+            {(card.additionalFeatures ?? []).map((f) => (
+              <li class="up__item">
+                <img class="up__icon" src={f.icon} alt="" loading="lazy" />
+                <span class="up__text">{f.text}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p class="up__empty">—</p>
+        )}
+      </div>
+
+      {card.requirements && (
+        <div class="up__block">
+          <div class="up__blockTitle">REQUIREMENTS</div>
+          <p class="up__req">{card.requirements}</p>
+        </div>
+      )}
+    </div>
+  </div>
+{footerText && (
+  <div class="up__footer">
+    <p class="up__footertext">{footerText}</p>
+  </div>
+)}
+  <style>
+    
+  </style>
+</section>
