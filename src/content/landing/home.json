@@ -117,11 +117,15 @@
         "ctaLabel": "Select Gambit",
         "standardPrice": 5075,
         "imageAlt": "",
-        "requirements": "vcxcdxccdcd",
+        "requirements": "",
         "mainFeatures": [
           {
             "icon": "/uploads/icon-1.png",
             "text": "Concept moodboard"
+          },
+          {
+            "icon": "/uploads/icon-2.png",
+            "text": "2 Days of Visual Research"
           }
         ],
         "title": "GAMBIT",
