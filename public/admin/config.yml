@@ -45,3 +45,31 @@ collections:
                   - { label: "Body", name: "body", widget: "text" }
                   - { label: "Icon", name: "icon", widget: "image" }
                   - { label: "Alt", name: "iconAlt", widget: "string", required: false }
+                  
+          - label: "Packages Section"
+            name: "packagesSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Subtitle", name: "subtitle", widget: "text" }
+              - { label: "Toggle Left Label", name: "toggleLeftLabel", widget: "string" }
+              - { label: "Toggle Right Label", name: "toggleRightLabel", widget: "string" }
+              - { label: "Discount Percent", name: "discountPercent", widget: "number", value_type: "int", min: 0, max: 100, default: 10 }
+              - { label: "Locale", name: "locale", widget: "string", default: "en-GB" }
+              - { label: "Currency", name: "currency", widget: "string", default: "EUR" }
+
+              - label: "Packages (4)"
+                name: "packages"
+                widget: "list"
+                summary: "{{fields.name}} — {{fields.standardPrice}}"
+                fields:
+                  - { label: "ID", name: "id", widget: "string" }
+                  - { label: "Name", name: "name", widget: "string" }
+                  - { label: "Description", name: "description", widget: "text" }
+                  - { label: "Standard Price (number)", name: "standardPrice", widget: "number" }
+                  - { label: "CTA Label", name: "ctaLabel", widget: "string" }
+                  - { label: "Badge (optional)", name: "badge", widget: "string", required: false }
+                  - label: "Features"
+                    name: "features"
+                    widget: "list"
+                    field: { label: "Feature", name: "feature", widget: "string" }

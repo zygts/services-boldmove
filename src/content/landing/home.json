@@ -1,4 +1,51 @@
 {
+  "packagesSection": {
+    "title": "DECK PACKAGES",
+    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
+    "toggleLeftLabel": "Standard Price",
+    "toggleRightLabel": "Save 10%",
+    "discountPercent": 10,
+    "currency": "EUR",
+    "locale": "en-GB",
+    "packages": [
+      {
+        "id": "knight",
+        "name": "KNIGHT",
+        "description": "A clean, focused pitch deck that effectively communicates your core idea",
+        "standardPrice": 3200,
+        "ctaLabel": "Start with Knight",
+        "badge": "",
+        "features": ["Concept moodboard", "1 day of visual research", "3 days of design"]
+      },
+      {
+        "id": "blitz",
+        "name": "BLITZ",
+        "description": "A polished, professional deck with enhanced visual storytelling and deeper research",
+        "standardPrice": 4450,
+        "ctaLabel": "Choose Blitz",
+        "badge": "",
+        "features": ["Concept moodboard", "2 days of visual research", "3 days of design"]
+      },
+      {
+        "id": "gambit",
+        "name": "GAMBIT",
+        "description": "An impressive, comprehensive deck with sophisticated design and strategic content architecture",
+        "standardPrice": 5075,
+        "ctaLabel": "Select Gambit",
+        "badge": "Most Popular",
+        "features": ["Concept moodboard", "2 days of visual research", "4 days of design"]
+      },
+      {
+        "id": "checkmate",
+        "name": "CHECKMATE",
+        "description": "A stunning, investor-grade masterpiece with cutting-edge design, enhanced visuals, and maximum impact",
+        "standardPrice": 6575,
+        "ctaLabel": "Get Checkmate",
+        "badge": "",
+        "features": ["Concept moodboard", "AI-enhanced visuals", "4 days of design"]
+      }
+    ]
+  },
   "fullWidthCard": {
     "title": "OUR BUNDLES",
     "headline": "DECK\nPACKAGES",
@@ -63,10 +110,5 @@
         }
       ]
     }
-  ],
-  "fullWidthCard": {
-    "title": "dsadsa",
-    "headline": "dasdasdsa",
-    "body": "dsadsas"
-  }
+  ]
 }

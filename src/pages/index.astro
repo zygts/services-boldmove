@@ -2,9 +2,10 @@
 import { getEntry } from "astro:content";
 import FullWidthCard from "../components/FullWidthCard.astro";
 import ThreeColumnsCard from "../components/ThreeColumnsCard.astro";
+import PackagesSection from "../components/PackagesSection.astro";
 
 const home = await getEntry("landing", "home");
-const { fullWidthCard, threeColumnsCards } = home.data;
+const { fullWidthCard, threeColumnsCards, packagesSection } = home.data;
 ---
 
 <!doctype html>
@@ -29,6 +30,8 @@ const { fullWidthCard, threeColumnsCards } = home.data;
       {threeColumnsCards.map((section) => (
         <ThreeColumnsCard title={section.title} items={section.items} />
       ))}
+
+      <PackagesSection {...packagesSection} />
     </main>
 
     <script is:inline>

@@ -1,0 +1,151 @@
+---
+type Package = {
+  id: string;
+  name: string;
+  description: string;
+  standardPrice: number; // euros
+  ctaLabel: string;
+  badge?: string;
+  features: string[];
+};
+
+type Props = {
+  title: string;
+  subtitle: string;
+  toggleLeftLabel: string;
+  toggleRightLabel: string;
+  discountPercent: number;
+  locale: string;
+  currency: string;
+  packages: Package[];
+};
+
+const {
+  title,
+  subtitle,
+  toggleLeftLabel,
+  toggleRightLabel,
+  discountPercent,
+  locale,
+  currency,
+  packages,
+} = Astro.props;
+
+const toCents = (eur: number) => Math.round(eur * 100);
+---
+
+<section
+  class="pk"
+  data-discount={discountPercent}
+  data-locale={locale}
+  data-currency={currency}
+>
+  <header class="pk__header">
+    <h2 class="pk__title">{title}</h2>
+    <p class="pk__subtitle">{subtitle}</p>
+
+    <div class="pk__toggleRow">
+      <span class="pk__toggleLabel">{toggleLeftLabel}</span>
+
+      <label class="pk__switch">
+        <input id="pkToggle" type="checkbox" />
+        <span class="pk__slider" aria-hidden="true"></span>
+      </label>
+
+      <span class="pk__toggleLabel pk__toggleLabel--muted">{toggleRightLabel}</span>
+    </div>
+  </header>
+
+  <div class="pk__grid">
+    {packages.slice(0, 4).map((p) => (
+      <article class="pk__card" data-id={p.id}>
+        {p.badge && <div class="pk__badge">{p.badge}</div>}
+
+        <h3 class="pk__name">{p.name}</h3>
+        <p class="pk__desc">{p.description}</p>
+
+        <div
+          class="pk__price"
+          data-standard-cents={toCents(p.standardPrice)}
+        >
+          {/* Se rellena por JS (pero ponemos fallback) */}
+          €{p.standardPrice}
+        </div>
+
+        <button class="pk__cta" type="button">{p.ctaLabel}</button>
+
+        <ul class="pk__features">
+          {p.features.map((f) => <li>{f}</li>)}
+        </ul>
+      </article>
+    ))}
+  </div>
+
+  <script is:inline>
+    (function () {
+      const root = document.currentScript?.closest(".pk");
+      if (!root) return;
+
+      const discountPercent = Number(root.getAttribute("data-discount") || "0");
+      const locale = root.getAttribute("data-locale") || "en-GB";
+      const currency = root.getAttribute("data-currency") || "EUR";
+
+      const toggle = root.querySelector("#pkToggle");
+      const priceEls = root.querySelectorAll(".pk__price[data-standard-cents]");
+
+      const fmt = new Intl.NumberFormat(locale, {
+        style: "currency",
+        currency,
+        maximumFractionDigits: 0,
+      });
+
+      function priceFromCents(cents) {
+        return cents / 100;
+      }
+
+      function apply(isDiscounted) {
+        priceEls.forEach((el) => {
+          const standardCents = Number(el.getAttribute("data-standard-cents") || "0");
+          const cents = isDiscounted
+            ? Math.round(standardCents * (1 - discountPercent / 100))
+            : standardCents;
+
+          el.textContent = fmt.format(priceFromCents(cents));
+        });
+
+        // opcional: marca estado en el root (para CSS)
+        root.setAttribute("data-mode", isDiscounted ? "discount" : "standard");
+      }
+
+      // Persistencia opcional
+      const saved = localStorage.getItem("pk_discounted");
+      const initial = saved === "1";
+      if (toggle) toggle.checked = initial;
+      apply(initial);
+
+      toggle?.addEventListener("change", () => {
+        const on = !!toggle.checked;
+        localStorage.setItem("pk_discounted", on ? "1" : "0");
+        apply(on);
+      });
+    })();
+  </script>
+
+  <style>
+    /* Solo base mínima para que no se rompa */
+    .pk__subtitle { white-space: pre-line; }
+
+    .pk__switch { display:inline-flex; align-items:center; }
+    .pk__switch input{ position:absolute; opacity:0; pointer-events:none; }
+    .pk__slider{
+      width:56px; height:30px; border:2px solid #111; border-radius:999px; position:relative; display:block;
+    }
+    .pk__slider::after{
+      content:""; width:24px; height:24px; border-radius:999px; background:#111; position:absolute; top:50%; left:3px;
+      transform:translateY(-50%); transition:transform .2s ease;
+    }
+    .pk__switch input:checked + .pk__slider::after{
+      transform: translate(26px, -50%);
+    }
+  </style>
+</section>

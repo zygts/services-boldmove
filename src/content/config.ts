@@ -17,6 +17,29 @@ const landing = defineCollection({
         .default([]),
     }),
 
+    packagesSection: z.object({
+      title: z.string(),
+      subtitle: z.string(),
+      toggleLeftLabel: z.string(),
+      toggleRightLabel: z.string(),
+      discountPercent: z.number().default(10),
+
+      currency: z.string().default("EUR"),
+      locale: z.string().default("en-GB"),
+
+      packages: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          description: z.string(),
+          standardPrice: z.number(), // en euros (ej 3200). Convertimos a céntimos en runtime
+          ctaLabel: z.string(),
+          badge: z.string().optional().default(""), // ej: "Most Popular"
+          features: z.array(z.string()).default([]),
+        })
+      ).default([]),
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({
