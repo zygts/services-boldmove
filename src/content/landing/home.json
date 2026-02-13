@@ -108,7 +108,12 @@
       },
       {
         "badge": "Most Popular",
-        "additionalFeatures": [],
+        "additionalFeatures": [
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Free text polish (3h)"
+          }
+        ],
         "ctaLabel": "Select Gambit",
         "standardPrice": 5075,
         "imageAlt": "",
@@ -117,6 +122,10 @@
           {
             "icon": "/uploads/icon-1.png",
             "text": "Concept moodboard"
+          },
+          {
+            "icon": "/uploads/icon-2.png",
+            "text": "2 Days of Visual Research"
           }
         ],
         "title": "GAMBIT",
