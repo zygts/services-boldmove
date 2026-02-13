@@ -108,7 +108,12 @@
       },
       {
         "badge": "Most Popular",
-        "additionalFeatures": [],
+        "additionalFeatures": [
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Free text polish (3h)"
+          }
+        ],
         "ctaLabel": "Select Gambit",
         "standardPrice": 5075,
         "imageAlt": "",
