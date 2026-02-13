@@ -5,44 +5,153 @@
     "toggleLeftLabel": "Standard Price",
     "toggleRightLabel": "Save 10%",
     "discountPercent": 10,
-    "currency": "EUR",
     "locale": "en-GB",
+    "currency": "EUR",
     "packages": [
       {
-        "id": "knight",
-        "name": "KNIGHT",
-        "description": "A clean, focused pitch deck that effectively communicates your core idea",
-        "standardPrice": 3200,
+        "badge": "",
+        "additionalFeatures": [
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Free Text Polish (1h)"
+          },
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Fixed, Condensed Schedule"
+          },
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Music Track"
+          }
+        ],
         "ctaLabel": "Start with Knight",
-        "badge": "",
-        "features": ["Concept moodboard", "1 day of visual research", "3 days of design"]
+        "standardPrice": 3200,
+        "imageAlt": "",
+        "requirements": "Visual research is provided by the client.",
+        "mainFeatures": [
+          {
+            "icon": "/uploads/icon-1.png",
+            "text": "Concept Moodboard"
+          },
+          {
+            "icon": "/uploads/icon-2.png",
+            "text": "1 Day of Visual Research and Mapping"
+          },
+          {
+            "icon": "/uploads/icon-3.png",
+            "text": "3 Days of Design"
+          }
+        ],
+        "title": "KNIGHT",
+        "id": "knight",
+        "image": "/uploads/knight.jpg",
+        "writing": {
+          "enabled": true,
+          "label": "CUSTOM WRITING",
+          "unitLabel": "writing days",
+          "minDays": 0,
+          "maxDays": 2,
+          "pricePerDay": 600
+        },
+        "description": "A brave but decisive move where you must use your own cinematic expertise to help us build your vision."
       },
       {
-        "id": "blitz",
-        "name": "BLITZ",
-        "description": "A polished, professional deck with enhanced visual storytelling and deeper research",
-        "standardPrice": 4450,
+        "badge": "",
+        "additionalFeatures": [
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Free Text Polish (2h)"
+          },
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Fixed, Condensed Schedule"
+          },
+          {
+            "icon": "/uploads/icon-check.png",
+            "text": "Music Track"
+          }
+        ],
         "ctaLabel": "Choose Blitz",
-        "badge": "",
-        "features": ["Concept moodboard", "2 days of visual research", "3 days of design"]
+        "standardPrice": 4450,
+        "imageAlt": "",
+        "requirements": "",
+        "mainFeatures": [
+          {
+            "icon": "/uploads/icon-1.png",
+            "text": "Concept moodboard"
+          },
+          {
+            "icon": "/uploads/icon-2.png",
+            "text": "2 Days of Visual Research"
+          },
+          {
+            "icon": "/uploads/icon-4png.png",
+            "text": "1 Day of Mapping"
+          },
+          {
+            "icon": "/uploads/icon-3.png",
+            "text": "3 Days of Design"
+          }
+        ],
+        "title": "BLITZ",
+        "id": "blitz",
+        "image": "/uploads/knight.jpg",
+        "writing": {
+          "enabled": true,
+          "label": "CUSTOM WRITING",
+          "unitLabel": "writing days",
+          "minDays": 0,
+          "maxDays": 2,
+          "pricePerDay": 600
+        },
+        "description": "Fast, bold and impactful, Blitz grabs your attention by the collar and makes executives lean forward."
       },
       {
-        "id": "gambit",
-        "name": "GAMBIT",
-        "description": "An impressive, comprehensive deck with sophisticated design and strategic content architecture",
-        "standardPrice": 5075,
-        "ctaLabel": "Select Gambit",
         "badge": "Most Popular",
-        "features": ["Concept moodboard", "2 days of visual research", "4 days of design"]
+        "additionalFeatures": [],
+        "ctaLabel": "Select Gambit",
+        "standardPrice": 5075,
+        "imageAlt": "",
+        "requirements": "",
+        "mainFeatures": [
+          {
+            "icon": "/uploads/icon-1.png",
+            "text": "Concept moodboard"
+          }
+        ],
+        "title": "GAMBIT",
+        "id": "gambit",
+        "image": "/uploads/knight.jpg",
+        "writing": {
+          "enabled": true,
+          "label": "CUSTOM WRITING",
+          "unitLabel": "writing days",
+          "minDays": 0,
+          "maxDays": 2,
+          "pricePerDay": 600
+        },
+        "description": "An impressive, comprehensive deck with sophisticated design and strategic content architecture."
       },
       {
-        "id": "checkmate",
-        "name": "CHECKMATE",
-        "description": "A stunning, investor-grade masterpiece with cutting-edge design, enhanced visuals, and maximum impact",
-        "standardPrice": 6575,
-        "ctaLabel": "Get Checkmate",
         "badge": "",
-        "features": ["Concept moodboard", "AI-enhanced visuals", "4 days of design"]
+        "additionalFeatures": [],
+        "ctaLabel": "Get Checkmate",
+        "standardPrice": 6575,
+        "imageAlt": "",
+        "requirements": "",
+        "mainFeatures": [],
+        "title": "CHECKMATE",
+        "id": "checkmate",
+        "image": "/uploads/knight.jpg",
+        "writing": {
+          "enabled": true,
+          "label": "CUSTOM WRITING",
+          "unitLabel": "writing days",
+          "minDays": 0,
+          "maxDays": 2,
+          "pricePerDay": 600
+        },
+        "description": "A stunning, investor-grade masterpiece with cutting-edge design, enhanced visuals, and maximum impact."
       }
     ]
   },

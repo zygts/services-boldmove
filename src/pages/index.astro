@@ -27,11 +27,12 @@ const { fullWidthCard, threeColumnsCards, packagesSection } = home.data;
         icons={fullWidthCard.icons}
       />
 
-      {threeColumnsCards.map((section) => (
+      {(threeColumnsCards ?? []).map((section) => (
         <ThreeColumnsCard title={section.title} items={section.items} />
       ))}
 
-      <PackagesSection {...packagesSection} />
+      {packagesSection && <PackagesSection {...packagesSection} />}
+
     </main>
 
     <script is:inline>

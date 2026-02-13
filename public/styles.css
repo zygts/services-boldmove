@@ -59,6 +59,7 @@
 
 html {
     font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
 }
 
 .card-section {
@@ -273,14 +274,64 @@ html {
     }
 }
 
+.pk__toggleRow {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    span {
+        font-size: 2rem;
+    }
+}
+
+
+
 .pk__card {
-    border-radius: 4.8rem;
-    padding: 4rem 3.6rem;
+    position: relative;
+    border-radius: 4rem;
+    padding: 11rem 3rem;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 2rem;
     background-color: var(--color-primary);
     color: var(--color-secondary);
+    overflow: hidden;
+    box-shadow: 0px 20px 25px -5px hsla(0, 0%, 0%, 0.2);
+
+}
+
+.pk__card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.pk__media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 21rem;
+}
+
+.pk__media::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+  to top,
+  rgba(0, 0, 0, 1) 0%,
+  rgba(0, 0, 0, 0.5) 100%
+);
+  z-index: 1;
+}
+
+.pk__img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .pk__col {
@@ -288,7 +339,7 @@ html {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 0 2rem;
+    padding: 0 3rem;
 }
 
 .pk__icon {
@@ -297,14 +348,132 @@ html {
     display: block;
 }
 
-.pk__title {
-    margin: 1.6rem 0 0;
+.pk__name,
+.pk__desc {
+    margin: 0;
+}
+
+.pk__name {
+    font-size: 2.75rem;
+    font-family: 'Druk Wide Bold';
+    margin-top: 17rem;
+}
+
+.pk__desc,
+.pk__requirements {
     font-size: 1.8rem;
     line-height: 1.4;
     max-width: 38ch;
     font-family: "obviously", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+
+.pk__requirements {
+    font-size: 1.5rem;
+}
+
+.pk__price {
+    font-family: 'Druk LCG';
+    font-size: 6.5rem;
+    letter-spacing: 0.02em;
+}
+
+.pk__cta {
+    background-color: rgb(0, 0, 0);
+    border-radius: 999px;
+    border: 2px solid var(--color-secondary);
+    padding-block: 1rem 1.5rem;
+    appearance: none;
+    font-family: 'Druk Text Wide LCG';
+    font-size: 2.3rem;
+    font-weight: 700;
+    font-style: normal;
+    color: rgb(246, 244, 229);
+    letter-spacing: 0px;
+    line-height: 1;
+}
+
+.pk__blockTitle {
+    color: rgba(135, 135, 135, 1);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+}
+
+.pk__block ul { 
+    list-style: none;
+    padding: 0;
+    margin: 1.6rem 0 0;
+    gap: 1.75rem;
+    display: flex;
+    flex-direction: column;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+
+        span {
+            font-family: obviously, sans-serif;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.pk__writing { margin-top: 18px; }
+
+.pk__stepper {
+  display: flex;
+  gap: 0;
+  margin-top: 2rem;
+  align-items: center;
+}
+
+.pk__stepperBtn {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-secondary);
+  background: transparent;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-secondary);
+
+  &:first-child {
+    border-radius: 15px 0 0 15px;
+  }
+
+  &:nth-child(2) {
+    border-radius: 0 15px 15px 0;
+  }
+}
+
+.pk__stepperValue {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
+  margin-left: 1.5rem;
+}
+
+.pk__writingDays { 
+    font-family: obviously, sans-serif;
+    font-size: 1.5rem; 
+}
+
+.pk__writingUnit { 
+    font-family: obviously, sans-serif;
+    font-size: 1.5rem; 
+}
+
+.pk__badge {
+    position: absolute;
+    top: 2.3rem;
+    left: 3rem;
+    font-family: obviously, sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
 }
 
 @media (max-width: 980px) {

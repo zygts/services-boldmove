@@ -30,14 +30,42 @@ const landing = defineCollection({
       packages: z.array(
         z.object({
           id: z.string(),
-          name: z.string(),
+          title: z.string(),
           description: z.string(),
-          standardPrice: z.number(), // en euros (ej 3200). Convertimos a céntimos en runtime
+
+          image: z.string(),
+          imageAlt: z.string().optional().default(""),
+
+          standardPrice: z.number(),
           ctaLabel: z.string(),
-          badge: z.string().optional().default(""), // ej: "Most Popular"
-          features: z.array(z.string()).default([]),
+          badge: z.string().optional().default(""),
+
+          mainFeatures: z.array(
+            z.object({
+              icon: z.string(),
+              text: z.string(),
+            })
+          ).default([]),
+
+          writing: z.object({
+            label: z.string().default("CUSTOM WRITING"),
+            unitLabel: z.string().default("writing days"),
+            minDays: z.number().int().default(0),
+            maxDays: z.number().int().default(3),
+            pricePerDay: z.number().default(0),
+          }),
+
+          additionalFeatures: z.array(
+            z.object({
+              icon: z.string(),
+              text: z.string(),
+            })
+          ).default([]),
+
+          requirements: z.string().default("")
         })
       ).default([]),
+
     }),
 
     threeColumnsCards: z

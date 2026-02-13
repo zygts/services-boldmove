@@ -57,11 +57,21 @@ const toCents = (eur: number) => Math.round(eur * 100);
   </header>
 
   <div class="pk__grid">
-    {packages.slice(0, 4).map((p) => (
+    {(packages ?? []).slice(0, 4).map((p) => (
       <article class="pk__card" data-id={p.id}>
+        {p.image && (
+            <div class="pk__media">
+                <img
+                class="pk__img"
+                src={p.image}
+                alt={p.imageAlt ?? ""}
+                loading="lazy"
+                />
+            </div>
+            )}
         {p.badge && <div class="pk__badge">{p.badge}</div>}
 
-        <h3 class="pk__name">{p.name}</h3>
+        <h3 class="pk__name">{p.title}</h3>
         <p class="pk__desc">{p.description}</p>
 
         <div
@@ -74,62 +84,156 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
         <button class="pk__cta" type="button">{p.ctaLabel}</button>
 
-        <ul class="pk__features">
-          {p.features.map((f) => <li>{f}</li>)}
-        </ul>
+        {(p.mainFeatures ?? []).length > 0 && (
+            <div class="pk__block">
+                <div class="pk__blockTitle">MAIN FEATURES</div>
+                <ul class="pk__featureList">
+                {(p.mainFeatures ?? []).map((f) => (
+                    <li class="pk__featureItem">
+                    <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
+                    <span class="pk__featureText">{f.text}</span>
+                    </li>
+                ))}
+                </ul>
+            </div>
+            )}
+
+            <div
+                class="pk__writing"
+                data-writing-min={p.writing.minDays}
+                data-writing-max={p.writing.maxDays}
+                data-writing-per-day-cents={toCents(p.writing.pricePerDay)}
+                >
+                <div class="pk__blockTitle">{p.writing.label}</div>
+
+                <div class="pk__stepper">
+                    <button class="pk__stepperBtn" type="button" data-action="dec" aria-label="Decrease writing days">−</button>
+                    <button class="pk__stepperBtn" type="button" data-action="inc" aria-label="Increase writing days">+</button>
+
+                    <div class="pk__stepperValue">
+                    <span class="pk__writingDays">0</span>
+                    <span class="pk__writingUnit">{p.writing.unitLabel}</span>
+                    </div>
+                    
+                </div>
+            </div>
+
+            {(p.additionalFeatures ?? []).length > 0 && (
+            <div class="pk__block">
+                <div class="pk__blockTitle">ADDITIONAL FEATURES</div>
+                <ul class="pk__featureList">
+                {(p.additionalFeatures ?? []).map((f) => (
+                    <li class="pk__featureItem">
+                    <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
+                    <span class="pk__featureText">{f.text}</span>
+                    </li>
+                ))}
+                </ul>
+            </div>
+            )}
+
+            {p.requirements && (
+            <div class="pk__block">
+                <div class="pk__blockTitle">REQUIREMENTS</div>
+                <p class="pk__requirements">{p.requirements}</p>
+            </div>
+            )}
+
       </article>
     ))}
   </div>
 
-  <script is:inline>
+    <script is:inline>
     (function () {
-      const root = document.currentScript?.closest(".pk");
-      if (!root) return;
+        const root = document.currentScript?.closest(".pk");
+        if (!root) return;
 
-      const discountPercent = Number(root.getAttribute("data-discount") || "0");
-      const locale = root.getAttribute("data-locale") || "en-GB";
-      const currency = root.getAttribute("data-currency") || "EUR";
+        const discountPercent = Number(root.getAttribute("data-discount") || "0");
+        const locale = root.getAttribute("data-locale") || "en-GB";
+        const currency = root.getAttribute("data-currency") || "EUR";
 
-      const toggle = root.querySelector("#pkToggle");
-      const priceEls = root.querySelectorAll(".pk__price[data-standard-cents]");
+        const toggle = root.querySelector("#pkToggle");
+        const cards = root.querySelectorAll(".pk__card");
 
-      const fmt = new Intl.NumberFormat(locale, {
+        const fmt = new Intl.NumberFormat(locale, {
         style: "currency",
         currency,
         maximumFractionDigits: 0,
-      });
-
-      function priceFromCents(cents) {
-        return cents / 100;
-      }
-
-      function apply(isDiscounted) {
-        priceEls.forEach((el) => {
-          const standardCents = Number(el.getAttribute("data-standard-cents") || "0");
-          const cents = isDiscounted
-            ? Math.round(standardCents * (1 - discountPercent / 100))
-            : standardCents;
-
-          el.textContent = fmt.format(priceFromCents(cents));
         });
 
-        // opcional: marca estado en el root (para CSS)
-        root.setAttribute("data-mode", isDiscounted ? "discount" : "standard");
-      }
+        function priceFromCents(cents) {
+        return cents / 100;
+        }
 
-      // Persistencia opcional
-      const saved = localStorage.getItem("pk_discounted");
-      const initial = saved === "1";
-      if (toggle) toggle.checked = initial;
-      apply(initial);
+        function calcCardPriceCents(card, discounted) {
+        const base = Number(card.querySelector(".pk__price")?.getAttribute("data-standard-cents") || "0");
 
-      toggle?.addEventListener("change", () => {
+        const writingWrap = card.querySelector(".pk__writing");
+        const perDay = Number(writingWrap?.getAttribute("data-writing-per-day-cents") || "0");
+        const days = Number(card.getAttribute("data-writing-days") || "0");
+
+        const subtotal = base + days * perDay;
+        return discounted ? Math.round(subtotal * (1 - discountPercent / 100)) : subtotal;
+        }
+
+        function renderPrices() {
+        const discounted = !!toggle?.checked;
+        cards.forEach((card) => {
+            const priceEl = card.querySelector(".pk__price");
+            if (!priceEl) return;
+
+            const cents = calcCardPriceCents(card, discounted);
+            priceEl.textContent = fmt.format(priceFromCents(cents));
+        });
+
+        root.setAttribute("data-mode", discounted ? "discount" : "standard");
+        }
+
+        // init toggle state (persist)
+        const saved = localStorage.getItem("pk_discounted");
+        const initialDiscount = saved === "1";
+        if (toggle) toggle.checked = initialDiscount;
+
+        // init cards steppers
+        cards.forEach((card) => {
+        card.setAttribute("data-writing-days", "0");
+
+        const writingWrap = card.querySelector(".pk__writing");
+        const valueEl = card.querySelector(".pk__writingDays");
+        if (!writingWrap || !valueEl) return;
+
+        const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
+        const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+
+        function setDays(next) {
+            const clamped = Math.max(min, Math.min(max, next));
+            card.setAttribute("data-writing-days", String(clamped));
+            valueEl.textContent = String(clamped);
+            renderPrices();
+        }
+
+        card.querySelectorAll("[data-action]").forEach((btn) => {
+            btn.addEventListener("click", () => {
+            const current = Number(card.getAttribute("data-writing-days") || "0");
+            const action = btn.getAttribute("data-action");
+            setDays(action === "inc" ? current + 1 : current - 1);
+            });
+        });
+
+        // start at min (normalmente 0)
+        setDays(min);
+        });
+
+        // initial render
+        renderPrices();
+
+        toggle?.addEventListener("change", () => {
         const on = !!toggle.checked;
         localStorage.setItem("pk_discounted", on ? "1" : "0");
-        apply(on);
-      });
+        renderPrices();
+        });
     })();
-  </script>
+    </script>
 
   <style>
     /* Solo base mínima para que no se rompa */
@@ -138,10 +242,12 @@ const toCents = (eur: number) => Math.round(eur * 100);
     .pk__switch { display:inline-flex; align-items:center; }
     .pk__switch input{ position:absolute; opacity:0; pointer-events:none; }
     .pk__slider{
-      width:56px; height:30px; border:2px solid #111; border-radius:999px; position:relative; display:block;
+      cursor: pointer;width:6.7rem; height:4rem; border:2px solid #111; border-radius:999px; position:relative; display:block;
     }
     .pk__slider::after{
-      content:""; width:24px; height:24px; border-radius:999px; background:#111; position:absolute; top:50%; left:3px;
+      content:""; width: 3.3rem;
+    height: 3.3rem;
+     border-radius:999px; background: #111; position:absolute; top:50%; left:4px;
       transform:translateY(-50%); transition:transform .2s ease;
     }
     .pk__switch input:checked + .pk__slider::after{
