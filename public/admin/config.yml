@@ -1,0 +1,33 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "landing"
+    label: "Landing"
+    files:
+      - name: "home"
+        label: "Home"
+        file: "src/content/landing/home.json"
+        format: "json"
+        fields:
+          - label: "Card Sections"
+            name: "cardSections"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - { label: "ID", name: "id", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                fields:
+                  - { label: "Title", name: "title", widget: "string" }
+                  - { label: "Body", name: "body", widget: "text" }
+                  - { label: "Icon", name: "icon", widget: "image" }
+                  - { label: "Icon Alt", name: "iconAlt", widget: "string", required: false }

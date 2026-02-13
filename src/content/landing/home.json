@@ -1,0 +1,52 @@
+{
+  "cardSections": [
+    {
+      "id": "visual-experience",
+      "title": "THE VISUAL EXPERIENCE",
+      "items": [
+        {
+          "title": "BESPOKE AI VISUALS",
+          "body": "Our signature approach to visual research complimented – on request – by sophisticated and tasteful AI for bespoke imagery tailored to your story",
+          "icon": "/uploads/image-38ec140e-3cb5-48e6-af5d-f94a1a5ec588.webp",
+          "iconAlt": "Magnifying glass illustration"
+        },
+        {
+          "title": "SIGNATURE FORMATS",
+          "body": "From classic formats to fully immersive platforms, we design for every demographic – always with our unmistakable signature style",
+          "icon": "/uploads/image-dca53264-de07-490e-80c2-bc9d32d2de21.webp",
+          "iconAlt": "Flag on grid illustration"
+        },
+        {
+          "title": "KEY ART",
+          "body": "Bold, cinematic key art design for projects that have already been greenlit",
+          "icon": "/uploads/image-016acec9-15a0-40f1-a4ac-e9c0a0642179.webp",
+          "iconAlt": "Character illustration"
+        }
+      ]
+    },
+    {
+      "id": "client-value",
+      "title": "CLIENT VALUE",
+      "items": [
+        {
+          "title": "WRITING DISCOUNT",
+          "body": "20% off content writing when added to a design package",
+          "icon": "/uploads/image-016acec9-15a0-40f1-a4ac-e9c0a0642179.webp",
+          "iconAlt": ""
+        },
+        {
+          "title": "FLEXIBLE PAYMENTS",
+          "body": "Flexible, manageable payment options available upon request",
+          "icon": "/uploads/image-55f922e4-1168-4b2f-8bd2-102af64f5c3f.webp",
+          "iconAlt": ""
+        },
+        {
+          "title": "CLIENT TRAINING",
+          "body": "Complimentary client training on our design tools, helping you save time (and money) on revisions",
+          "icon": "/uploads/image-ef6cad89-4581-4795-b7c0-b34f71de073d.webp",
+          "iconAlt": ""
+        }
+      ]
+    }
+  ]
+}

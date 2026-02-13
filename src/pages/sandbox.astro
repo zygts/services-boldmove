@@ -1,0 +1,36 @@
+---
+import { getCollection } from "astro:content";
+import VisualExperience from "../components/VisualExperience.astro";
+
+const entries = await getCollection("landing");
+const home = entries.find((e) => e.id === "home");
+
+if (!home) {
+  throw new Error(
+    `No se encontró la entrada "home" en la colección "landing". ` +
+    `Comprueba que existe src/content/landing/home.json`
+  );
+}
+
+const vx = home.data.visualExperience;
+
+if (!vx) {
+  throw new Error(
+    `No existe visualExperience en home.json. Revisa la clave: { "visualExperience": { ... } }`
+  );
+}
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sandbox</title>
+  </head>
+  <body style="margin:0;background:#0b0b0c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
+    <main style="max-width:1200px;margin:0 auto;padding:46px 18px;">
+      <VisualExperience title={vx.title} items={vx.items} />
+    </main>
+  </body>
+</html>
