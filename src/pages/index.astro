@@ -23,18 +23,13 @@ const sections = home.data.cardSections;
 		))}
     </main>
 
-    <script is:inline src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-<script is:inline>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", () => {
-      const h = window.location.hash || "";
-      if (h.includes("invite_token=") || h.includes("recovery_token=") || h.includes("confirmation_token=")) {
-        window.netlifyIdentity.open("signup");
-      }
-    });
-    window.netlifyIdentity.init();
-  }
+    <script is:inline>
+  (function () {
+    const h = window.location.hash || "";
+    if (h.includes("invite_token=") || h.includes("recovery_token=") || h.includes("confirmation_token=")) {
+      window.location.replace("/admin/index.html" + h);
+    }
+  })();
 </script>
 
 
