@@ -110,6 +110,27 @@ const landing = defineCollection({
       ).default([]),
     }),
 
+    platformsSection: z.object({
+      title: z.string().default("PLATFORMS"),
+      body: z.object({
+        p1: z.string(),
+        p2: z.string(),
+        emphasis: z.string(),
+      }),
+      videos: z.array(
+        z.object({
+          label: z.string(),
+          src: z.string().optional().default(""),
+          url: z.string().optional().default(""),
+          poster: z.string().optional().default(""),
+          muted: z.boolean().optional().default(true),
+          autoplay: z.boolean().optional().default(true),
+          loop: z.boolean().optional().default(true),
+          controls: z.boolean().optional().default(false),
+        })
+      ).default([]),
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({

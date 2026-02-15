@@ -1,0 +1,65 @@
+---
+type PlatformVideo = {
+  label: string;
+  src?: string;  // uploaded file (e.g. /uploads/x.mp4)
+  url?: string;  // external url
+  poster?: string;
+  muted?: boolean;
+  autoplay?: boolean;
+  loop?: boolean;
+  controls?: boolean;
+};
+
+type Props = {
+  title: string;
+  body: { p1: string; p2: string; emphasis: string };
+  videos: PlatformVideo[];
+};
+
+const { title, body, videos = [] } = Astro.props;
+
+const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.url || "").trim());
+---
+
+<section class="plt">
+  <div class="plt__top">
+    <h2 class="plt__title">{title}</h2>
+
+    <div class="plt__copy">
+      <p class="plt__p">{body.p1}</p>
+      <p class="plt__p">{body.p2}</p>
+      <p class="plt__em">{body.emphasis}</p>
+    </div>
+  </div>
+
+  <div class="plt__videos">
+    {videos.slice(0, 2).map((v, i) => {
+      const src = getVideoSrc(v);
+      return (
+        <div class="plt__videoCol" data-i={i}>
+          <div class="plt__videoLabel">{v.label}</div>
+
+          <div class="plt__videoFrame">
+            {src ? (
+              <video
+                class="plt__video"
+                src={src}
+                poster={v.poster || undefined}
+                muted={v.muted ?? true}
+                autoplay={v.autoplay ?? true}
+                loop={v.loop ?? true}
+                controls={v.controls ?? false}
+                playsinline
+                preload="metadata"
+              />
+            ) : (
+              <div class="plt__videoPlaceholder">
+                Add a video in Decap (mp4/webm) or paste a URL.
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>

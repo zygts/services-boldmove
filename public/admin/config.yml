@@ -161,3 +161,33 @@ collections:
                   - { label: "Name", name: "name", widget: "string" }
                   - { label: "Price", name: "price", widget: "string", hint: "e.g. 625€ per day" }
                   - { label: "Description", name: "description", widget: "text" }
+
+          - label: "Platforms Section"
+            name: "platformsSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "PLATFORMS" }
+
+              - label: "Body"
+                name: "body"
+                widget: "object"
+                fields:
+                  - { label: "Paragraph 1", name: "p1", widget: "text" }
+                  - { label: "Paragraph 2", name: "p2", widget: "text" }
+                  - { label: "Emphasis line", name: "emphasis", widget: "text" }
+
+              - label: "Videos (2)"
+                name: "videos"
+                widget: "list"
+                summary: "{{fields.label}}"
+                min: 2
+                max: 2
+                fields:
+                  - { label: "Label", name: "label", widget: "string" }
+                  - { label: "Video file", name: "src", widget: "file", required: false, hint: "Upload mp4/webm if you want to host it" }
+                  - { label: "Video URL (optional)", name: "url", widget: "string", required: false, hint: "Use if you host video elsewhere (CDN, etc.)" }
+                  - { label: "Poster (optional)", name: "poster", widget: "image", required: false }
+                  - { label: "Muted", name: "muted", widget: "boolean", default: true }
+                  - { label: "Autoplay", name: "autoplay", widget: "boolean", default: true }
+                  - { label: "Loop", name: "loop", widget: "boolean", default: true }
+                  - { label: "Controls", name: "controls", widget: "boolean", default: false }

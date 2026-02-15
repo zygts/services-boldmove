@@ -257,6 +257,37 @@
       }
     ]
   },
+  "platformsSection": {
+    "title": "PLATFORMS",
+    "body": {
+      "p1": "Here at Boldmove, we cater to every client. Our signature special sauce is a scrolling, immersive deck that puts the viewer firmly in amongst the action.",
+      "p2": "But we understand that sometimes simplicity is king and we do also create classic, linear decks. And of course we do it all with the same stylised art direction we sprinkle on every Boldmove project.",
+      "emphasis": "Here's an example of a deck made for two different formats."
+    },
+    "videos": [
+      {
+        "label": "Immersive Scroll",
+        "src": "",
+        "url": "",
+        "poster": "",
+        "muted": true,
+        "autoplay": true,
+        "loop": true,
+        "controls": false
+      },
+      {
+        "label": "Classic Navigation",
+        "src": "",
+        "url": "",
+        "poster": "",
+        "muted": true,
+        "autoplay": true,
+        "loop": true,
+        "controls": false
+      }
+    ]
+  },
+
   "threeColumnsCards": [
     {
       "id": "visual-experience",
