@@ -95,6 +95,21 @@ const landing = defineCollection({
       footerText: z.string(), 
     }),
 
+    servicesSection: z.object({
+      title: z.string().default("SERVICES"),
+      subtitle: z.string().optional().default(""),
+      useSeparatorImage: z.boolean().optional().default(false),
+      separatorImage: z.string().optional().default(""),
+      services: z.array(
+        z.object({
+          id: z.string(),
+          name: z.string(),
+          price: z.string(),
+          description: z.string(),
+        })
+      ).default([]),
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({

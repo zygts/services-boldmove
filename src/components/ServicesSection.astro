@@ -1,0 +1,53 @@
+---
+type ServiceItem = {
+  id: string;
+  name: string;
+  price: string;        // "625€ per day"
+  description: string;
+};
+
+type Props = {
+  title: string;
+  subtitle?: string;
+  services: ServiceItem[];
+  useSeparatorImage?: boolean;
+  separatorImage?: string; // e.g. "/images/separator.png"
+};
+
+const {
+  title,
+  subtitle = "",
+  services = [],
+  useSeparatorImage = false,
+  separatorImage = "",
+} = Astro.props;
+
+const separatorUrl = useSeparatorImage && separatorImage ? separatorImage : "";
+---
+
+<section class="srv">
+  <header class="srv__header">
+    <h2 class="srv__title">{title}</h2>
+    {subtitle && <p class="srv__subtitle">{subtitle}</p>}
+  </header>
+
+  <div class="srv__card" style={separatorUrl ? `--srv-sep:url(${separatorUrl});` : ""}>
+    <ul class="srv__list">
+      {services.map((s, idx) => (
+        <li class="srv__row" data-id={s.id} data-has-sep={separatorUrl ? "1" : "0"}>
+          <div class="srv__left">
+            <div class="srv__name">{s.name}</div>
+            <div class="srv__price">{s.price}</div>
+          </div>
+
+          <div class="srv__right">
+            <p class="srv__desc">{s.description}</p>
+          </div>
+
+          {/* separator between rows */}
+          {idx !== services.length - 1 && <div class="srv__sep" aria-hidden="true"></div>}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

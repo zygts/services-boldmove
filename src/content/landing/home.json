@@ -25,6 +25,7 @@
           }
         ],
         "ctaLabel": "Start with Knight",
+        "footerText": " ",
         "standardPrice": 3200,
         "imageAlt": "",
         "requirements": "Visual research is provided by the client.",
@@ -72,6 +73,7 @@
           }
         ],
         "ctaLabel": "Choose Blitz",
+        "footerText": " ",
         "standardPrice": 4450,
         "imageAlt": "",
         "requirements": "",
@@ -110,6 +112,7 @@
         "badge": "Most Popular",
         "additionalFeatures": [],
         "ctaLabel": "Select Gambit",
+        "footerText": " ",
         "standardPrice": 5075,
         "imageAlt": "",
         "requirements": "",
@@ -136,6 +139,7 @@
         "badge": "",
         "additionalFeatures": [],
         "ctaLabel": "Get Checkmate",
+        "footerText": " ",
         "standardPrice": 6575,
         "imageAlt": "",
         "requirements": "",
@@ -156,7 +160,7 @@
     ]
   },
   "fullWidthCard": {
-    "title": "OUR BUNDLES",
+    "title": "Our Bundles",
     "headline": "DECK\nPACKAGES",
     "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.",
     "icons": [
@@ -171,7 +175,7 @@
     ]
   },
   "upgradeSection": {
-    "title": "UPGRADE YOUR PACKAGE",
+    "title": "Already have a deck? We can refine and elevate it at a reduced cost.",
     "card": {
       "badge": "",
       "additionalFeatures": [
@@ -209,10 +213,54 @@
     },
     "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
   },
+  "servicesSection": {
+    "title": "Services",
+    "subtitle": "Bespoke services to enhance your project and strengthen your deck",
+    "useSeparatorImage": false,
+    "separatorImage": "",
+    "services": [
+      {
+        "id": "immersive-deck-design",
+        "name": "Immersive Deck Design",
+        "price": "625€ per day",
+        "description": "Boldmove communicates in a visual cinematic language. We create decks that guide the eye, support the story and elevate your project. Every design choice is made to reinforce tone, genre and intent — so your deck looks as strong as it reads."
+      },
+      {
+        "id": "visual-research",
+        "name": "Visual Research",
+        "price": "625€ per day",
+        "description": "Boldmove curates visual references that define the world of your film or series. Through focused research we build image selections that give an unmistakable sense of the project's look and feel."
+      },
+      {
+        "id": "deck-writing",
+        "name": "Deck Writing",
+        "price": "750€ per day",
+        "description": "Boldmove’s industry professionals write pitch deck copy that clarifies and sharpens your story. Every line of text is designed to hold attention and draw your audience into the project."
+      },
+      {
+        "id": "story-consulting",
+        "name": "Story Consulting",
+        "price": "750€ per day ",
+        "description": "Strategic story consultation with Boldmove’s professional writing team. From structure to tone, we identify what matters most and how it should land."
+      },
+      {
+        "id": "sound-design-music",
+        "name": "Sound Design and Music ",
+        "price": "Price on request",
+        "description": "Bespoke composition and audio production, designed to heighten emotion, reinforce narrative beats and elevate the overall experience. "
+      },
+      {
+        "name": "Custom Navigation Experiences (Coding)",
+        "id": "coding",
+        "price": "800€ per day ",
+        "description": "Interactive, code-driven navigation crafted by specialists to create engaging experiences that will leave your audience speechless."
+      }
+    ]
+  },
   "threeColumnsCards": [
     {
       "id": "visual-experience",
-      "title": "THE VISUAL EXPERIENCE",
+      "title": "The Visual Experience",
       "items": [
         {
           "title": "BESPOKE AI VISUALS",
@@ -236,7 +284,7 @@
     },
     {
       "id": "client-value",
-      "title": "CLIENT VALUE",
+      "title": "Client Value",
       "items": [
         {
           "title": "WRITING DISCOUNT",
