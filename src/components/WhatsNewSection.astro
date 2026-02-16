@@ -10,15 +10,16 @@ type Props = {
 const { rows } = Astro.props;
 const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
   rows?.length === 3 ? rows : [[], [], []];
+
+// “Imagen central”: 3ª imagen de la 3ª fila (index 2)
+const centerItem: MediaItem | null = safeRows?.[2]?.[2] ?? safeRows?.[2]?.[0] ?? null;
+const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 ---
 
 <section id="whats-new" class="wn" aria-label="What's new">
   <div class="wn__inner">
     {safeRows.map((rowItems, rowIndex) => (
-      <div
-        class="wn__row"
-        data-dir={rowIndex === 1 ? "rtl" : "ltr"}
-      >
+      <div class="wn__row" data-dir={rowIndex === 1 ? "rtl" : "ltr"}>
         <div class="wn__track">
           {rowItems.map((it) => (
             <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
@@ -32,157 +33,206 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
                   preload="metadata"
                 />
               ) : (
-                <img
-                  class="wn__media"
-                  src={it.src}
-                  alt={it.alt ?? ""}
-                  loading="lazy"
-                />
+                <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
               )}
             </figure>
           ))}
         </div>
       </div>
     ))}
+
+    <!-- Centro: tile + overlay + título -->
+    <div class="wn__center" aria-hidden="true">
+      <div class="wn__centerMedia">
+        {centerItem ? (
+          centerItem.type === "video" ? (
+            <video
+              class="wn__media"
+              src={centerItem.src}
+              poster={centerItem.poster}
+              muted
+              playsinline
+              preload="metadata"
+            />
+          ) : (
+            <img class="wn__media" src={centerItem.src} alt={centerAlt} loading="eager" />
+          )
+        ) : null}
+      </div>
+
+      <div class="wn__centerOverlay"></div>
+
+      <div class="wn__centerTitle" aria-hidden="true">
+        <span>WHAT'S NEW</span>
+        <span>AT BOLDMOVE?</span>
+      </div>
+    </div>
   </div>
 
-<script is:inline>
-(function () {
-  const root = document.currentScript?.closest(".wn");
-  if (!root) return;
+  <script is:inline>
+    (function () {
+      const root = document.currentScript?.closest(".wn");
+      if (!root) return;
 
-  const rows = Array.from(root.querySelectorAll(".wn__row"));
-  if (rows.length !== 3) return;
+      const rows = Array.from(root.querySelectorAll(".wn__row"));
+      if (rows.length !== 3) return;
 
-  const TRIGGER_ID = "whats-new-scroll";
+      const centerOverlay = root.querySelector(".wn__centerOverlay");
+      const centerTitle = root.querySelector(".wn__centerTitle");
 
-  function measureTravel(row) {
-    const track = row.querySelector(".wn__track");
-    if (!track) return 0;
-    const vw = row.getBoundingClientRect().width;
-    const sw = track.scrollWidth;
-    return Math.max(0, sw - vw);
-  }
+      const TRIGGER_ID = "whats-new-scroll";
 
-  function queueRefresh() {
-    if (!window.ScrollTrigger) return;
-    if (window.__wnRefreshQueued) return;
-    window.__wnRefreshQueued = true;
-    requestAnimationFrame(() => {
-      window.__wnRefreshQueued = false;
-      window.ScrollTrigger.refresh();
-    });
-  }
-
-  function build() {
-    if (!window.gsap || !window.ScrollTrigger) return;
-
-    const gsap = window.gsap;
-    const ScrollTrigger = window.ScrollTrigger;
-
-    // 🔥 Kill SOLO nuestro trigger
-    ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
-
-    // 🔥 Reset completo de transforms
-    rows.forEach(row => {
-      const track = row.querySelector(".wn__track");
-      if (track) gsap.set(track, { clearProps: "all" });
-    });
-
-    const progressRatio = 0.8; // 80% recorrido
-    const travels = rows.map(measureTravel);
-    const maxTravel = Math.max(...travels);
-
-    if (maxTravel < 10) return;
-
-    const effectiveTravel = maxTravel * progressRatio;
-
-    const tl = gsap.timeline({ defaults: { ease: "none" } });
-
-    rows.forEach((row, idx) => {
-      const track = row.querySelector(".wn__track");
-      if (!track) return;
-
-      const travel = (travels[idx] || 0) * progressRatio;
-      const dir = row.getAttribute("data-dir");
-
-      // 🔧 Ajustes finos
-      const startOffset = -330;
-      const endOffset = -300;
-
-      if (dir === "rtl") {
-        gsap.set(track, { x: -travel + startOffset });
-        tl.to(track, { x: endOffset }, 0);
-      } else {
-        gsap.set(track, { x: 0 });
-        tl.to(track, { x: -travel }, 0);
+      function measureTravel(row) {
+        const track = row.querySelector(".wn__track");
+        if (!track) return 0;
+        const vw = row.getBoundingClientRect().width;
+        const sw = track.scrollWidth;
+        return Math.max(0, sw - vw);
       }
-    });
 
-    const factor = window.matchMedia("(max-width: 980px)").matches
-      ? 1.35
-      : 1.1;
-
-    ScrollTrigger.create({
-      id: TRIGGER_ID,
-      trigger: root,
-      start: "top top",
-      end: () => "+=" + Math.round(effectiveTravel * factor),
-      pin: true,
-      scrub: true,
-      anticipatePin: 1,
-      invalidateOnRefresh: true,
-      animation: tl,
-      refreshPriority: 0
-    });
-
-    queueRefresh();
-  }
-
-  function initWhenReady() {
-    const media = Array.from(root.querySelectorAll("img, video"));
-    const pending = media.filter((el) => {
-      if (el.tagName === "IMG") return !el.complete;
-      return el.readyState < 1;
-    });
-
-    if (pending.length === 0) {
-      build();
-      return;
-    }
-
-    let left = pending.length;
-    const done = () => {
-      left--;
-      if (left <= 0) build();
-    };
-
-    pending.forEach((el) => {
-      if (el.tagName === "IMG") {
-        el.addEventListener("load", done, { once: true });
-        el.addEventListener("error", done, { once: true });
-      } else {
-        el.addEventListener("loadedmetadata", done, { once: true });
-        el.addEventListener("error", done, { once: true });
+      function queueRefresh() {
+        if (!window.ScrollTrigger) return;
+        if (window.__wnRefreshQueued) return;
+        window.__wnRefreshQueued = true;
+        requestAnimationFrame(() => {
+          window.__wnRefreshQueued = false;
+          window.ScrollTrigger.refresh();
+        });
       }
-    });
-  }
 
-  if (document.readyState === "complete") {
-    initWhenReady();
-  } else {
-    window.addEventListener("load", initWhenReady);
-  }
+      function build() {
+        if (!window.gsap || !window.ScrollTrigger) return;
 
-  // 🔁 Resize robusto (debounced + rebuild completo)
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      build();
-    }, 200);
-  });
+        const gsap = window.gsap;
+        const ScrollTrigger = window.ScrollTrigger;
 
-})();
-</script>
+        // Kill solo nuestro trigger
+        ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+
+        // Reset transforms/opacities para evitar acumulación en resize
+        rows.forEach((row) => {
+          const track = row.querySelector(".wn__track");
+          if (track) gsap.set(track, { clearProps: "all" });
+        });
+
+        if (centerOverlay) gsap.set(centerOverlay, { opacity: 0, clearProps: "filter" });
+        if (centerTitle) gsap.set(centerTitle, { opacity: 0, y: 0 });
+
+        const progressRatio = 0.8; // 80% recorrido horizontal
+        const travels = rows.map(measureTravel);
+        const maxTravel = Math.max(...travels);
+
+        if (maxTravel < 10) return;
+
+        const effectiveTravel = maxTravel * progressRatio;
+
+        // Timeline con 2 fases:
+        // A) desplazamiento horizontal
+        // B) overlay negro + título fade in (al final)
+        const tl = gsap.timeline({ defaults: { ease: "none" } });
+
+        // --- FASE A: filas ---
+        rows.forEach((row, idx) => {
+          const track = row.querySelector(".wn__track");
+          if (!track) return;
+
+          const travel = (travels[idx] || 0) * progressRatio;
+          const dir = row.getAttribute("data-dir");
+
+          // Ajustes finos solo para la fila rtl (como venías usando)
+          const startOffset = -330;
+          const endOffset = -300;
+
+          if (dir === "rtl") {
+            gsap.set(track, { x: -travel + startOffset });
+            tl.to(track, { x: endOffset }, 0);
+          } else {
+            gsap.set(track, { x: 0 });
+            tl.to(track, { x: -travel }, 0);
+          }
+        });
+
+        // --- FASE B: overlay negro + título ---
+        // La colocamos al final de la fase A: usamos un “label”
+        tl.addLabel("endRows", 1);
+
+        if (centerOverlay) {
+          tl.to(
+            centerOverlay,
+            { opacity: 1, duration: 0.35, ease: "power1.out" },
+            "endRows-=0.35"
+          );
+        }
+
+        if (centerTitle) {
+          tl.to(
+            centerTitle,
+            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
+            "endRows-=0.35"
+          );
+        }
+
+        const factor = window.matchMedia("(max-width: 980px)").matches ? 1.35 : 1.1;
+
+        // Tramo extra de scroll para que “respire” la fase B antes de soltar el pin
+        // (ajusta si quieres más/menos)
+        const extraHoldPx = Math.round(window.innerHeight * 0.65);
+
+        ScrollTrigger.create({
+          id: TRIGGER_ID,
+          trigger: root,
+          start: "top top",
+          end: () => "+=" + Math.round(effectiveTravel * factor + extraHoldPx),
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          animation: tl,
+          refreshPriority: 0,
+        });
+
+        queueRefresh();
+      }
+
+      function initWhenReady() {
+        const media = Array.from(root.querySelectorAll("img, video"));
+        const pending = media.filter((el) => {
+          if (el.tagName === "IMG") return !el.complete;
+          return el.readyState < 1;
+        });
+
+        if (pending.length === 0) {
+          build();
+          return;
+        }
+
+        let left = pending.length;
+        const done = () => {
+          left--;
+          if (left <= 0) build();
+        };
+
+        pending.forEach((el) => {
+          if (el.tagName === "IMG") {
+            el.addEventListener("load", done, { once: true });
+            el.addEventListener("error", done, { once: true });
+          } else {
+            el.addEventListener("loadedmetadata", done, { once: true });
+            el.addEventListener("error", done, { once: true });
+          }
+        });
+      }
+
+      if (document.readyState === "complete") initWhenReady();
+      else window.addEventListener("load", initWhenReady);
+
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          build();
+        }, 200);
+      });
+    })();
+  </script>
 </section>
