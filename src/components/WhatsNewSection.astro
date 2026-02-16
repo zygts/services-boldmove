@@ -112,8 +112,12 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       // kill SOLO el trigger de esta sección
       window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
 
-      const travels = rows.map(measureTravel);
-      const maxTravel = Math.max(...travels);
+      const progressRatio = 0.8; // ← 80% del recorrido
+
+        const travels = rows.map(measureTravel);
+        const maxTravel = Math.max(...travels);
+        const effectiveTravel = maxTravel * progressRatio;
+
       if (maxTravel < 10) return;
 
       const tl = window.gsap.timeline({ defaults: { ease: "none" } });
@@ -122,20 +126,21 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
         const track = row.querySelector(".wn__track");
         if (!track) return;
 
-        const travel = travels[idx] || 0;
+        const travel = (travels[idx] || 0) * progressRatio;
         const dir = row.getAttribute("data-dir");
+        const startOffset = -330;
+        const endOffset = -300;
 
         if (dir === "rtl") {
-            // Izq→Der: empezamos “a la izquierda” para no dejar hueco
-            window.gsap.set(track, { x: -travel });
-            tl.to(track, { x: 0 }, 0);
+            
+
+            window.gsap.set(track, { x: -travel + startOffset });
+            tl.to(track, { x: endOffset }, 0);
         } else {
-            // Der→Izq: como antes
             window.gsap.set(track, { x: 0 });
             tl.to(track, { x: -travel }, 0);
         }
         });
-
 
       const factor = window.matchMedia("(max-width: 980px)").matches ? 1.35 : 1.1;
 
@@ -143,7 +148,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
         window.ScrollTrigger.create({
         trigger: root,
         start: "top top",
-        end: () => "+=" + Math.round(maxTravel * factor),
+        end: () => "+=" + Math.round(effectiveTravel * factor),
         pin: true,
         scrub: true,
         invalidateOnRefresh: true,

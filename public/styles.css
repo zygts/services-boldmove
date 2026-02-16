@@ -1620,7 +1620,7 @@ body.nav-open {
 
 .wn {
     position: relative;
-    padding: 54px 0;
+    padding: 10rem 0;
     overflow: hidden; /* ← Cambiado de visible a hidden */
 }
 
@@ -1636,19 +1636,19 @@ body.nav-open {
 
 .wn__track {
     display: flex;
-    gap: 22px;
-    padding: 0 22px;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
     will-change: transform;
     width: max-content; /* ← AGREGADO: permite que se extienda */
 }
 
 .wn__card {
     flex: 0 0 auto;
-    width: min(420px, 70vw);
+    width: min(46rem, 70vw);
     aspect-ratio: 16 / 9;
-    border-radius: 26px;
+    border-radius: 5rem;
     overflow: hidden;
-    background: #111;
+    background: #000;
     margin: 0;
 }
 
