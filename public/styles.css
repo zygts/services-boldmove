@@ -77,6 +77,10 @@ html {
 .card-section {
     width: 90%;
     margin: 0 auto;
+
+    @media (max-width: 991px) {
+        width: 100%;
+    }
 }
 
 .card-section .card {
@@ -105,7 +109,7 @@ html {
     padding: 6.4rem 0;
 
     @media (max-width: 991px) {
-        padding-bottom: 2rem;
+        padding-bottom: 6rem;
         width: calc(100% - 5.6rem);
         padding-inline: 2.8rem;
 
@@ -202,8 +206,16 @@ html {
     padding: 6.4rem 0;
 
     @media (max-width: 991px) {
-        width: 100%;
-        overflow-y: scroll;
+        padding: 0;
+    }
+}
+
+.scroller {
+    @media (max-width: 991px) {
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 6rem;
     }
 }
 
@@ -212,9 +224,11 @@ html {
     padding: 4rem 3.6rem;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: 3rem;
 
     @media (max-width: 991px) {
         width: 240%;
+        margin-top: 0;
         margin-left: 2.8rem;
         margin-right: 2.8rem;
         padding: 3rem 0;

@@ -178,8 +178,8 @@ const { title, underline = "", pinVh = 220, cards = [] } = Astro.props;
         window.gsap.set(header, { opacity: 1 });
 
         const total = cards.length;
-        const perCardVh = 55;          // ← AJUSTA: 55vh por tarjeta (más = scroll más largo)
-        const extraVh = 80;            // ← AJUSTA: margen extra
+        const perCardVh = 155;
+        const extraVh = 80; 
         const endVh = Math.max(pinVh, total * perCardVh + extraVh);
 
         // Creamos una timeline “virtual”: revelamos por steps
