@@ -1,0 +1,200 @@
+---
+type MediaItem =
+  | { type: "image"; src: string; alt?: string }
+  | { type: "video"; src: string; poster?: string; alt?: string };
+
+type Props = {
+  rows: [MediaItem[], MediaItem[], MediaItem[]];
+};
+
+const { rows } = Astro.props;
+const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
+  rows?.length === 3 ? rows : [[], [], []];
+---
+
+<section id="whats-new" class="wn" aria-label="What's new">
+  <div class="wn__inner">
+    <div class="wn__row" data-dir="ltr">
+      <div class="wn__track">
+        {safeRows[0].map((it) => (
+          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
+            {it.type === "video" ? (
+              <video
+                class="wn__media"
+                src={it.src}
+                poster={it.poster}
+                muted
+                playsinline
+                preload="metadata"
+              />
+            ) : (
+              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
+            )}
+          </figure>
+        ))}
+      </div>
+    </div>
+
+    <div class="wn__row" data-dir="rtl">
+      <div class="wn__track">
+        {safeRows[1].map((it) => (
+          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
+            {it.type === "video" ? (
+              <video
+                class="wn__media"
+                src={it.src}
+                poster={it.poster}
+                muted
+                playsinline
+                preload="metadata"
+              />
+            ) : (
+              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
+            )}
+          </figure>
+        ))}
+      </div>
+    </div>
+
+    <div class="wn__row" data-dir="ltr">
+      <div class="wn__track">
+        {safeRows[2].map((it) => (
+          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
+            {it.type === "video" ? (
+              <video
+                class="wn__media"
+                src={it.src}
+                poster={it.poster}
+                muted
+                playsinline
+                preload="metadata"
+              />
+            ) : (
+              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
+            )}
+          </figure>
+        ))}
+      </div>
+    </div>
+  </div>
+<script is:inline>
+  (function () {
+    const root = document.currentScript?.closest(".wn");
+    if (!root) return;
+
+    const rows = Array.from(root.querySelectorAll(".wn__row"));
+    if (rows.length !== 3) return;
+
+    const TRIGGER_ID = "wn-pin";
+
+    function measureTravel(row) {
+      const track = row.querySelector(".wn__track");
+      if (!track) return 0;
+      const vw = row.getBoundingClientRect().width;
+      const sw = track.scrollWidth;
+      return Math.max(0, sw - vw);
+    }
+
+    // 🔑 refresh global “coalesced” (una sola vez por frame)
+    function queueRefresh() {
+      if (!window.ScrollTrigger) return;
+      if (window.__stRefreshQueued) return;
+      window.__stRefreshQueued = true;
+      requestAnimationFrame(() => {
+        window.__stRefreshQueued = false;
+        window.ScrollTrigger.refresh();
+      });
+    }
+
+    function build() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+
+      // kill SOLO el trigger de esta sección
+      window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+
+      const travels = rows.map(measureTravel);
+      const maxTravel = Math.max(...travels);
+      if (maxTravel < 10) return;
+
+      const tl = window.gsap.timeline({ defaults: { ease: "none" } });
+
+      rows.forEach((row, idx) => {
+        const track = row.querySelector(".wn__track");
+        if (!track) return;
+
+        const travel = travels[idx] || 0;
+        const dir = row.getAttribute("data-dir");
+
+        if (dir === "rtl") {
+            // Izq→Der: empezamos “a la izquierda” para no dejar hueco
+            window.gsap.set(track, { x: -travel });
+            tl.to(track, { x: 0 }, 0);
+        } else {
+            // Der→Izq: como antes
+            window.gsap.set(track, { x: 0 });
+            tl.to(track, { x: -travel }, 0);
+        }
+        });
+
+
+      const factor = window.matchMedia("(max-width: 980px)").matches ? 1.35 : 1.1;
+
+      // En la función build() de WhatsNew, agrega un ID:
+        window.ScrollTrigger.create({
+        trigger: root,
+        start: "top top",
+        end: () => "+=" + Math.round(maxTravel * factor),
+        pin: true,
+        scrub: true,
+        invalidateOnRefresh: true,
+        animation: tl,
+        id: "whats-new-scroll",
+        });
+
+      // NO llames refresh directo: encola uno
+      queueRefresh();
+    }
+
+    function initWhenReady() {
+      const media = Array.from(root.querySelectorAll("img, video"));
+      const pending = media.filter((el) => {
+        if (el.tagName === "IMG") return !el.complete;
+        return el.readyState < 1;
+      });
+
+      if (pending.length === 0) {
+        build();
+        return;
+      }
+
+      let left = pending.length;
+      const done = () => {
+        left--;
+        if (left <= 0) build();
+      };
+
+      pending.forEach((el) => {
+        if (el.tagName === "IMG") {
+          el.addEventListener("load", done, { once: true });
+          el.addEventListener("error", done, { once: true });
+        } else {
+          el.addEventListener("loadedmetadata", done, { once: true });
+          el.addEventListener("error", done, { once: true });
+        }
+      });
+    }
+
+    if (document.readyState === "complete") initWhenReady();
+    else window.addEventListener("load", initWhenReady);
+
+    let resizeTimeout;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        build();
+      }, 150);
+    });
+  })();
+</script>
+
+</section>

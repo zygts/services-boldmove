@@ -3,6 +3,7 @@ import { getEntry } from "astro:content";
 
 import SiteNav from "../components/SiteNav.astro";
 
+import WhatsNewSection from "../components/WhatsNewSection.astro";
 import FullWidthCard from "../components/FullWidthCard.astro";
 import ThreeColumnsCard from "../components/ThreeColumnsCard.astro";
 import PackagesSection from "../components/PackagesSection.astro";
@@ -14,6 +15,40 @@ import ContactSection from "../components/ContactSection.astro";
 
 const home = await getEntry("landing", "home");
 const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servicesSection, platformsSection, testimonialsSection, contactSection } = home.data;
+
+const whatsNewRows = [
+  [
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-3.webp", alt: "..." },
+    { type: "image", src: "/images/video-4.webp", alt: "..." },
+    { type: "image", src: "/images/video-5.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-3.webp", alt: "..." },
+  ],
+  [
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-3.webp", alt: "..." },
+    { type: "image", src: "/images/video-5.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+  ],
+  [
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-3.webp", alt: "..." },
+    { type: "image", src: "/images/video-4.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+    { type: "image", src: "/images/video-2.webp", alt: "..." },
+    { type: "image", src: "/images/video-3.webp", alt: "..." },
+    { type: "image", src: "/images/video-5.webp", alt: "..." },
+    { type: "image", src: "/images/video-1.webp", alt: "..." },
+  ],
+];
 ---
 
 <!doctype html>
@@ -29,6 +64,8 @@ const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servi
   <body style="margin:0;background:#0b0b0c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
   <SiteNav />
     <main>
+    <WhatsNewSection rows={whatsNewRows} />
+
       <FullWidthCard
         title={fullWidthCard.title}
         headline={fullWidthCard.headline}
@@ -61,5 +98,8 @@ const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servi
         }
       })();
     </script>
+
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   </body>
 </html>

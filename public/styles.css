@@ -1615,3 +1615,62 @@ body.nav-open {
         place-items: center;
     }
 }
+
+/* WHAT'S NEW */
+
+.wn {
+    position: relative;
+    padding: 54px 0;
+    overflow: hidden; /* ← Cambiado de visible a hidden */
+}
+
+.wn__inner {
+    display: grid;
+    gap: 22px;
+}
+
+.wn__row {
+    width: 100%;
+    overflow: hidden; /* ← CRÍTICO: Cambiado de visible a hidden */
+}
+
+.wn__track {
+    display: flex;
+    gap: 22px;
+    padding: 0 22px;
+    will-change: transform;
+    width: max-content; /* ← AGREGADO: permite que se extienda */
+}
+
+.wn__card {
+    flex: 0 0 auto;
+    width: min(420px, 70vw);
+    aspect-ratio: 16 / 9;
+    border-radius: 26px;
+    overflow: hidden;
+    background: #111;
+    margin: 0;
+}
+
+.wn__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@media (max-width: 980px) {
+    .wn__inner {
+        gap: 16px;
+    }
+
+    .wn__track {
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    .wn__card {
+        width: min(360px, 78vw);
+        border-radius: 22px;
+    }
+}
