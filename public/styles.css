@@ -1010,7 +1010,7 @@ html {
 /* PLATOFRM */
 
 .plt {
-    padding: 12rem 0 7rem;
+    padding: 12rem 0 5rem;
     color: var(--color-secondary);
 
     @media (max-width: 991px) {
@@ -1070,7 +1070,7 @@ html {
     grid-template-columns: 1fr 1fr;
     gap: 0;
     max-width: 90%;
-    margin: 0 auto;
+    margin: 3rem auto 0;
     align-items: start;
 
     @media (max-width: 991px) {
@@ -1089,10 +1089,8 @@ html {
 }
 
 .plt__videoFrame {
-    margin-top: 3rem;
+    margin-top: 5rem;
     overflow: hidden;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px dashed rgba(255, 255, 255, 0.35);
     min-height: 50rem;
 
     @media (max-width: 991px) {
@@ -1102,11 +1100,11 @@ html {
     }
 }
 
-.plt__videoCol:first-of-type .plt__videoFrame {
+.plt__videoCol:first-of-type .plt__video {
     border-radius: 3rem 0 0 3rem;
 }
 
-.plt__videoCol:last-of-type .plt__videoFrame {
+.plt__videoCol:last-of-type .plt__video {
     border-radius: 0 3rem 3rem 0;
 }
 

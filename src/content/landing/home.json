@@ -267,7 +267,7 @@
     "videos": [
       {
         "label": "Immersive Scroll",
-        "src": "",
+        "src": "/uploads/video1.mp4",
         "url": "",
         "poster": "",
         "muted": true,
@@ -277,7 +277,7 @@
       },
       {
         "label": "Classic Navigation",
-        "src": "",
+        "src": "/uploads/video1.mp4",
         "url": "",
         "poster": "",
         "muted": true,
@@ -323,7 +323,8 @@
         "author": "Juli Blachowiak",
         "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
       }
-    ]
+    ],
+    "pinVh": 219
   },
   "contactSection": {
     "title": "TALK TO US",
