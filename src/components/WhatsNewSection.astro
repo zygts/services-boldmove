@@ -11,7 +11,6 @@ const { rows } = Astro.props;
 const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
   rows?.length === 3 ? rows : [[], [], []];
 
-// “Imagen central”: 3ª imagen de la 3ª fila (index 2)
 const centerItem: MediaItem | null = safeRows?.[2]?.[2] ?? safeRows?.[2]?.[0] ?? null;
 const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 ---
@@ -41,7 +40,6 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
       </div>
     ))}
 
-    <!-- Centro: tile + overlay + título -->
     <div class="wn__center" aria-hidden="true">
       <div class="wn__centerMedia">
         {centerItem ? (
@@ -63,8 +61,13 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
       <div class="wn__centerOverlay"></div>
 
       <div class="wn__centerTitle" aria-hidden="true">
-        <span>WHAT'S NEW</span>
-        <span>AT BOLDMOVE?</span>
+        <div class="desktop-only">
+            <span>WHAT'S NEW</span>
+            <span>AT BOLDMOVE?</span>
+        </div>
+        <div class="mobile-only">
+            <span>WHAT'S<br>NEW AT<br>BOLDMOVE?</span>
+        </div>
       </div>
     </div>
   </div>
@@ -75,12 +78,11 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
       if (!root) return;
 
       const rows = Array.from(root.querySelectorAll(".wn__row"));
-      if (rows.length !== 3) return;
-
       const centerOverlay = root.querySelector(".wn__centerOverlay");
       const centerTitle = root.querySelector(".wn__centerTitle");
 
       const TRIGGER_ID = "whats-new-scroll";
+      const DESKTOP_MQ = "(min-width: 991px)";
 
       function measureTravel(row) {
         const track = row.querySelector(".wn__track");
@@ -100,38 +102,45 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         });
       }
 
-      function build() {
+      function killDesktop() {
+        if (!window.ScrollTrigger || !window.gsap) return;
+
+        window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+
+        // Limpia transforms
+        rows.forEach((row) => {
+          const track = row.querySelector(".wn__track");
+          if (track) window.gsap.set(track, { clearProps: "all" });
+        });
+
+        if (centerOverlay) window.gsap.set(centerOverlay, { clearProps: "all", opacity: 0 });
+        if (centerTitle) window.gsap.set(centerTitle, { clearProps: "all", opacity: 1, y: 0 });
+      }
+
+      function buildDesktop() {
         if (!window.gsap || !window.ScrollTrigger) return;
+        if (rows.length !== 3) return;
 
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
 
-        // Kill solo nuestro trigger
-        ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+        // Kill + reset
+        killDesktop();
 
-        // Reset transforms/opacities para evitar acumulación en resize
-        rows.forEach((row) => {
-          const track = row.querySelector(".wn__track");
-          if (track) gsap.set(track, { clearProps: "all" });
-        });
+        // En desktop, el título empieza oculto (hará fade in al final)
+        if (centerTitle) gsap.set(centerTitle, { opacity: 0, y: 10 });
+        if (centerOverlay) gsap.set(centerOverlay, { opacity: 0 });
 
-        if (centerOverlay) gsap.set(centerOverlay, { opacity: 0, clearProps: "filter" });
-        if (centerTitle) gsap.set(centerTitle, { opacity: 0, y: 0 });
-
-        const progressRatio = 0.8; // 80% recorrido horizontal
+        const progressRatio = 0.8;
         const travels = rows.map(measureTravel);
         const maxTravel = Math.max(...travels);
-
         if (maxTravel < 10) return;
 
         const effectiveTravel = maxTravel * progressRatio;
 
-        // Timeline con 2 fases:
-        // A) desplazamiento horizontal
-        // B) overlay negro + título fade in (al final)
         const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-        // --- FASE A: filas ---
+        // Fase A: filas
         rows.forEach((row, idx) => {
           const track = row.querySelector(".wn__track");
           if (!track) return;
@@ -139,7 +148,7 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
           const travel = (travels[idx] || 0) * progressRatio;
           const dir = row.getAttribute("data-dir");
 
-          // Ajustes finos solo para la fila rtl (como venías usando)
+          // Ajustes finos fila 2
           const startOffset = -330;
           const endOffset = -300;
 
@@ -152,30 +161,17 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
           }
         });
 
-        // --- FASE B: overlay negro + título ---
-        // La colocamos al final de la fase A: usamos un “label”
+        // Fase B: overlay + título
         tl.addLabel("endRows", 1);
 
         if (centerOverlay) {
-          tl.to(
-            centerOverlay,
-            { opacity: 1, duration: 0.35, ease: "power1.out" },
-            "endRows-=0.35"
-          );
+          tl.to(centerOverlay, { opacity: 1, duration: 0.35, ease: "power1.out" }, "endRows");
         }
-
         if (centerTitle) {
-          tl.to(
-            centerTitle,
-            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" },
-            "endRows-=0.35"
-          );
+          tl.to(centerTitle, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "endRows+=0.05");
         }
 
-        const factor = window.matchMedia("(max-width: 980px)").matches ? 1.35 : 1.1;
-
-        // Tramo extra de scroll para que “respire” la fase B antes de soltar el pin
-        // (ajusta si quieres más/menos)
+        const factor = 1.1; // desktop fijo
         const extraHoldPx = Math.round(window.innerHeight * 0.65);
 
         ScrollTrigger.create({
@@ -194,7 +190,8 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         queueRefresh();
       }
 
-      function initWhenReady() {
+      // Desktop-only init (espera a media para medir bien)
+      function initDesktopWhenReady() {
         const media = Array.from(root.querySelectorAll("img, video"));
         const pending = media.filter((el) => {
           if (el.tagName === "IMG") return !el.complete;
@@ -202,14 +199,14 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         });
 
         if (pending.length === 0) {
-          build();
+          buildDesktop();
           return;
         }
 
         let left = pending.length;
         const done = () => {
           left--;
-          if (left <= 0) build();
+          if (left <= 0) buildDesktop();
         };
 
         pending.forEach((el) => {
@@ -223,16 +220,37 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         });
       }
 
-      if (document.readyState === "complete") initWhenReady();
-      else window.addEventListener("load", initWhenReady);
+      function init() {
+        const mq = window.matchMedia(DESKTOP_MQ);
 
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          build();
-        }, 200);
-      });
+        const apply = () => {
+          if (mq.matches) {
+            // Desktop: animación + pin
+            initDesktopWhenReady();
+          } else {
+            // Mobile: sin gsap; solo título visible
+            killDesktop();
+          }
+        };
+
+        apply();
+
+        // Si cruzas el breakpoint, reconstruye
+        mq.addEventListener?.("change", apply);
+
+        // Resize solo tiene sentido en desktop
+        let resizeTimeout;
+        window.addEventListener("resize", () => {
+          if (!mq.matches) return;
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(() => {
+            buildDesktop();
+          }, 200);
+        });
+      }
+
+      if (document.readyState === "complete") init();
+      else window.addEventListener("load", init);
     })();
   </script>
 </section>

@@ -90,6 +90,14 @@ html {
     }
 }
 
+.mobile-only {
+    display: none;
+
+    @media (max-width: 991px) {
+        display: block;
+    }
+}
+
 section[id] {
     scroll-margin-top: 84px;
 }
@@ -1717,17 +1725,39 @@ body.nav-open {
     }
 
 @media (max-width: 991px) {
-    .wn__inner {
-        gap: 16px;
-    }
+      .wn {
+        padding: 72px 0;
+      }
 
-    .wn__track {
-        gap: 16px;
-        padding: 0 16px;
-    }
+      .wn__row,
+      .wn__centerMedia,
+      .wn__centerOverlay {
+        display: none !important;
+      }
 
-    .wn__card {
-        width: min(360px, 78vw);
-        border-radius: 22px;
+      .wn__inner {
+        gap: 0;
+        min-height: 100dvh;
+        display: flex;
+        margin-left: 2.8rem;
+        align-items: flex-start;
+        padding-top: 7vh;
+      }
+
+      .wn__center {
+        position: relative;
+        inset: auto;
+        place-items: center;
+      }
+
+      .wn__centerTitle {
+        position: relative;
+        width: auto;
+        aspect-ratio: auto;
+        opacity: 1 !important;
+        transform: none !important;
+        font-size: 30vw;
+        padding: 0;
+        margin-left: 0;
+      }
     }
-}
