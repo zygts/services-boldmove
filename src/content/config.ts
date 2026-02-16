@@ -131,6 +131,17 @@ const landing = defineCollection({
       ).default([]),
     }),
 
+    testimonialsSection: z.object({
+      title: z.string().default("WHAT OUR CLIENTS SAY ABOUT US"),
+      underline: z.string().optional().default(""),
+      cards: z.array(
+        z.object({
+          quote: z.string(),
+          author: z.string(),
+        })
+      ).default([]),
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({

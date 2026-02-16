@@ -258,7 +258,7 @@
     ]
   },
   "platformsSection": {
-    "title": "PLATFORMS",
+    "title": "Platforms",
     "body": {
       "p1": "Here at Boldmove, we cater to every client. Our signature special sauce is a scrolling, immersive deck that puts the viewer firmly in amongst the action.",
       "p2": "But we understand that sometimes simplicity is king and we do also create classic, linear decks. And of course we do it all with the same stylised art direction we sprinkle on every Boldmove project.",
@@ -287,7 +287,44 @@
       }
     ]
   },
-
+  "testimonialsSection": {
+    "title": "What our clients say about us",
+    "underline": "/uploads/image-88256f96-dd76-4b96-a53b-3adfb7d91a6f.webp",
+    "cards": [
+      {
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
+        "author": "Juli Blachowiak"
+      },
+      {
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
+        "author": "Juli Blachowiak"
+      },
+      {
+        "author": "Juli Blachowiak",
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+      },
+      {
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
+        "author": "Juli Blachowiak"
+      },
+      {
+        "author": "Juli Blachowiak",
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+      },
+      {
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
+        "author": "Juli Blachowiak"
+      },
+      {
+        "author": "Juli Blachowiak",
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+      },
+      {
+        "author": "Juli Blachowiak",
+        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+      }
+    ]
+  },
   "threeColumnsCards": [
     {
       "id": "visual-experience",

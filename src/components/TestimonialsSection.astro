@@ -1,0 +1,231 @@
+---
+type Card = { quote: string; author: string; signature?: string };
+
+type Props = {
+  title: string;
+  underline?: string;
+  pinVh?: number;
+  cards: Card[];
+};
+
+const { title, underline = "", pinVh = 220, cards = [] } = Astro.props;
+---
+
+<section class="tst" data-pin-vh={pinVh}>
+  <div class="tst__inner">
+    <header class="tst__header">
+      <h2 class="tst__title">{title}</h2>
+      {underline && <img class="tst__underline" src={underline} alt="" loading="lazy" />}
+    </header>
+
+    <div class="tst__stage" aria-hidden="true">
+      {cards.map((c, i) => (
+        <article class="tst__card" data-i={i}>
+          <p class="tst__quote">{c.quote}</p>
+          <div class="tst__sig">
+            <span class="tst__author">{c.author}</span>
+            {c.signature && <span class="tst__signature">{c.signature}</span>}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- GSAP (CDN) -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <script is:inline>
+    (function () {
+      const root = document.currentScript?.closest(".tst");
+      if (!root) return;
+
+      const stage = root.querySelector(".tst__stage");
+      const header = root.querySelector(".tst__header");
+      const cards = Array.from(root.querySelectorAll(".tst__card"));
+      if (!stage || cards.length === 0) return;
+
+      const pinVh = Number(root.getAttribute("data-pin-vh") || "220");
+
+      function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+      function rectsOverlap(a, b, pad) {
+        return !(
+            a.x + a.w + pad < b.x ||
+            a.x > b.x + b.w + pad ||
+            a.y + a.h + pad < b.y ||
+            a.y > b.y + b.h + pad
+        );
+        }
+
+        function layoutDistributed() {
+        const rect = stage.getBoundingClientRect();
+
+        const padX = Math.max(18, rect.width * 0.06);
+        const padY = Math.max(18, rect.height * 0.10);
+
+        const usableW = rect.width - padX * 2;
+        const usableH = rect.height - padY * 2;
+
+        // Medimos tamaños (una vez)
+        const sizes = cards.map((card) => {
+            card.style.visibility = "hidden";
+            card.style.display = "block";
+            const w = card.offsetWidth || 360;
+            const h = card.offsetHeight || 160;
+            card.style.visibility = "visible";
+            return { w, h };
+        });
+
+        // Elegimos columnas/filas basadas en cantidad y ratio del stage
+        // (más columnas en desktop)
+        const total = cards.length;
+        const ratio = usableW / Math.max(1, usableH);
+
+        let cols = Math.ceil(Math.sqrt(total * ratio));
+        let rows = Math.ceil(total / cols);
+
+        // clamp razonable
+        cols = clamp(cols, 2, 6);
+        rows = clamp(rows, 2, 6);
+
+        // Si quedan muchas celdas vacías o pocas, reajustamos un poco
+        while (cols * rows < total) rows++;
+        while (cols * rows > total + cols) cols = Math.max(2, cols - 1);
+
+        const cellW = usableW / cols;
+        const cellH = usableH / rows;
+
+        // Generamos lista de celdas y la barajamos (aleatoriedad controlada)
+        const cells = [];
+        for (let r = 0; r < rows; r++) {
+            for (let c = 0; c < cols; c++) {
+            cells.push({ c, r });
+            }
+        }
+        for (let i = cells.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [cells[i], cells[j]] = [cells[j], cells[i]];
+        }
+
+        const placed = []; // rects ya colocados para detectar overlap
+        const overlapPad = 18; // separación mínima aproximada
+
+        cards.forEach((card, i) => {
+            const { w, h } = sizes[i] || { w: 360, h: 160 };
+            const cell = cells[i] || cells[cells.length - 1];
+
+            // Centro de la celda
+            const cx = padX + cell.c * cellW + cellW * 0.5;
+            const cy = padY + cell.r * cellH + cellH * 0.5;
+
+            // Jitter dentro de celda (controla “randomness”)
+            const jitterX = (Math.random() - 0.5) * cellW * 0.55;
+            const jitterY = (Math.random() - 0.5) * cellH * 0.55;
+
+            // Intentamos varias veces para evitar overlap
+            let x, y;
+            let tries = 0;
+            while (tries < 18) {
+            const jx = (Math.random() - 0.5) * cellW * 0.55;
+            const jy = (Math.random() - 0.5) * cellH * 0.55;
+
+            x = cx + jx - w / 2;
+            y = cy + jy - h / 2;
+
+            // clamp a bounds
+            x = clamp(x, padX, padX + usableW - w);
+            y = clamp(y, padY, padY + usableH - h);
+
+            const candidate = { x, y, w, h };
+            const collides = placed.some((p) => rectsOverlap(candidate, p, overlapPad));
+
+            if (!collides) {
+                placed.push(candidate);
+                break;
+            }
+            tries++;
+            }
+
+            // Si no encontró hueco perfecto, colocamos igual (última x/y calculada)
+            if (tries >= 18) placed.push({ x, y, w, h });
+
+            const rot = (Math.random() * 12) - 6; // rot más contenida
+
+            card.dataset.x = String(x);
+            card.dataset.y = String(y);
+            card.dataset.r = String(rot);
+
+            card.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg) scale(0.96)`;
+            card.style.opacity = "0";
+        });
+        }
+
+
+      // Init GSAP
+      function init() {
+        if (!window.gsap || !window.ScrollTrigger) return;
+        window.gsap.registerPlugin(window.ScrollTrigger);
+
+        // Reset por si hay hot reload
+        window.ScrollTrigger.getAll().forEach(t => {
+          if (t.trigger === root) t.kill();
+        });
+
+        layoutDistributed();
+
+        // Animación de entrada del título (opcional, suave)
+        window.gsap.set(header, { opacity: 1 });
+
+        const total = cards.length;
+        const perCardVh = 55;          // ← AJUSTA: 55vh por tarjeta (más = scroll más largo)
+        const extraVh = 80;            // ← AJUSTA: margen extra
+        const endVh = Math.max(pinVh, total * perCardVh + extraVh);
+
+        // Creamos una timeline “virtual”: revelamos por steps
+        function showCount(count) {
+          cards.forEach((card, idx) => {
+            const on = idx < count;
+            window.gsap.to(card, {
+              opacity: on ? 1 : 0,
+              scale: on ? 1 : 0.96,
+              duration: 0.18,
+              overwrite: true,
+              ease: "power2.out",
+            });
+          });
+        }
+
+        // ScrollTrigger: pin y scrub
+        window.ScrollTrigger.create({
+          trigger: root,
+          start: "top top",
+          end: `+=${endVh}vh`,
+          pin: true,
+          scrub: true,
+          invalidateOnRefresh: true,
+          onUpdate(self) {
+            // progress 0..1 -> count 0..total
+            const pace = 1.8; // ↑ mayor = más lento (1.8, 2.2, 2.8)
+            const stepped = Math.floor(self.progress * (total * pace));
+            const count = Math.min(total, Math.floor(stepped / pace));
+            showCount(count);
+
+          },
+          onRefresh() {
+            layoutDistributed();
+          },
+        });
+      }
+
+      // Espera a fuentes/layout
+      if (document.readyState === "complete") init();
+      else window.addEventListener("load", init);
+
+      // Re-layout en resize (con refresh del trigger)
+      window.addEventListener("resize", () => {
+        if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      });
+    })();
+  </script>
+</section>

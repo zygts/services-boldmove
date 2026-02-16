@@ -191,3 +191,18 @@ collections:
                   - { label: "Autoplay", name: "autoplay", widget: "boolean", default: true }
                   - { label: "Loop", name: "loop", widget: "boolean", default: true }
                   - { label: "Controls", name: "controls", widget: "boolean", default: false }
+
+          - label: "Testimonials Section"
+            name: "testimonialsSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "WHAT OUR CLIENTS SAY ABOUT US" }
+              - { label: "Underline Image (optional)", name: "underline", widget: "image", required: false }
+
+              - label: "Cards"
+                name: "cards"
+                widget: "list"
+                summary: "{{fields.author}}"
+                fields:
+                  - { label: "Quote", name: "quote", widget: "text" }
+                  - { label: "Author", name: "author", widget: "string" }
