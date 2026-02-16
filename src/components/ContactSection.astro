@@ -10,7 +10,7 @@ const { title, emailLine, address, formName = "contact" } = Astro.props;
 const mail = (emailLine?.email || "").trim();
 ---
 
-<section class="ct">
+<section id="contact" class="ct">
   <div class="ct__grid">
     <div class="ct__left">
       <h2 class="ct__title">{title}</h2>

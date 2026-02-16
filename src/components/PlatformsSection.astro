@@ -21,7 +21,7 @@ const { title, body, videos = [] } = Astro.props;
 const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.url || "").trim());
 ---
 
-<section class="plt">
+<section id="platforms" class="plt">
   <div class="plt__top">
     <h2 class="plt__title">{title}</h2>
 

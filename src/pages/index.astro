@@ -1,5 +1,8 @@
 ---
 import { getEntry } from "astro:content";
+
+import SiteNav from "../components/SiteNav.astro";
+
 import FullWidthCard from "../components/FullWidthCard.astro";
 import ThreeColumnsCard from "../components/ThreeColumnsCard.astro";
 import PackagesSection from "../components/PackagesSection.astro";
@@ -24,6 +27,7 @@ const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servi
   </head>
 
   <body style="margin:0;background:#0b0b0c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
+  <SiteNav />
     <main>
       <FullWidthCard
         title={fullWidthCard.title}

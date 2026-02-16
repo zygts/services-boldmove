@@ -11,7 +11,7 @@ type Props = {
 const { title, underline = "", pinVh = 220, cards = [] } = Astro.props;
 ---
 
-<section class="tst" data-pin-vh={pinVh}>
+<section id="testimonials" class="tst" data-pin-vh={pinVh}>
   <div class="tst__inner">
     <header class="tst__header">
       <h2 class="tst__title">{title}</h2>
