@@ -61,6 +61,15 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Biro Script';
+    src: url('/fonts/BiroScriptreduced.woff2') format('woff2'),
+        url('/fonts/BiroScriptreduced.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --color-secondary: rgb(246, 244, 229);
     --color-primary: rgb(0, 0, 0);
@@ -1235,19 +1244,11 @@ section[id] {
     justify-content: flex-start;
     gap: 10px;
     align-items: baseline;
-    opacity: 0.9;
 }
 
 .tst__author {
-    font-style: italic;
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.tst__signature {
-    font-family: cursive;
-    font-size: 18px;
-    opacity: 0.9;
+    font-family: 'Biro Script', cursive;
+    font-size: 2.5rem;
 }
 
 @media (max-width: 980px) {
@@ -1485,15 +1486,24 @@ body.nav-open {
 }
 
 /* Mobile */
-.nav__hamburger {
+.nav__bar-mobile {
     position: fixed;
-    top: 1.5rem;
+    inset: 0;
+    z-index: 999;
+    width: 100%;
+    height: 6.5rem;
+    background-color: var(--color-primary);
+}
+
+.nav__hamburger {
+    position: absolute;
+    top: 7px;
     right: 1.5rem;
     width: 52px;
     height: 52px;
-    background: var(--color-primary);
     /* backdrop-filter: blur(10px); */
     color: var(--color-secondary);
+    background: transparent;
     border: 0;
     display: none;
     cursor: pointer;
@@ -1558,7 +1568,7 @@ body.nav-open {
     display: block;
     margin-left: auto;
     position: absolute;
-    top: 1.5rem;
+    top: 1rem;
     right: 1.5rem;
     width: 52px;
     height: 52px;

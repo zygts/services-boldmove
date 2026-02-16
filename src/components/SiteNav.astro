@@ -73,9 +73,11 @@ const bottomItems: NavItem[] = [
   </div>
 
   <!-- Mobile: hamburger -->
-  <button class="nav__hamburger" type="button" aria-label="Open menu" aria-controls="navPanel" aria-expanded="false">
-    <span class="nav__burgerLines" aria-hidden="true"></span>
-  </button>
+  <div class="nav__bar-mobile" aria-hidden="true">
+    <button class="nav__hamburger" type="button" aria-label="Open menu" aria-controls="navPanel" aria-expanded="false">
+        <span class="nav__burgerLines" aria-hidden="true"></span>
+    </button>
+  </div>
 
   <!-- Mobile: overlay panel -->
   <div class="nav__panel" id="navPanel" hidden>
