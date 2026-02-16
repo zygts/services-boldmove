@@ -14,192 +14,175 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
 <section id="whats-new" class="wn" aria-label="What's new">
   <div class="wn__inner">
-    <div class="wn__row" data-dir="ltr">
-      <div class="wn__track">
-        {safeRows[0].map((it) => (
-          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
-            {it.type === "video" ? (
-              <video
-                class="wn__media"
-                src={it.src}
-                poster={it.poster}
-                muted
-                playsinline
-                preload="metadata"
-              />
-            ) : (
-              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
-            )}
-          </figure>
-        ))}
+    {safeRows.map((rowItems, rowIndex) => (
+      <div
+        class="wn__row"
+        data-dir={rowIndex === 1 ? "rtl" : "ltr"}
+      >
+        <div class="wn__track">
+          {rowItems.map((it) => (
+            <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
+              {it.type === "video" ? (
+                <video
+                  class="wn__media"
+                  src={it.src}
+                  poster={it.poster}
+                  muted
+                  playsinline
+                  preload="metadata"
+                />
+              ) : (
+                <img
+                  class="wn__media"
+                  src={it.src}
+                  alt={it.alt ?? ""}
+                  loading="lazy"
+                />
+              )}
+            </figure>
+          ))}
+        </div>
       </div>
-    </div>
-
-    <div class="wn__row" data-dir="rtl">
-      <div class="wn__track">
-        {safeRows[1].map((it) => (
-          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
-            {it.type === "video" ? (
-              <video
-                class="wn__media"
-                src={it.src}
-                poster={it.poster}
-                muted
-                playsinline
-                preload="metadata"
-              />
-            ) : (
-              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
-            )}
-          </figure>
-        ))}
-      </div>
-    </div>
-
-    <div class="wn__row" data-dir="ltr">
-      <div class="wn__track">
-        {safeRows[2].map((it) => (
-          <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
-            {it.type === "video" ? (
-              <video
-                class="wn__media"
-                src={it.src}
-                poster={it.poster}
-                muted
-                playsinline
-                preload="metadata"
-              />
-            ) : (
-              <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
-            )}
-          </figure>
-        ))}
-      </div>
-    </div>
+    ))}
   </div>
+
 <script is:inline>
-  (function () {
-    const root = document.currentScript?.closest(".wn");
-    if (!root) return;
+(function () {
+  const root = document.currentScript?.closest(".wn");
+  if (!root) return;
 
-    const rows = Array.from(root.querySelectorAll(".wn__row"));
-    if (rows.length !== 3) return;
+  const rows = Array.from(root.querySelectorAll(".wn__row"));
+  if (rows.length !== 3) return;
 
-    const TRIGGER_ID = "wn-pin";
+  const TRIGGER_ID = "whats-new-scroll";
 
-    function measureTravel(row) {
-      const track = row.querySelector(".wn__track");
-      if (!track) return 0;
-      const vw = row.getBoundingClientRect().width;
-      const sw = track.scrollWidth;
-      return Math.max(0, sw - vw);
-    }
+  function measureTravel(row) {
+    const track = row.querySelector(".wn__track");
+    if (!track) return 0;
+    const vw = row.getBoundingClientRect().width;
+    const sw = track.scrollWidth;
+    return Math.max(0, sw - vw);
+  }
 
-    // 🔑 refresh global “coalesced” (una sola vez por frame)
-    function queueRefresh() {
-      if (!window.ScrollTrigger) return;
-      if (window.__stRefreshQueued) return;
-      window.__stRefreshQueued = true;
-      requestAnimationFrame(() => {
-        window.__stRefreshQueued = false;
-        window.ScrollTrigger.refresh();
-      });
-    }
-
-    function build() {
-      if (!window.gsap || !window.ScrollTrigger) return;
-
-      // kill SOLO el trigger de esta sección
-      window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
-
-      const progressRatio = 0.8; // ← 80% del recorrido
-
-        const travels = rows.map(measureTravel);
-        const maxTravel = Math.max(...travels);
-        const effectiveTravel = maxTravel * progressRatio;
-
-      if (maxTravel < 10) return;
-
-      const tl = window.gsap.timeline({ defaults: { ease: "none" } });
-
-      rows.forEach((row, idx) => {
-        const track = row.querySelector(".wn__track");
-        if (!track) return;
-
-        const travel = (travels[idx] || 0) * progressRatio;
-        const dir = row.getAttribute("data-dir");
-        const startOffset = -330;
-        const endOffset = -300;
-
-        if (dir === "rtl") {
-            
-
-            window.gsap.set(track, { x: -travel + startOffset });
-            tl.to(track, { x: endOffset }, 0);
-        } else {
-            window.gsap.set(track, { x: 0 });
-            tl.to(track, { x: -travel }, 0);
-        }
-        });
-
-      const factor = window.matchMedia("(max-width: 980px)").matches ? 1.35 : 1.1;
-
-      // En la función build() de WhatsNew, agrega un ID:
-        window.ScrollTrigger.create({
-        trigger: root,
-        start: "top top",
-        end: () => "+=" + Math.round(effectiveTravel * factor),
-        pin: true,
-        scrub: true,
-        invalidateOnRefresh: true,
-        animation: tl,
-        id: "whats-new-scroll",
-        });
-
-      // NO llames refresh directo: encola uno
-      queueRefresh();
-    }
-
-    function initWhenReady() {
-      const media = Array.from(root.querySelectorAll("img, video"));
-      const pending = media.filter((el) => {
-        if (el.tagName === "IMG") return !el.complete;
-        return el.readyState < 1;
-      });
-
-      if (pending.length === 0) {
-        build();
-        return;
-      }
-
-      let left = pending.length;
-      const done = () => {
-        left--;
-        if (left <= 0) build();
-      };
-
-      pending.forEach((el) => {
-        if (el.tagName === "IMG") {
-          el.addEventListener("load", done, { once: true });
-          el.addEventListener("error", done, { once: true });
-        } else {
-          el.addEventListener("loadedmetadata", done, { once: true });
-          el.addEventListener("error", done, { once: true });
-        }
-      });
-    }
-
-    if (document.readyState === "complete") initWhenReady();
-    else window.addEventListener("load", initWhenReady);
-
-    let resizeTimeout;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        build();
-      }, 150);
+  function queueRefresh() {
+    if (!window.ScrollTrigger) return;
+    if (window.__wnRefreshQueued) return;
+    window.__wnRefreshQueued = true;
+    requestAnimationFrame(() => {
+      window.__wnRefreshQueued = false;
+      window.ScrollTrigger.refresh();
     });
-  })();
-</script>
+  }
 
+  function build() {
+    if (!window.gsap || !window.ScrollTrigger) return;
+
+    const gsap = window.gsap;
+    const ScrollTrigger = window.ScrollTrigger;
+
+    // 🔥 Kill SOLO nuestro trigger
+    ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+
+    // 🔥 Reset completo de transforms
+    rows.forEach(row => {
+      const track = row.querySelector(".wn__track");
+      if (track) gsap.set(track, { clearProps: "all" });
+    });
+
+    const progressRatio = 0.8; // 80% recorrido
+    const travels = rows.map(measureTravel);
+    const maxTravel = Math.max(...travels);
+
+    if (maxTravel < 10) return;
+
+    const effectiveTravel = maxTravel * progressRatio;
+
+    const tl = gsap.timeline({ defaults: { ease: "none" } });
+
+    rows.forEach((row, idx) => {
+      const track = row.querySelector(".wn__track");
+      if (!track) return;
+
+      const travel = (travels[idx] || 0) * progressRatio;
+      const dir = row.getAttribute("data-dir");
+
+      // 🔧 Ajustes finos
+      const startOffset = -330;
+      const endOffset = -300;
+
+      if (dir === "rtl") {
+        gsap.set(track, { x: -travel + startOffset });
+        tl.to(track, { x: endOffset }, 0);
+      } else {
+        gsap.set(track, { x: 0 });
+        tl.to(track, { x: -travel }, 0);
+      }
+    });
+
+    const factor = window.matchMedia("(max-width: 980px)").matches
+      ? 1.35
+      : 1.1;
+
+    ScrollTrigger.create({
+      id: TRIGGER_ID,
+      trigger: root,
+      start: "top top",
+      end: () => "+=" + Math.round(effectiveTravel * factor),
+      pin: true,
+      scrub: true,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      animation: tl,
+      refreshPriority: 0
+    });
+
+    queueRefresh();
+  }
+
+  function initWhenReady() {
+    const media = Array.from(root.querySelectorAll("img, video"));
+    const pending = media.filter((el) => {
+      if (el.tagName === "IMG") return !el.complete;
+      return el.readyState < 1;
+    });
+
+    if (pending.length === 0) {
+      build();
+      return;
+    }
+
+    let left = pending.length;
+    const done = () => {
+      left--;
+      if (left <= 0) build();
+    };
+
+    pending.forEach((el) => {
+      if (el.tagName === "IMG") {
+        el.addEventListener("load", done, { once: true });
+        el.addEventListener("error", done, { once: true });
+      } else {
+        el.addEventListener("loadedmetadata", done, { once: true });
+        el.addEventListener("error", done, { once: true });
+      }
+    });
+  }
+
+  if (document.readyState === "complete") {
+    initWhenReady();
+  } else {
+    window.addEventListener("load", initWhenReady);
+  }
+
+  // 🔁 Resize robusto (debounced + rebuild completo)
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      build();
+    }, 200);
+  });
+
+})();
+</script>
 </section>
