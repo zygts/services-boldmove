@@ -17,6 +17,18 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 
 <section id="whats-new" class="wn" aria-label="What's new">
   <div class="wn__inner">
+    <div class="wn__bg mobile-only" aria-hidden="true">
+        <video
+            class="wn__bgVideo"
+            src="/uploads/video1.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+        ></video>
+    </div>
+
     {safeRows.map((rowItems, rowIndex) => (
       <div class="wn__row" data-dir={rowIndex === 1 ? "rtl" : "ltr"}>
         <div class="wn__track">
