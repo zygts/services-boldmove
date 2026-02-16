@@ -325,6 +325,17 @@
       }
     ]
   },
+  "contactSection": {
+    "title": "TALK TO US",
+    "emailLine": {
+      "text": "Please hit us up on",
+      "email": "hello@boldmove.tv"
+    },
+    "address": {
+      "label": "Address",
+      "text": "The Long Lodge, 265–269 Kingston Road,\nWimbledon, United Kingdom, SW19 3NW"
+    }
+  },
   "threeColumnsCards": [
     {
       "id": "visual-experience",

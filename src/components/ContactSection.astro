@@ -1,0 +1,86 @@
+---
+type Props = {
+  title: string;
+  emailLine: { text: string; email: string };
+  address: { label: string; text: string };
+  formName?: string;
+};
+
+const { title, emailLine, address, formName = "contact" } = Astro.props;
+const mail = (emailLine?.email || "").trim();
+---
+
+<section class="ct">
+  <div class="ct__grid">
+    <div class="ct__left">
+      <h2 class="ct__title">{title}</h2>
+
+      <p class="ct__line">
+        {emailLine?.text}{" "}
+        <a class="ct__mail" href={`mailto:${mail}`}>{mail}</a>
+      </p>
+
+      <div class="ct__addr">
+        <div class="ct__addrLabel">{address?.label}</div>
+        <div class="ct__addrText" style="white-space:pre-line;">
+          {address?.text}
+        </div>
+      </div>
+    </div>
+
+    <div class="ct__right">
+      <form
+        class="ct__form"
+        name={formName}
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/thanks/"
+      >
+        <input type="hidden" name="form-name" value={formName} />
+
+        <p class="ct__hp">
+          <label>
+            Don’t fill this out if you’re human: <input name="bot-field" />
+          </label>
+        </p>
+
+        <label class="ct__field">
+          <span class="sr-only">Name</span>
+          <input
+            class="ct__input"
+            type="text"
+            name="name"
+            placeholder="Name"
+            autocomplete="name"
+            required
+          />
+        </label>
+
+        <label class="ct__field">
+          <span class="sr-only">Email</span>
+          <input
+            class="ct__input"
+            type="email"
+            name="email"
+            placeholder="Email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label class="ct__field">
+          <span class="sr-only">Message (Optional)</span>
+          <textarea
+            class="ct__textarea"
+            name="message"
+            placeholder="Message (Optional)"
+            rows="4"
+          ></textarea>
+        </label>
+
+        <button class="ct__btn" type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</section>

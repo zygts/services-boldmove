@@ -7,10 +7,10 @@ import UpgradeSection from "../components/UpgradeSection.astro";
 import ServicesSection from "../components/ServicesSection.astro";
 import PlatformsSection from "../components/PlatformsSection.astro";
 import TestimonialsSection from "../components/TestimonialsSection.astro";
-
+import ContactSection from "../components/ContactSection.astro";
 
 const home = await getEntry("landing", "home");
-const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servicesSection, platformsSection, testimonialsSection } = home.data;
+const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servicesSection, platformsSection, testimonialsSection, contactSection } = home.data;
 ---
 
 <!doctype html>
@@ -41,6 +41,7 @@ const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servi
       {servicesSection && <ServicesSection {...servicesSection} />}
       {platformsSection && <PlatformsSection {...platformsSection} />}
       {testimonialsSection && <TestimonialsSection {...testimonialsSection} />}
+      {contactSection && <ContactSection {...contactSection} />}
 
     </main>
 

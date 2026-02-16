@@ -142,6 +142,18 @@ const landing = defineCollection({
       ).default([]),
     }),
 
+    contactSection: z.object({
+      title: z.string().default("TALK TO US"),
+      emailLine: z.object({
+        text: z.string().default("Please hit us up on"),
+        email: z.string().default("hello@boldmove.tv"),
+      }),
+      address: z.object({
+        label: z.string().default("Address"),
+        text: z.string().default(""),
+      }),
+    }),
+
     threeColumnsCards: z
       .array(
         z.object({

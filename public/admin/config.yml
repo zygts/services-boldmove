@@ -206,3 +206,23 @@ collections:
                 fields:
                   - { label: "Quote", name: "quote", widget: "text" }
                   - { label: "Author", name: "author", widget: "string" }
+
+          - label: "Contact Section"
+            name: "contactSection"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string", default: "TALK TO US" }
+
+              - label: "Email line"
+                name: "emailLine"
+                widget: "object"
+                fields:
+                  - { label: "Text before email", name: "text", widget: "string", default: "Please hit us up on" }
+                  - { label: "Email", name: "email", widget: "string", default: "hello@boldmove.tv" }
+
+              - label: "Address block"
+                name: "address"
+                widget: "object"
+                fields:
+                  - { label: "Label", name: "label", widget: "string", default: "Address" }
+                  - { label: "Text", name: "text", widget: "text", hint: "Use line breaks" }
