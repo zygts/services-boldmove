@@ -237,7 +237,7 @@
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -272,8 +272,8 @@
       "badge": "",
       "additionalFeatures": [
         {
-          "icon": "/uploads/icon-check.png",
-          "text": "Fixed, Condensed Schedule"
+          "icon": "/uploads/tick.svg",
+          "text": "Fixed and Condensed Schedule"
         }
       ],
       "ctaLabel": "Upgrade My Deck",
@@ -282,19 +282,19 @@
       "requirements": "Text and source visuals must be provided",
       "mainFeatures": [
         {
-          "icon": "/uploads/icon-1.png",
+          "icon": "/uploads/concept-moodboard.svg",
           "text": "Mini Concept Moodboard"
         },
         {
-          "icon": "/uploads/icon-4png.png",
+          "icon": "/uploads/text-polish.svg",
           "text": "2 Hours of Writing"
         },
         {
-          "icon": "/uploads/icon-3.png",
+          "icon": "/uploads/design.svg",
           "text": "2 Days of Design"
         },
         {
-          "icon": "/uploads/icon-2.png",
+          "icon": "/uploads/vr-mapping.svg",
           "text": "Half a Day of Visual Research and Mapping"
         }
       ],
@@ -384,36 +384,36 @@
     "underline": "/uploads/image-88256f96-dd76-4b96-a53b-3adfb7d91a6f.webp",
     "cards": [
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "“Working with the team was truly collaborative and creatively energizing. They immediately understood our vision, were accommodating, and approached every idea with a \"let's try it\" mentality. It was a genuinely fun process from start to finish.”",
+        "author": "Samantha Cutler, UNIVERSAL TELEVISION "
       },
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
-      },
-      {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
-      },
-      {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "\"The Boldmove team truly cares about every single project we bring them. They love to push the boundaries of what's possible. We got nothing but love for these artists.\"",
+        "author": "Arturo Perez & Sam Jayne, THE YES BUS"
       },
       {
         "author": "Juli Blachowiak",
         "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
       },
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "“Highly creative, service-minded team with a very structured and efficient workflow. A local broadcaster is looking at the series right now and has shown interest in a potential commission.”",
+        "author": "Carla Mantilla (Filmlance)"
       },
       {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+        "author": "Morten Holst & Pelle Folmer (Astra Film)  ",
+        "quote": "\"Our Boldmove pitch deck has received remarkable feedback worldwide, with several people describing it as the best they’ve ever been presented with. We’ve truly loved working with Boldmove and the result exceeded our expectations.\""
       },
       {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+        "quote": "\"Boldmove are so passionate, accommodating, ambitious, creative and most importantly they just really GET IT. They’re the secret weapon we pull out when we want to blow people away.\"",
+        "author": "Luti Fagbenle - LUTI MEDIA"
+      },
+      {
+        "author": "Pierre Bouchard - MEDIAWAN RIGHTS",
+        "quote": "\"Their immersive pitch decks are like a deck and a sizzle tape bundled into one. They provide exciting new possibilities.\""
+      },
+      {
+        "author": "Vincent Riva - STUDIO TF1",
+        "quote": "\"Boldmove understands what buyers in the TV industry want to know and feel. There’s no waste, it’s all content, rich, fun, and to the point. The results are always captivating.\""
       }
     ],
     "pinVh": 219
