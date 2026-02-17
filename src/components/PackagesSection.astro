@@ -1,12 +1,34 @@
 ---
+type Feature = { icon: string; text: string };
+
+type WritingConfig = {
+  enabled?: boolean; // si quieres mantenerlo, pero lo renderizamos siempre (tu decisión)
+  label: string;
+  unitLabel: string;
+  minDays: number;
+  maxDays: number;
+  pricePerDay: number; // euros
+};
+
 type Package = {
   id: string;
-  name: string;
+  title: string;
   description: string;
+
+  // 🔁 CAMBIO: vídeo en lugar de imagen
+  video: string;
+  poster?: string;
+  videoLabel?: string; // accesibilidad (aria-label)
+
   standardPrice: number; // euros
   ctaLabel: string;
   badge?: string;
-  features: string[];
+
+  mainFeatures?: Feature[];
+  writing: WritingConfig;
+  additionalFeatures?: Feature[];
+  requirements?: string;
+  footerText?: string;
 };
 
 type Props = {
@@ -61,86 +83,99 @@ const toCents = (eur: number) => Math.round(eur * 100);
   <div class="pk__grid">
     {(packages ?? []).slice(0, 4).map((p) => (
       <article class="pk__card" data-id={p.id}>
-        {p.image && (
-            <div class="pk__media">
-                <img
-                class="pk__img"
-                src={p.image}
-                alt={p.imageAlt ?? ""}
-                loading="lazy"
-                />
-            </div>
-            )}
-        {p.badge && <div class="pk__badge">{p.badge}</div>}
+      <div class="pk__discountBadge" hidden></div>
+        {p.video && (
+          <div class="pk__media">
+            <video
+              class="pk__video"
+              src={p.video}
+              poster={p.poster}
+              muted
+              loop
+              playsinline
+              autoplay
+              preload="metadata"
+              aria-label={p.videoLabel ?? p.title}
+            />
+          </div>
+        )}
+
+        {p.badge && p.badge.trim() !== "" && <div class="pk__badge">{p.badge}</div>}
 
         <h3 class="pk__name">{p.title}</h3>
         <p class="pk__desc">{p.description}</p>
 
-        <div
-            class="pk__price"
-            data-standard-cents={toCents(p.standardPrice)}
-            >
-            <span class="pk__priceNow">€{p.standardPrice}</span>
-            <span class="pk__priceWas" aria-hidden="true"></span>
-            </div>
+        <div class="pk__price" data-standard-cents={toCents(p.standardPrice)}>
+          <span class="pk__priceNow">€{p.standardPrice}</span>
+          <span class="pk__priceWas" aria-hidden="true"></span>
+        </div>
 
         <button class="pk__cta" type="button">{p.ctaLabel}</button>
 
         {(p.mainFeatures ?? []).length > 0 && (
-            <div class="pk__block">
-                <div class="pk__blockTitle">MAIN FEATURES</div>
-                <ul class="pk__featureList">
-                {(p.mainFeatures ?? []).map((f) => (
-                    <li class="pk__featureItem">
-                    <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
-                    <span class="pk__featureText">{f.text}</span>
-                    </li>
-                ))}
-                </ul>
+          <div class="pk__block">
+            <div class="pk__blockTitle">MAIN FEATURES</div>
+            <ul class="pk__featureList">
+              {(p.mainFeatures ?? []).map((f) => (
+                <li class="pk__featureItem">
+                  <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
+                  <span class="pk__featureText">{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {/* Custom writing: si NO quieres condicional, quita el if */}
+        {p.writing && (
+          <div
+            class="pk__writing"
+            data-writing-min={p.writing.minDays}
+            data-writing-max={p.writing.maxDays}
+            data-writing-per-day-cents={toCents(p.writing.pricePerDay)}
+          >
+            <div class="pk__blockTitle">{p.writing.label}</div>
+
+            <div class="pk__stepper">
+              <button class="pk__stepperBtn" type="button" data-action="dec" aria-label="Decrease writing days">
+                −
+              </button>
+              <button class="pk__stepperBtn" type="button" data-action="inc" aria-label="Increase writing days">
+                +
+              </button>
+
+              <div class="pk__stepperValue">
+                <span class="pk__writingDays">0</span>
+                <span class="pk__writingUnit">{p.writing.unitLabel}</span>
+              </div>
             </div>
-            )}
+          </div>
+        )}
 
-            <div
-                class="pk__writing"
-                data-writing-min={p.writing.minDays}
-                data-writing-max={p.writing.maxDays}
-                data-writing-per-day-cents={toCents(p.writing.pricePerDay)}
-                >
-                <div class="pk__blockTitle">{p.writing.label}</div>
+        {(p.additionalFeatures ?? []).length > 0 && (
+          <div class="pk__block">
+            <div class="pk__blockTitle">ADDITIONAL FEATURES</div>
+            <ul class="pk__featureList">
+              {(p.additionalFeatures ?? []).map((f) => (
+                <li class="pk__featureItem">
+                  <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
+                  <span class="pk__featureText">{f.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-                <div class="pk__stepper">
-                    <button class="pk__stepperBtn" type="button" data-action="dec" aria-label="Decrease writing days">−</button>
-                    <button class="pk__stepperBtn" type="button" data-action="inc" aria-label="Increase writing days">+</button>
+        {p.requirements && p.requirements.trim() !== "" && (
+          <div class="pk__block">
+            <div class="pk__blockTitle">REQUIREMENTS</div>
+            <p class="pk__requirements">{p.requirements}</p>
+          </div>
+        )}
 
-                    <div class="pk__stepperValue">
-                    <span class="pk__writingDays">0</span>
-                    <span class="pk__writingUnit">{p.writing.unitLabel}</span>
-                    </div>
-                    
-                </div>
-            </div>
-
-            {(p.additionalFeatures ?? []).length > 0 && (
-            <div class="pk__block">
-                <div class="pk__blockTitle">ADDITIONAL FEATURES</div>
-                <ul class="pk__featureList">
-                {(p.additionalFeatures ?? []).map((f) => (
-                    <li class="pk__featureItem">
-                    <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
-                    <span class="pk__featureText">{f.text}</span>
-                    </li>
-                ))}
-                </ul>
-            </div>
-            )}
-
-            {p.requirements && (
-            <div class="pk__block">
-                <div class="pk__blockTitle">REQUIREMENTS</div>
-                <p class="pk__requirements">{p.requirements}</p>
-            </div>
-            )}
-
+        {p.footerText && p.footerText.trim() !== "" && (
+          <div class="pk__footer">{p.footerText}</div>
+        )}
       </article>
     ))}
   </div>
@@ -191,6 +226,18 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
             const discounted = !!toggle?.checked;
 
+            cards.forEach((card) => {
+              const badge = card.querySelector(".pk__discountBadge");
+              if (!badge) return;
+
+              if (discounted) {
+                badge.textContent = `${discountPercent}% off`;
+                badge.hidden = false;
+              } else {
+                badge.hidden = true;
+              }
+            });
+
             // precio "antes" = base + writing (sin descuento)
             const wasCents = calcCardPriceCents(card, false);
             // precio "ahora" = con o sin descuento
@@ -204,6 +251,17 @@ const toCents = (eur: number) => Math.round(eur * 100);
             } else {
                 wasEl.textContent = "";
                 wasEl.style.display = "none";
+            }
+
+            // 👇 NUEVO BADGE
+            const badge = card.querySelector(".pk__discountBadge");
+            if (badge) {
+              if (discounted) {
+                badge.textContent = `${discountPercent}% off`;
+                badge.hidden = false;
+              } else {
+                badge.hidden = true;
+              }
             }
             });
 
@@ -258,6 +316,8 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
   <style>
     /* Solo base mínima para que no se rompa */
+    .pk__media { border-radius: 28px; overflow: hidden; }
+    .pk__video { width: 100%; height: 100%; display: block; object-fit: cover; }
     .pk__subtitle { white-space: pre-line; }
 
     .pk__switch { display:inline-flex; align-items:center; }

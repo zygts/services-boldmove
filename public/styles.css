@@ -462,6 +462,33 @@ section[id] {
     z-index: 2;
 }
 
+.pk__discountBadge {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 10;
+
+  background: rgb(190,228,56);
+  color: #000;
+
+  font-size: 1.25rem;
+  font-family: obviously, sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+
+  padding: 5px 12px;
+  border-radius: 999px;
+
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.pk[data-mode="discount"] .pk__discountBadge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .pk__media {
     position: absolute;
     top: 0;

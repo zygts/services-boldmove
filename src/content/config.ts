@@ -18,55 +18,60 @@ const landing = defineCollection({
     }),
 
     packagesSection: z.object({
+  title: z.string(),
+  subtitle: z.string(),
+  toggleLeftLabel: z.string(),
+  toggleRightLabel: z.string(),
+  discountPercent: z.number().default(10),
+
+  currency: z.string().default("EUR"),
+  locale: z.string().default("en-GB"),
+
+  packages: z.array(
+    z.object({
+      id: z.string(),
       title: z.string(),
-      subtitle: z.string(),
-      toggleLeftLabel: z.string(),
-      toggleRightLabel: z.string(),
-      discountPercent: z.number().default(10),
+      description: z.string(),
 
-      currency: z.string().default("EUR"),
-      locale: z.string().default("en-GB"),
+      // ✅ vídeo
+      video: z.string(),
+      poster: z.string().optional().default(""),
+      videoLabel: z.string().optional().default(""),
 
-      packages: z.array(
+      standardPrice: z.number(),
+      ctaLabel: z.string(),
+      badge: z.string().optional().default(""),
+
+      mainFeatures: z.array(
         z.object({
-          id: z.string(),
-          title: z.string(),
-          description: z.string(),
-
-          image: z.string(),
-          imageAlt: z.string().optional().default(""),
-
-          standardPrice: z.number(),
-          ctaLabel: z.string(),
-          badge: z.string().optional().default(""),
-
-          mainFeatures: z.array(
-            z.object({
-              icon: z.string(),
-              text: z.string(),
-            })
-          ).default([]),
-
-          writing: z.object({
-            label: z.string().default("CUSTOM WRITING"),
-            unitLabel: z.string().default("writing days"),
-            minDays: z.number().int().default(0),
-            maxDays: z.number().int().default(3),
-            pricePerDay: z.number().default(0),
-          }),
-
-          additionalFeatures: z.array(
-            z.object({
-              icon: z.string(),
-              text: z.string(),
-            })
-          ).default([]),
-
-          requirements: z.string().default("")
+          icon: z.string(),
+          text: z.string(),
         })
       ).default([]),
 
-    }),
+      writing: z.object({
+        // enabled opcional si lo quieres conservar
+        enabled: z.boolean().optional().default(true),
+        label: z.string().default("CUSTOM WRITING"),
+        unitLabel: z.string().default("writing days"),
+        minDays: z.number().int().default(0),
+        maxDays: z.number().int().default(3),
+        pricePerDay: z.number().default(0),
+      }),
+
+      additionalFeatures: z.array(
+        z.object({
+          icon: z.string(),
+          text: z.string(),
+        })
+      ).default([]),
+
+      requirements: z.string().default(""),
+      footerText: z.string().optional().default(""),
+    })
+  ).default([]),
+}),
+
 
     upgradeSection: z.object({
       title: z.string(),

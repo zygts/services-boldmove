@@ -68,8 +68,9 @@ collections:
                   # Card header
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "description", widget: "text" }
-                  - { label: "Image", name: "image", widget: "image" }
-                  - { label: "Image Alt", name: "imageAlt", widget: "string", required: false }
+                  - { label: "Video", name: "video", widget: "file", media_library: { config: { multiple: false } } }
+                  - { label: "Poster (optional)", name: "poster", widget: "image", required: false }
+                  - { label: "Video label (optional)", name: "videoLabel", widget: "string", required: false }
 
                   # Pricing / CTA
                   - { label: "Standard Price (number)", name: "standardPrice", widget: "number" }

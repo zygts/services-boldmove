@@ -9,7 +9,7 @@
     "currency": "EUR",
     "packages": [
       {
-        "badge": "",
+        "badge": " ",
         "additionalFeatures": [
           {
             "icon": "/uploads/icon-check.png",
@@ -27,6 +27,7 @@
         "ctaLabel": "Start with Knight",
         "footerText": " ",
         "standardPrice": 3200,
+        "poster": "/uploads/video.png",
         "imageAlt": "",
         "requirements": "Visual research is provided by the client.",
         "mainFeatures": [
@@ -44,8 +45,9 @@
           }
         ],
         "title": "Knight",
+        "videoLabel": "Knight package preview",
+        "video": "/uploads/video1.mp4",
         "id": "knight",
-        "image": "/uploads/knight.jpg",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
@@ -75,6 +77,7 @@
         "ctaLabel": "Choose Blitz",
         "footerText": " ",
         "standardPrice": 4450,
+        "poster": "/uploads/video.png",
         "imageAlt": "",
         "requirements": "",
         "mainFeatures": [
@@ -96,8 +99,9 @@
           }
         ],
         "title": "Blitz",
+        "videoLabel": "Knight package preview",
+        "video": "/uploads/video1.mp4",
         "id": "blitz",
-        "image": "/uploads/knight.jpg",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
@@ -114,6 +118,7 @@
         "ctaLabel": "Select Gambit",
         "footerText": " ",
         "standardPrice": 5075,
+        "poster": "/uploads/video.png",
         "imageAlt": "",
         "requirements": "",
         "mainFeatures": [
@@ -123,8 +128,9 @@
           }
         ],
         "title": "Gambit",
+        "videoLabel": "Knight package preview",
+        "video": "/uploads/video1.mp4",
         "id": "gambit",
-        "image": "/uploads/knight.jpg",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
@@ -141,12 +147,14 @@
         "ctaLabel": "Get Checkmate",
         "footerText": " ",
         "standardPrice": 6575,
+        "poster": "/uploads/video.png",
         "imageAlt": "",
         "requirements": "",
         "mainFeatures": [],
         "title": "Checkmate",
+        "videoLabel": "Knight package preview",
+        "video": "/uploads/video1.mp4",
         "id": "checkmate",
-        "image": "/uploads/knight.jpg",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
