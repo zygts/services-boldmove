@@ -1295,7 +1295,6 @@ section[id] {
 .tst__header {
     position: absolute;
     inset: 0;
-    top: -10vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1604,7 +1603,7 @@ body.nav-open {
     padding: 12px 12px;
     width: fit-content;
     font-family: 'Druk Wide Bold';
-    font-size: 1.5rem;
+    font-size: 1.35rem;
     color: var(--color-secondary);
     text-decoration: none;
     font-weight: 700;
