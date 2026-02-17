@@ -45,13 +45,12 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
                 class="plt__video"
                 src={src}
                 poster={v.poster || undefined}
-                muted={v.muted ?? true}
-                autoplay={v.autoplay ?? true}
-                loop={v.loop ?? true}
-                controls={v.controls ?? false}
+                muted
+                loop
                 playsinline
                 preload="metadata"
               />
+
             ) : (
               <div class="plt__videoPlaceholder">
                 Add a video in Decap (mp4/webm) or paste a URL.
@@ -62,4 +61,32 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
       );
     })}
   </div>
+
+  <script is:inline>
+  (function () {
+    const root = document.currentScript?.closest(".plt");
+    if (!root) return;
+
+    const videos = root.querySelectorAll(".plt__video");
+
+    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (!isDesktop) return; // Solo hover real (no móvil)
+
+    videos.forEach((video) => {
+      const frame = video.closest(".plt__videoFrame");
+      if (!frame) return;
+
+      frame.addEventListener("mouseenter", () => {
+        video.play().catch(() => {});
+      });
+
+      frame.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0; // 🔥 quita esto si quieres que continúe donde iba
+      });
+    });
+  })();
+</script>
+
 </section>
