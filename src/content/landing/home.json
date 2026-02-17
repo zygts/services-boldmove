@@ -1,8 +1,12 @@
 {
   "packagesSection": {
-    "discountPercent": 10,
-    "modalSubtitle": "Lorem Ipsum text, will change",
+    "title": "DECK PACKAGES",
+    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
+    "toggleLeftLabel": "Standard Price",
     "toggleRightLabel": "Save 10%",
+    "discountPercent": 10,
+    "locale": "en-GB",
+    "currency": "EUR",
     "packages": [
       {
         "badge": " ",
@@ -110,7 +114,28 @@
       },
       {
         "badge": "Most Popular",
-        "additionalFeatures": [],
+        "additionalFeatures": [
+          {
+            "text": "Free Text Polish (2 hours)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Flexible Schedule",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Adaptive Music Track(s)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "2 Months Free Edits (3 hours max)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "PDF Export Included",
+            "icon": "/uploads/icon-check.png"
+          }
+        ],
         "ctaLabel": "Select Gambit",
         "footerText": " ",
         "standardPrice": 5075,
@@ -120,7 +145,19 @@
         "mainFeatures": [
           {
             "icon": "/uploads/icon-1.png",
-            "text": "Concept moodboard"
+            "text": "Concept Moodboard"
+          },
+          {
+            "text": "2 Days of Visual Research",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "1 Day of Mapping",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "4 Days of Design",
+            "icon": "/uploads/icon-check.png"
           }
         ],
         "title": "Gambit",
@@ -135,18 +172,62 @@
           "maxDays": 2,
           "pricePerDay": 600
         },
-        "description": "An impressive, comprehensive deck with sophisticated design and strategic content architecture."
+        "description": "Not for the faint hearted, Gambit attacks with immersive world-building, refined design and positions your project as a serious contender."
       },
       {
         "badge": "",
-        "additionalFeatures": [],
+        "additionalFeatures": [
+          {
+            "text": "Free Text Polish",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Flexible Schedule",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Adaptive Music Track(s)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "12 Month Free Edits (5 hours max)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "2 Hours of Free Readymag Training",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "PDF Export Included",
+            "icon": "/uploads/icon-check.png"
+          }
+        ],
         "ctaLabel": "Get Checkmate",
         "footerText": " ",
         "standardPrice": 6575,
         "poster": "/uploads/video.png",
         "imageAlt": "",
         "requirements": "",
-        "mainFeatures": [],
+        "mainFeatures": [
+          {
+            "text": "Concept Moodboard"
+          },
+          {
+            "text": "2 Days of Visual Research"
+          },
+          {
+            "text": "1 Day of Mapping"
+          },
+          {
+            "text": "4 Days of Design"
+          },
+          {
+            "text": "Custom Navigation Experiences"
+          },
+          {
+            "text": "Refined AI Image Generation"
+          }
+        ],
         "title": "Checkmate",
         "videoLabel": "Knight package preview",
         "video": "/uploads/video1.mp4",
@@ -159,14 +240,9 @@
           "maxDays": 2,
           "pricePerDay": 600
         },
-        "description": "A stunning, investor-grade masterpiece with cutting-edge design, enhanced visuals, and maximum impact."
+        "description": "Our trademark finishing move. Checkmate is a fully immersive premium experience. Engineered to close the deal and seal the fate of the competition. "
       }
-    ],
-    "currency": "EUR",
-    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
-    "title": "DECK PACKAGES",
-    "toggleLeftLabel": "Standard Price",
-    "locale": "en-GB"
+    ]
   },
   "fullWidthCard": {
     "title": "Our Bundles",
@@ -194,7 +270,7 @@
         }
       ],
       "ctaLabel": "Upgrade My Deck",
-      "standardPrice": 1500,
+      "standardPrice": 2500,
       "imageAlt": "",
       "requirements": "Text and source visuals must be provided",
       "mainFeatures": [
@@ -215,10 +291,10 @@
           "text": "Half a Day of Visual Research and Mapping"
         }
       ],
-      "title": "Pimp my Deck",
+      "title": "Pimp My Deck",
       "id": "premium-upgrade",
       "image": "/uploads/video.png",
-      "description": "Take your deck to the next level with premium features and enhanced design."
+      "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate "
     },
     "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
   },
