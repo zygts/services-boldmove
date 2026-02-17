@@ -114,7 +114,28 @@
       },
       {
         "badge": "Most Popular",
-        "additionalFeatures": [],
+        "additionalFeatures": [
+          {
+            "text": "Free Text Polish (2 hours)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Flexible Schedule",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "Adaptive Music Track(s)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "2 Months Free Edits (3 hours max)",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "PDF Export Included",
+            "icon": "/uploads/icon-check.png"
+          }
+        ],
         "ctaLabel": "Select Gambit",
         "footerText": " ",
         "standardPrice": 5075,
@@ -124,7 +145,19 @@
         "mainFeatures": [
           {
             "icon": "/uploads/icon-1.png",
-            "text": "Concept moodboard"
+            "text": "Concept Moodboard"
+          },
+          {
+            "text": "2 Days of Visual Research",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "1 Day of Mapping",
+            "icon": "/uploads/icon-check.png"
+          },
+          {
+            "text": "4 Days of Design",
+            "icon": "/uploads/icon-check.png"
           }
         ],
         "title": "Gambit",
@@ -139,7 +172,7 @@
           "maxDays": 2,
           "pricePerDay": 600
         },
-        "description": "An impressive, comprehensive deck with sophisticated design and strategic content architecture."
+        "description": "Not for the faint hearted, Gambit attacks with immersive world-building, refined design and positions your project as a serious contender."
       },
       {
         "badge": "",
