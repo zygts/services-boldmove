@@ -280,6 +280,18 @@ section[id] {
     }
 }
 
+.tcc__col:first-child {
+    padding-right: 6rem;
+}
+
+.tcc__col:nth-child(2) {
+    padding-inline: 6rem;
+}
+
+.tcc__col:last-child {
+    padding-left: 6rem;
+}
+
 .tcc__col:not(:last-child)::after {
     content: "";
     position: absolute;
