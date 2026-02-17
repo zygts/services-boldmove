@@ -78,6 +78,11 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
       <span class="pk__toggleLabel pk__toggleLabel--muted">{toggleRightLabel}</span>
     </div>
+
+    <div class="pk__discountInfo" hidden>
+      In exchange for the discount, the client agrees for Boldmove to use a dummy text version of the deck for promotional purposes (including on the website) as soon as the project is complete.
+    </div>
+
   </header>
 
   <div class="pk__grid">
@@ -266,6 +271,11 @@ const toCents = (eur: number) => Math.round(eur * 100);
             });
 
         root.setAttribute("data-mode", discounted ? "discount" : "standard");
+        const info = root.querySelector(".pk__discountInfo");
+          if (info) {
+            info.hidden = !discounted;
+          }
+
         }
 
         // init toggle state (persist)
