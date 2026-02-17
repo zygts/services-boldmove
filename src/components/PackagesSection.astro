@@ -308,32 +308,93 @@ if (labelLeft && labelRight) {
     }
 
     // ── Steppers ──────────────────────────────────────────────
-    cards.forEach((card) => {
-      card.setAttribute("data-writing-days", "0");
+const DEFAULT_STEPS = [0, 0.5, 1, 2];
 
-      const writingWrap = card.querySelector(".pk__writing");
-      const valueEl = card.querySelector(".pk__writingDays");
-      if (!writingWrap || !valueEl) return;
+function parseSteps(writingWrap) {
+  // Si en el futuro quieres configurarlo por card sin Decap,
+  // puedes poner data-writing-steps="0,0.5,1,2"
+  const raw = writingWrap?.getAttribute("data-writing-steps");
+  if (!raw) return DEFAULT_STEPS;
 
-      const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
-      const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+  const steps = raw
+    .split(",")
+    .map((s) => Number(String(s).trim()))
+    .filter((n) => Number.isFinite(n))
+    .sort((a, b) => a - b);
 
-      function setDays(next) {
-        const clamped = Math.max(min, Math.min(max, next));
-        card.setAttribute("data-writing-days", String(clamped));
-        valueEl.textContent = String(clamped);
-        renderPrices();
-      }
+  return steps.length ? steps : DEFAULT_STEPS;
+}
 
-      card.querySelectorAll("[data-action]").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          const current = Number(card.getAttribute("data-writing-days") || "0");
-          setDays(btn.getAttribute("data-action") === "inc" ? current + 1 : current - 1);
-        });
-      });
+function clampToSteps(val, steps) {
+  // Devuelve el step más cercano
+  let best = steps[0];
+  let bestDist = Math.abs(val - best);
+  for (let i = 1; i < steps.length; i++) {
+    const d = Math.abs(val - steps[i]);
+    if (d < bestDist) {
+      best = steps[i];
+      bestDist = d;
+    }
+  }
+  return best;
+}
 
-      setDays(min);
+function formatDays(n) {
+  // Si prefieres ½ en UI:
+  // if (n === 0.5) return "½";
+  // return String(n);
+  return (Number.isInteger(n) ? String(n) : String(n));
+}
+
+cards.forEach((card) => {
+  card.setAttribute("data-writing-days", "0");
+
+  const writingWrap = card.querySelector(".pk__writing");
+  const valueEl = card.querySelector(".pk__writingDays");
+  if (!writingWrap || !valueEl) return;
+
+  const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
+  const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+
+  // steps permitidos (filtrados por min/max)
+  const stepsAll = parseSteps(writingWrap);
+  const steps = stepsAll.filter((s) => s >= min && s <= max);
+
+  // si por min/max se quedaron vacíos, fallback
+  const safeSteps = steps.length ? steps : DEFAULT_STEPS.filter((s) => s >= min && s <= max);
+
+  function setDays(next) {
+    const snapped = clampToSteps(next, safeSteps);
+    card.setAttribute("data-writing-days", String(snapped));
+    valueEl.textContent = formatDays(snapped);
+    renderPrices();
+  }
+
+  function getCurrent() {
+    const cur = Number(card.getAttribute("data-writing-days") || "0");
+    // por seguridad, lo "snappeamos"
+    return clampToSteps(cur, safeSteps);
+  }
+
+  function step(action) {
+    const current = getCurrent();
+    const idx = safeSteps.indexOf(current);
+    const nextIdx = action === "inc" ? idx + 1 : idx - 1;
+    const clampedIdx = Math.max(0, Math.min(safeSteps.length - 1, nextIdx));
+    setDays(safeSteps[clampedIdx]);
+  }
+
+  card.querySelectorAll("[data-action]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const action = btn.getAttribute("data-action");
+      step(action);
     });
+  });
+
+  // start at min (snap)
+  setDays(min);
+});
+
 
     // ── Toggle ────────────────────────────────────────────────
     const saved = localStorage.getItem("pk_discounted");
@@ -425,3 +486,4 @@ if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
     }
   </style>
 </section>
+
