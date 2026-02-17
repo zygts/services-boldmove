@@ -72,14 +72,14 @@ const toCents = (eur: number) => Math.round(eur * 100);
     <p class="pk__subtitle">{subtitle}</p>
 
     <div class="pk__toggleRow">
-      <span class="pk__toggleLabel">{toggleLeftLabel}</span>
+      <span class="pk__toggleLabel" data-side="left">{toggleLeftLabel}</span>
 
       <label class="pk__switch">
         <input id="pkToggle" type="checkbox" />
         <span class="pk__slider" aria-hidden="true"></span>
       </label>
 
-      <span class="pk__toggleLabel pk__toggleLabel--muted">{toggleRightLabel}</span>
+      <span class="pk__toggleLabel pk__toggleLabel--muted" data-side="right">{toggleRightLabel}</span>
     </div>
 
     <div class="pk__discountInfo" hidden>
@@ -297,6 +297,14 @@ const toCents = (eur: number) => Math.round(eur * 100);
 
       const info = root.querySelector(".pk__discountInfo");
       if (info) info.hidden = !discounted;
+
+      const labelLeft = root.querySelector(".pk__toggleLabel[data-side='left']");
+const labelRight = root.querySelector(".pk__toggleLabel[data-side='right']");
+
+if (labelLeft && labelRight) {
+  labelLeft.classList.toggle("pk__toggleLabel--dim", discounted);
+  labelRight.classList.toggle("pk__toggleLabel--dim", !discounted);
+}
     }
 
     // ── Steppers ──────────────────────────────────────────────

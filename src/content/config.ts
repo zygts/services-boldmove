@@ -45,7 +45,7 @@ const landing = defineCollection({
 
       mainFeatures: z.array(
         z.object({
-          icon: z.string(),
+          icon: z.string().optional().default(""),
           text: z.string(),
         })
       ).default([]),
@@ -62,7 +62,7 @@ const landing = defineCollection({
 
       additionalFeatures: z.array(
         z.object({
-          icon: z.string(),
+          icon: z.string().optional().default(""),
           text: z.string(),
         })
       ).default([]),

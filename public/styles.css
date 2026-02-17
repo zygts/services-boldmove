@@ -949,6 +949,19 @@ section[id] {
     background: rgba(255, 255, 255, 0.14);
 }
 
+.up__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .pk__cta {
+        width: fit-content;
+        padding-inline: 2rem;
+        text-decoration: none;
+    }
+}
+
 .up__footertext {
     font-size: 2rem;
     max-width: 30ch;
