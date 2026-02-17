@@ -115,7 +115,16 @@ const toCents = (eur: number) => Math.round(eur * 100);
           <span class="pk__priceWas" aria-hidden="true"></span>
         </div>
 
-        <button class="pk__cta" type="button">{p.ctaLabel}</button>
+        <button
+          class="pk__cta"
+          type="button"
+          data-open-package
+          data-package-id={p.id}
+          data-package-title={p.title}
+          data-cta={p.ctaLabel}
+        >
+          {p.ctaLabel}
+        </button>
 
         {(p.mainFeatures ?? []).length > 0 && (
           <div class="pk__block">
@@ -184,6 +193,48 @@ const toCents = (eur: number) => Math.round(eur * 100);
       </article>
     ))}
   </div>
+
+<div class="pkModal" hidden aria-hidden="true">
+  <div class="pkModal__overlay" data-close-modal></div>
+
+  <div class="pkModal__panel" role="dialog" aria-modal="true" aria-labelledby="pkModalTitle">
+    <button class="pkModal__close" type="button" data-close-modal aria-label="Close">×</button>
+
+    <h3 class="pkModal__title" id="pkModalTitle">PACKAGE</h3>
+    <p class="pkModal__subtitle">Lorem Ipsum text, will change.</p>
+
+    <form
+      class="pkModal__form"
+      name="package-enquiry"
+      method="POST"
+      action="/thanks/"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+    >
+      <input type="hidden" name="form-name" value="package-enquiry" />
+      <p hidden>
+        <label>
+          Don’t fill this out: <input name="bot-field" />
+        </label>
+      </p>
+
+      <!-- Campos visibles -->
+      <input class="pkModal__input" type="text" name="name" placeholder="Name" required />
+      <input class="pkModal__input" type="email" name="email" placeholder="Email" required />
+      <textarea class="pkModal__input pkModal__textarea" name="message" placeholder="Message (Optional)" rows="1"></textarea>
+
+      <!-- Campos ocultos con la selección -->
+      <input type="hidden" name="package_id" />
+      <input type="hidden" name="package_title" />
+      <input type="hidden" name="package_price" />
+      <input type="hidden" name="discounted" />
+      <input type="hidden" name="writing_days" />
+
+      <button class="pkModal__submit" type="submit">Send</button>
+    </form>
+  </div>
+</div>
+
 
     <script is:inline>
     (function () {
@@ -322,6 +373,181 @@ const toCents = (eur: number) => Math.round(eur * 100);
         renderPrices();
         });
     })();
+
+ (function () {
+    const root = document.currentScript?.closest(".pk");
+    if (!root) return;
+
+    const discountPercent = Number(root.getAttribute("data-discount") || "0");
+    const locale = root.getAttribute("data-locale") || "en-GB";
+    const currency = root.getAttribute("data-currency") || "EUR";
+
+    const toggle = root.querySelector("#pkToggle");
+    const cards = root.querySelectorAll(".pk__card");
+
+    const fmt = new Intl.NumberFormat(locale, {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    });
+
+    function priceFromCents(cents) { return cents / 100; }
+
+    function calcCardPriceCents(card, discounted) {
+      const base = Number(card.querySelector(".pk__price")?.getAttribute("data-standard-cents") || "0");
+
+      const writingWrap = card.querySelector(".pk__writing");
+      const perDay = Number(writingWrap?.getAttribute("data-writing-per-day-cents") || "0");
+      const days = Number(card.getAttribute("data-writing-days") || "0");
+
+      const subtotal = base + days * perDay;
+      return discounted ? Math.round(subtotal * (1 - discountPercent / 100)) : subtotal;
+    }
+
+    function renderPrices() {
+      const discounted = !!toggle?.checked;
+
+      cards.forEach((card) => {
+        const priceWrap = card.querySelector(".pk__price");
+        if (!priceWrap) return;
+
+        const nowEl = priceWrap.querySelector(".pk__priceNow");
+        const wasEl = priceWrap.querySelector(".pk__priceWas");
+        if (!nowEl || !wasEl) return;
+
+        const wasCents = calcCardPriceCents(card, false);
+        const nowCents = calcCardPriceCents(card, discounted);
+
+        nowEl.textContent = fmt.format(priceFromCents(nowCents));
+
+        if (discounted) {
+          wasEl.textContent = fmt.format(priceFromCents(wasCents));
+          wasEl.style.display = "inline";
+        } else {
+          wasEl.textContent = "";
+          wasEl.style.display = "none";
+        }
+
+        // badge por card (si lo tienes)
+        const badge = card.querySelector(".pk__discountBadge");
+        if (badge) badge.hidden = !discounted;
+        if (badge && discounted) badge.textContent = `${discountPercent}% off`;
+      });
+
+      root.setAttribute("data-mode", discounted ? "discount" : "standard");
+
+      const info = root.querySelector(".pk__discountInfo");
+      if (info) info.hidden = !discounted;
+    }
+
+    // init steppers + toggle (tu código existente)
+    const saved = localStorage.getItem("pk_discounted");
+    const initialDiscount = saved === "1";
+    if (toggle) toggle.checked = initialDiscount;
+
+    cards.forEach((card) => {
+      card.setAttribute("data-writing-days", "0");
+
+      const writingWrap = card.querySelector(".pk__writing");
+      const valueEl = card.querySelector(".pk__writingDays");
+      if (!writingWrap || !valueEl) return;
+
+      const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
+      const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+
+      function setDays(next) {
+        const clamped = Math.max(min, Math.min(max, next));
+        card.setAttribute("data-writing-days", String(clamped));
+        valueEl.textContent = String(clamped);
+        renderPrices();
+      }
+
+      card.querySelectorAll("[data-action]").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const current = Number(card.getAttribute("data-writing-days") || "0");
+          const action = btn.getAttribute("data-action");
+          setDays(action === "inc" ? current + 1 : current - 1);
+        });
+      });
+
+      setDays(min);
+    });
+
+    renderPrices();
+
+    toggle?.addEventListener("change", () => {
+      const on = !!toggle.checked;
+      localStorage.setItem("pk_discounted", on ? "1" : "0");
+      renderPrices();
+    });
+
+    // ✅ MODAL
+    const modal = root.querySelector(".pkModal");
+    const modalTitle = root.querySelector(".pkModal__title");
+    const modalSubtitle = root.querySelector(".pkModal__subtitle");
+    const form = root.querySelector('.pkModal__form');
+
+    function setHidden(name, value) {
+      const el = form?.querySelector(`input[name="${name}"]`);
+      if (el) el.value = value ?? "";
+    }
+
+    function openModalForCard(card, meta) {
+      if (!modal || !form) return;
+
+      const discounted = !!toggle?.checked;
+      const nowCents = calcCardPriceCents(card, discounted);
+
+      const pkgId = meta.packageId || card.getAttribute("data-id") || "";
+      const pkgTitle = meta.packageTitle || card.querySelector(".pk__name")?.textContent?.trim() || "";
+
+      if (modalTitle) modalTitle.textContent = pkgTitle.toUpperCase();
+      if (modalSubtitle) modalSubtitle.textContent = "Lorem Ipsum text, will change."; // luego lo haces editable
+
+      setHidden("package_id", pkgId);
+      setHidden("package_title", pkgTitle);
+      setHidden("package_price", fmt.format(priceFromCents(nowCents)));
+      setHidden("discounted", discounted ? "1" : "0");
+      setHidden("writing_days", String(Number(card.getAttribute("data-writing-days") || "0")));
+
+      modal.hidden = false;
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      // foco en primer input
+      const first = form.querySelector('input[name="name"]');
+      first?.focus();
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.hidden = true;
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    root.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-open-package]");
+      if (!btn) return;
+
+      const card = btn.closest(".pk__card");
+      if (!card) return;
+
+      openModalForCard(card, {
+        packageId: btn.getAttribute("data-package-id"),
+        packageTitle: btn.getAttribute("data-package-title"),
+      });
+    });
+
+    modal?.addEventListener("click", (e) => {
+      if (e.target.closest("[data-close-modal]")) closeModal();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal && !modal.hidden) closeModal();
+    });
+  })();
+
     </script>
 
   <style>
