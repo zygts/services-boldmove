@@ -1,12 +1,8 @@
 {
   "packagesSection": {
-    "title": "DECK PACKAGES",
-    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
-    "toggleLeftLabel": "Standard Price",
-    "toggleRightLabel": "Save 10%",
     "discountPercent": 10,
-    "locale": "en-GB",
-    "currency": "EUR",
+    "modalSubtitle": "Lorem Ipsum text, will change",
+    "toggleRightLabel": "Save 10%",
     "packages": [
       {
         "badge": " ",
@@ -165,7 +161,12 @@
         },
         "description": "A stunning, investor-grade masterpiece with cutting-edge design, enhanced visuals, and maximum impact."
       }
-    ]
+    ],
+    "currency": "EUR",
+    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
+    "title": "DECK PACKAGES",
+    "toggleLeftLabel": "Standard Price",
+    "locale": "en-GB"
   },
   "fullWidthCard": {
     "title": "Our Bundles",

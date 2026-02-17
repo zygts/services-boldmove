@@ -17,9 +17,10 @@ const landing = defineCollection({
         .default([]),
     }),
 
-    packagesSection: z.object({
+  packagesSection: z.object({
   title: z.string(),
   subtitle: z.string(),
+  modalSubtitle: z.string().default(""),
   toggleLeftLabel: z.string(),
   toggleRightLabel: z.string(),
   discountPercent: z.number().default(10),

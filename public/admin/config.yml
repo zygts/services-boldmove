@@ -51,6 +51,7 @@ collections:
             widget: "object"
             fields:
               - { label: "Title", name: "title", widget: "string" }
+              - { label: "Popup subtitle", name: "modalSubtitle", widget: "text" }
               - { label: "Subtitle", name: "subtitle", widget: "text" }
               - { label: "Toggle Left Label", name: "toggleLeftLabel", widget: "string" }
               - { label: "Toggle Right Label", name: "toggleRightLabel", widget: "string" }
