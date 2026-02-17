@@ -1,12 +1,8 @@
 {
   "packagesSection": {
-    "title": "DECK PACKAGES",
-    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
-    "toggleLeftLabel": "Standard Price",
-    "toggleRightLabel": "Save 10%",
     "discountPercent": 10,
-    "locale": "en-GB",
-    "currency": "EUR",
+    "modalSubtitle": "DECK PACKAGES",
+    "toggleRightLabel": "Save 10%",
     "packages": [
       {
         "badge": " ",
@@ -32,7 +28,7 @@
         "requirements": "Visual research is provided by the client.",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
+            "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard"
           },
           {
@@ -210,22 +206,28 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "text": "Concept Moodboard"
+            "text": "Concept Moodboard",
+            "icon": "/uploads/concept-moodboard.svg"
           },
           {
-            "text": "2 Days of Visual Research"
+            "text": "2 Days of Visual Research",
+            "icon": "/uploads/vr.svg"
           },
           {
-            "text": "1 Day of Mapping"
+            "text": "1 Day of Mapping",
+            "icon": "/uploads/mapping.svg"
           },
           {
-            "text": "4 Days of Design"
+            "text": "4 Days of Design",
+            "icon": "/uploads/design.svg"
           },
           {
-            "text": "Custom Navigation Experiences"
+            "text": "Custom Navigation Experiences",
+            "icon": "/uploads/custom-navigation-experiences.svg"
           },
           {
-            "text": "Refined AI Image Generation"
+            "text": "Refined AI Image Generation",
+            "icon": "/uploads/ai.svg"
           }
         ],
         "title": "Checkmate",
@@ -242,7 +244,12 @@
         },
         "description": "Our trademark finishing move. Checkmate is a fully immersive premium experience. Engineered to close the deal and seal the fate of the competition. "
       }
-    ]
+    ],
+    "currency": "EUR",
+    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
+    "title": "DECK PACKAGES",
+    "toggleLeftLabel": "Standard Price",
+    "locale": "en-GB"
   },
   "fullWidthCard": {
     "title": "Our Bundles",
