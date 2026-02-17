@@ -474,6 +474,14 @@ section[id] {
     }
 }
 
+.pk__toggleLabel {
+  transition: opacity 0.2s ease;
+}
+
+.pk__toggleLabel--dim {
+  opacity: 0.5;
+}
+
 .pk__discountInfo {
     margin-top: 3rem;
     font-size: var(--body);
