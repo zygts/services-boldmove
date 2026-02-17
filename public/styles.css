@@ -1959,10 +1959,11 @@ body.nav-open {
 .pkModal__title {
     font-family: 'Druk Wide LCG', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     font-weight: bold;
-    font-size: clamp(3rem, 2vw, 4rem);
+    font-size: clamp(2.8rem, 1.8vw, 3.75rem);
     letter-spacing: 0;
     text-align: center; 
     margin-block: 1rem;
+    max-width: 90%;
 }
 
 .pkModal__subtitle {

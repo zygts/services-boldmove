@@ -203,7 +203,7 @@ const toCents = (eur: number) => Math.round(eur * 100);
   <div class="pkModal__panel" role="dialog" aria-modal="true" aria-labelledby="pkModalTitle">
     <button class="pkModal__close" type="button" data-close-modal aria-label="Close">×</button>
 
-    <h3 class="pkModal__title" id="pkModalTitle">PACKAGE</h3>
+    <h3 class="pkModal__title" id="pkModalTitle">YOU HAVE SELECTED THE <span class="pkModal__titleName"></span> PACKAGE</h3>
     <p class="pkModal__subtitle" data-modal-subtitle={modalSubtitle}>{modalSubtitle}</p>
 
     <form
@@ -350,7 +350,8 @@ const toCents = (eur: number) => Math.round(eur * 100);
       const discounted = !!toggle?.checked;
       const nowCents = calcCardPriceCents(card, discounted);
 
-      if (modalTitle) modalTitle.textContent = packageTitle.toUpperCase();
+      const nameEl = modalTitle?.querySelector(".pkModal__titleName");
+if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
       if (modalSubtitle) modalSubtitle.textContent = root.getAttribute("data-modal-subtitle") || "";
 
       setHidden("package_id", packageId);
