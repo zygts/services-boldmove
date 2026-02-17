@@ -8,16 +8,16 @@
         "badge": " ",
         "additionalFeatures": [
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Free Text Polish (1h)"
           },
           {
-            "icon": "/uploads/icon-check.png",
-            "text": "Fixed, Condensed Schedule"
+            "icon": "/uploads/tick.svg",
+            "text": "Fixed and Condensed Schedule"
           },
           {
-            "icon": "/uploads/icon-check.png",
-            "text": "Music Track"
+            "icon": "/uploads/tick.svg",
+            "text": "Imbedded Music Track"
           }
         ],
         "ctaLabel": "Begin with Knight",
@@ -32,22 +32,22 @@
             "text": "Concept Moodboard"
           },
           {
-            "icon": "/uploads/icon-2.png",
+            "icon": "/uploads/vr-mapping.svg",
             "text": "1 Day of Visual Research and Mapping"
           },
           {
-            "icon": "/uploads/icon-3.png",
+            "icon": "/uploads/design.svg",
             "text": "3 Days of Design"
           }
         ],
         "title": "Knight",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Knight Package Preview",
         "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
         "id": "knight",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -58,15 +58,15 @@
         "badge": "",
         "additionalFeatures": [
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Free Text Polish (2h)"
           },
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Fixed, Condensed Schedule"
           },
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Music Track"
           }
         ],
@@ -78,30 +78,30 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
-            "text": "Concept moodboard"
+            "icon": "/uploads/concept-moodboard.svg",
+            "text": "Concept Moodboard"
           },
           {
-            "icon": "/uploads/icon-2.png",
+            "icon": "/uploads/vr.svg",
             "text": "2 Days of Visual Research"
           },
           {
-            "icon": "/uploads/icon-4png.png",
+            "icon": "/uploads/mapping.svg",
             "text": "1 Day of Mapping"
           },
           {
-            "icon": "/uploads/icon-3.png",
+            "icon": "/uploads/design.svg",
             "text": "3 Days of Design"
           }
         ],
         "title": "Blitz",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Blitz Package Preview",
         "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Blitz.mp4",
         "id": "blitz",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -113,23 +113,23 @@
         "additionalFeatures": [
           {
             "text": "Free Text Polish (2 hours)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Flexible Schedule",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Adaptive Music Track(s)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "2 Months Free Edits (3 hours max)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "PDF Export Included",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           }
         ],
         "ctaLabel": "Select Gambit",
@@ -140,30 +140,30 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
+            "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard"
           },
           {
             "text": "2 Days of Visual Research",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/vr.svg"
           },
           {
             "text": "1 Day of Mapping",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/mapping.svg"
           },
           {
             "text": "4 Days of Design",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/design.svg"
           }
         ],
         "title": "Gambit",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Gambit Package Preview",
         "video": "/uploads/video1.mp4",
         "id": "gambit",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -175,27 +175,27 @@
         "additionalFeatures": [
           {
             "text": "Free Text Polish",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Flexible Schedule",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Adaptive Music Track(s)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "12 Month Free Edits (5 hours max)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "2 Hours of Free Readymag Training",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "PDF Export Included",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           }
         ],
         "ctaLabel": "Get Checkmate",
@@ -231,7 +231,7 @@
           }
         ],
         "title": "Checkmate",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Checkmate Package Preview",
         "video": "/uploads/video1.mp4",
         "id": "checkmate",
         "writing": {
