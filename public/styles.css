@@ -347,8 +347,9 @@ section[id] {
 }
 
 .tcc__icon {
-    width: min(26rem, 85%);
+    width: 20rem;
     height: auto;
+    object-fit: cover;
     display: block;
 }
 
