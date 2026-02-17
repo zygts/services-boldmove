@@ -79,7 +79,7 @@
 }
 
 html {
-    font-size: 62.5%;
+    font-size: 57.5%;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
 }
@@ -1293,11 +1293,12 @@ section[id] {
 
 .tst__card {
     position: absolute;
-    width: min(60rem, 78vw);
+    width: min(66rem, 78vw);
     background-image: url(./images/testimonials-bg.jpg);
     border-radius: 2px;
     padding: 3rem;
     transform-origin: center;
+    box-shadow: 0px 10px 10px -7px hsla(0, 0%, 0%, 0.2);
 
     @media (max-width: 991px) {
         padding: 1.5rem;
@@ -1311,6 +1312,7 @@ section[id] {
     line-height: 1.5;
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     letter-spacing: 0.01em;
+    text-align: center;
 
     @media (max-width: 991px) {
         font-size: 1.2rem;
@@ -1320,7 +1322,7 @@ section[id] {
 .tst__sig {
     margin-top: 14px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 10px;
     align-items: baseline;
 }
