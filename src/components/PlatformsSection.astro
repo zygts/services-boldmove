@@ -70,23 +70,22 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     const videos = root.querySelectorAll(".plt__video");
 
     const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-    if (!isDesktop) return; // Solo hover real (no móvil)
+    if (!isDesktop) return;
 
     videos.forEach((video) => {
-      const frame = video.closest(".plt__videoFrame");
-      if (!frame) return;
 
-      frame.addEventListener("mouseenter", () => {
+      video.addEventListener("mouseenter", () => {
         video.play().catch(() => {});
       });
 
-      frame.addEventListener("mouseleave", () => {
+      video.addEventListener("mouseleave", () => {
         video.pause();
-        video.currentTime = 0; // 🔥 quita esto si quieres que continúe donde iba
+        video.currentTime = 0; // quita esto si quieres que continúe
       });
+
     });
   })();
+
 </script>
 
 </section>
