@@ -147,6 +147,7 @@ html {
   background-repeat: repeat;
   background-size: auto;
   opacity: 0.06;
+  display: none;
   pointer-events: none;
   z-index: 9999;
 }
@@ -213,7 +214,8 @@ section[id] {
         width: calc(100% - 5.6rem);
         grid-template-columns: 1fr 33%;
         padding: 2.8rem;
-        gap: 0;
+        row-gap: 0;
+        column-gap: 1.5rem;
     }
 }
 
@@ -233,12 +235,14 @@ section[id] {
 }
 
 .fwc__icon {
-    width: 18rem;
+    width: 45rem;
+    padding-left: 4rem;
     height: auto;
     display: block;
 
     @media (max-width: 991px) {
         width: 100%;
+        padding-left: 0;
     }
 }
 
@@ -345,6 +349,20 @@ section[id] {
     padding-left: 6rem;
 }
 
+@media (max-width: 991px) {
+    .tcc__col:first-child {
+        padding-right: 0;
+    }
+
+    .tcc__col:nth-child(2) {
+        padding-inline: 0;
+    }
+
+    .tcc__col:last-child {
+        padding-left: 0;
+    }
+}
+
 .tcc__col:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -404,6 +422,10 @@ section[id] {
     height: auto;
     object-fit: cover;
     display: block;
+
+    @media (max-width: 991px) {
+        width: 100%;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1329,7 +1351,7 @@ section[id] {
     padding-top: 3rem;
     margin-top: 4rem;
     overflow: hidden;
-    min-height: 49rem;
+    padding-bottom: 3rem;
 
     @media (max-width: 991px) {
         border-radius: 3rem !important;
@@ -1390,7 +1412,7 @@ section[id] {
     background: var(--color-secondary);
     overflow: hidden;
     color: var(--color-primary);
-    margin: 90px 0 0;
+    margin: 5rem 0 0;
 }
 
 .tst__inner {
