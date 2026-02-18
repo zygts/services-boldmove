@@ -7,19 +7,19 @@
         {
           "title": "BESPOKE AI VISUALS",
           "body": "Our signature approach to visual research complimented – on request – by sophisticated and tasteful AI for bespoke imagery tailored to your story",
-          "icon": "/uploads/boldmove-icon-4.png",
+          "icon": "/uploads/ai.jpg",
           "iconAlt": ""
         },
         {
           "title": "SIGNATURE FORMATS",
           "body": "From classic formats to fully immersive platforms, we design for every demographic – always with our unmistakable signature style",
-          "icon": "/uploads/boldmove-icon-3.png",
+          "icon": "/uploads/signature-formats.jpg",
           "iconAlt": ""
         },
         {
           "title": "KEY ART",
           "body": "Bold, cinematic key art design for projects that have already been greenlit",
-          "icon": "/uploads/boldmove-icon-2.png",
+          "icon": "/uploads/key-art.jpg",
           "iconAlt": ""
         }
       ]
@@ -31,19 +31,19 @@
         {
           "title": "WRITING DISCOUNT",
           "body": "20% off content writing when added to a design package",
-          "icon": "/uploads/boldmove-icon-2.png",
+          "icon": "/uploads/writing.jpg",
           "iconAlt": ""
         },
         {
           "title": "FLEXIBLE PAYMENTS",
           "body": "Flexible, manageable payment options available upon request",
-          "icon": "/uploads/boldmove-icon-5.png",
+          "icon": "/uploads/payments-b.jpg",
           "iconAlt": ""
         },
         {
           "title": "CLIENT TRAINING",
           "body": "Complimentary client training on our design tools, helping you save time (and money) on revisions",
-          "icon": "/uploads/boldmove-icon-1.png",
+          "icon": "/uploads/client-training-b.jpg",
           "iconAlt": ""
         }
       ]
@@ -179,7 +179,7 @@
       ],
       "title": "Pimp My Deck",
       "videoLabel": "Upgrade preview",
-      "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
+      "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Pimp.mp4",
       "id": "premium-upgrade",
       "image": "/uploads/pimp-cover.png",
       "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate."
