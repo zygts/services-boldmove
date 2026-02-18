@@ -1,4 +1,339 @@
 {
+  "threeColumnsCards": [
+    {
+      "id": "visual-experience",
+      "title": "The Visual Experience",
+      "items": [
+        {
+          "title": "BESPOKE AI VISUALS",
+          "body": "Our signature approach to visual research complimented – on request – by sophisticated and tasteful AI for bespoke imagery tailored to your story",
+          "icon": "/uploads/boldmove-icon-4.png",
+          "iconAlt": ""
+        },
+        {
+          "title": "SIGNATURE FORMATS",
+          "body": "From classic formats to fully immersive platforms, we design for every demographic – always with our unmistakable signature style",
+          "icon": "/uploads/boldmove-icon-3.png",
+          "iconAlt": ""
+        },
+        {
+          "title": "KEY ART",
+          "body": "Bold, cinematic key art design for projects that have already been greenlit",
+          "icon": "/uploads/boldmove-icon-2.png",
+          "iconAlt": ""
+        }
+      ]
+    },
+    {
+      "id": "client-value",
+      "title": "Client Value",
+      "items": [
+        {
+          "title": "WRITING DISCOUNT",
+          "body": "20% off content writing when added to a design package",
+          "icon": "/uploads/boldmove-icon-2.png",
+          "iconAlt": ""
+        },
+        {
+          "title": "FLEXIBLE PAYMENTS",
+          "body": "Flexible, manageable payment options available upon request",
+          "icon": "/uploads/boldmove-icon-5.png",
+          "iconAlt": ""
+        },
+        {
+          "title": "CLIENT TRAINING",
+          "body": "Complimentary client training on our design tools, helping you save time (and money) on revisions",
+          "icon": "/uploads/boldmove-icon-1.png",
+          "iconAlt": ""
+        }
+      ]
+    }
+  ],
+  "platformsSection": {
+    "title": "Platforms",
+    "body": {
+      "p1": "Here at Boldmove, we cater to every client. Our signature special sauce is a scrolling, immersive deck that puts the viewer firmly in amongst the action.",
+      "p2": "But we understand that sometimes simplicity is king and we do also create classic, linear decks. And of course we do it all with the same stylised art direction we sprinkle on every Boldmove project.",
+      "emphasis": "Here's an example of a deck made for two different formats."
+    },
+    "videos": [
+      {
+        "label": "Immersive Scroll",
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
+        "url": "",
+        "poster": "",
+        "muted": true,
+        "autoplay": true,
+        "loop": true,
+        "controls": false
+      },
+      {
+        "label": "Classic Navigation",
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
+        "url": "",
+        "poster": "",
+        "muted": true,
+        "autoplay": true,
+        "loop": true,
+        "controls": false
+      }
+    ]
+  },
+  "contactSection": {
+    "title": "TALK TO US",
+    "emailLine": {
+      "text": "Please hit us up on",
+      "email": "hello@boldmove.tv"
+    },
+    "address": {
+      "label": "Address",
+      "text": "The Long Lodge, 265–269 Kingston Road,\nWimbledon, United Kingdom, SW19 3NW"
+    }
+  },
+  "fullWidthCard": {
+    "title": "Our Bundles",
+    "headline": "DECK\nPACKAGES",
+    "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.",
+    "icons": [
+      {
+        "icon": "/uploads/boldmove-icon-2.png",
+        "iconAlt": ""
+      },
+      {
+        "icon": "/uploads/boldmove-icon-1.png",
+        "iconAlt": ""
+      }
+    ]
+  },
+  "servicesSection": {
+    "title": "Services",
+    "subtitle": "Bespoke services to enhance your project and strengthen your deck",
+    "useSeparatorImage": false,
+    "separatorImage": "",
+    "services": [
+      {
+        "id": "immersive-deck-design",
+        "name": "Immersive Deck Design",
+        "price": "625€ per day",
+        "description": "Boldmove communicates in a visual cinematic language. We create decks that guide the eye, support the story and elevate your project. Every design choice is made to reinforce tone, genre and intent — so your deck looks as strong as it reads."
+      },
+      {
+        "id": "visual-research",
+        "name": "Visual Research",
+        "price": "625€ per day",
+        "description": "Boldmove curates visual references that define the world of your film or series. Through focused research we build image selections that give an unmistakable sense of the project's look and feel."
+      },
+      {
+        "id": "deck-writing",
+        "name": "Deck Writing",
+        "price": "750€ per day",
+        "description": "Boldmove’s industry professionals write pitch deck copy that clarifies and sharpens your story. Every line of text is designed to hold attention and draw your audience into the project."
+      },
+      {
+        "id": "story-consulting",
+        "name": "Story Consulting",
+        "price": "750€ per day ",
+        "description": "Strategic story consultation with Boldmove’s professional writing team. From structure to tone, we identify what matters most and how it should land."
+      },
+      {
+        "id": "sound-design-music",
+        "name": "Sound Design and Music ",
+        "price": "Price on request",
+        "description": "Bespoke composition and audio production, designed to heighten emotion, reinforce narrative beats and elevate the overall experience. "
+      },
+      {
+        "name": "Custom Navigation Experiences (Coding)",
+        "id": "coding",
+        "price": "800€ per day ",
+        "description": "Interactive, code-driven navigation crafted by specialists to create engaging experiences that will leave your audience speechless."
+      }
+    ]
+  },
+  "upgradeSection": {
+    "title": "Already have a deck? We can refine and elevate it at a reduced cost.",
+    "card": {
+      "badge": "",
+      "additionalFeatures": [
+        {
+          "icon": "/uploads/tick.svg",
+          "text": "Fixed and Condensed Schedule"
+        }
+      ],
+      "ctaLabel": "Upgrade My Deck",
+      "standardPrice": 2500,
+      "poster": "/uploads/knight.jpg",
+      "requirements": "Text and source visuals must be provided",
+      "mainFeatures": [
+        {
+          "icon": "/uploads/concept-moodboard.svg",
+          "text": "Mini Concept Moodboard"
+        },
+        {
+          "icon": "/uploads/text-polish.svg",
+          "text": "2 Hours of Writing"
+        },
+        {
+          "icon": "/uploads/design.svg",
+          "text": "2 Days of Design"
+        },
+        {
+          "icon": "/uploads/vr-mapping.svg",
+          "text": "Half a Day of Visual Research and Mapping"
+        }
+      ],
+      "title": "Pimp My Deck",
+      "videoLabel": "Upgrade preview",
+      "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
+      "id": "premium-upgrade",
+      "image": "/uploads/pimp-cover.png",
+      "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate."
+    },
+    "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
+  },
+  "testimonialsSection": {
+    "title": "What our clients say about us",
+    "underline": "/uploads/image-88256f96-dd76-4b96-a53b-3adfb7d91a6f.webp",
+    "cards": [
+      {
+        "quote": "“Working with the team was truly collaborative and creatively energizing. They immediately understood our vision, were accommodating, and approached every idea with a \"let's try it\" mentality. It was a genuinely fun process from start to finish.”",
+        "author": "Samantha Cutler, UNIVERSAL TELEVISION "
+      },
+      {
+        "quote": "\"The Boldmove team truly cares about every single project we bring them. They love to push the boundaries of what's possible. We got nothing but love for these artists.\"",
+        "author": "Arturo Perez & Sam Jayne, THE YES BUS"
+      },
+      {
+        "author": "Juli Blachowiak",
+        "quote": "\"I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.\""
+      },
+      {
+        "quote": "“Highly creative, service-minded team with a very structured and efficient workflow. A local broadcaster is looking at the series right now and has shown interest in a potential commission.”",
+        "author": "Carla Mantilla (Filmlance)"
+      },
+      {
+        "author": "Morten Holst & Pelle Folmer (Astra Film)  ",
+        "quote": "\"Our Boldmove pitch deck has received remarkable feedback worldwide, with several people describing it as the best they’ve ever been presented with. We’ve truly loved working with Boldmove and the result exceeded our expectations.\""
+      },
+      {
+        "quote": "\"Boldmove are so passionate, accommodating, ambitious, creative and most importantly they just really GET IT. They’re the secret weapon we pull out when we want to blow people away.\"",
+        "author": "Luti Fagbenle - LUTI MEDIA"
+      },
+      {
+        "author": "Pierre Bouchard - MEDIAWAN RIGHTS",
+        "quote": "\"Their immersive pitch decks are like a deck and a sizzle tape bundled into one. They provide exciting new possibilities.\""
+      },
+      {
+        "author": "Vincent Riva - STUDIO TF1",
+        "quote": "\"Boldmove understands what buyers in the TV industry want to know and feel. There’s no waste, it’s all content, rich, fun, and to the point. The results are always captivating.\""
+      }
+    ],
+    "pinVh": 219
+  },
+  "whatsNewSection": {
+    "rows": [
+      [
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        }
+      ],
+      [
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/knight.jpg"
+        }
+      ],
+      [
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/video1.mp4",
+          "poster": "/uploads/video.png"
+        }
+      ]
+    ]
+  },
   "packagesSection": {
     "discountPercent": 10,
     "modalSubtitle": "DECK PACKAGES",
@@ -250,235 +585,5 @@
     "title": "DECK PACKAGES",
     "toggleLeftLabel": "Standard Price",
     "locale": "en-GB"
-  },
-  "fullWidthCard": {
-    "title": "Our Bundles",
-    "headline": "DECK\nPACKAGES",
-    "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.",
-    "icons": [
-      {
-        "icon": "/uploads/boldmove-icon-2.png",
-        "iconAlt": ""
-      },
-      {
-        "icon": "/uploads/boldmove-icon-1.png",
-        "iconAlt": ""
-      }
-    ]
-  },
-  "upgradeSection": {
-    "title": "Already have a deck? We can refine and elevate it at a reduced cost.",
-    "card": {
-      "badge": "",
-      "additionalFeatures": [
-        {
-          "icon": "/uploads/tick.svg",
-          "text": "Fixed and Condensed Schedule"
-        }
-      ],
-      "ctaLabel": "Upgrade My Deck",
-      "standardPrice": 2500,
-      "poster": "/uploads/knight.jpg",
-      "requirements": "Text and source visuals must be provided",
-      "mainFeatures": [
-        {
-          "icon": "/uploads/concept-moodboard.svg",
-          "text": "Mini Concept Moodboard"
-        },
-        {
-          "icon": "/uploads/text-polish.svg",
-          "text": "2 Hours of Writing"
-        },
-        {
-          "icon": "/uploads/design.svg",
-          "text": "2 Days of Design"
-        },
-        {
-          "icon": "/uploads/vr-mapping.svg",
-          "text": "Half a Day of Visual Research and Mapping"
-        }
-      ],
-      "title": "Pimp My Deck",
-      "videoLabel": "Upgrade preview",
-      "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
-      "id": "premium-upgrade",
-      "image": "/uploads/pimp-cover.png",
-      "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate."
-    },
-    "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
-  },
-  "servicesSection": {
-    "title": "Services",
-    "subtitle": "Bespoke services to enhance your project and strengthen your deck",
-    "useSeparatorImage": false,
-    "separatorImage": "",
-    "services": [
-      {
-        "id": "immersive-deck-design",
-        "name": "Immersive Deck Design",
-        "price": "625€ per day",
-        "description": "Boldmove communicates in a visual cinematic language. We create decks that guide the eye, support the story and elevate your project. Every design choice is made to reinforce tone, genre and intent — so your deck looks as strong as it reads."
-      },
-      {
-        "id": "visual-research",
-        "name": "Visual Research",
-        "price": "625€ per day",
-        "description": "Boldmove curates visual references that define the world of your film or series. Through focused research we build image selections that give an unmistakable sense of the project's look and feel."
-      },
-      {
-        "id": "deck-writing",
-        "name": "Deck Writing",
-        "price": "750€ per day",
-        "description": "Boldmove’s industry professionals write pitch deck copy that clarifies and sharpens your story. Every line of text is designed to hold attention and draw your audience into the project."
-      },
-      {
-        "id": "story-consulting",
-        "name": "Story Consulting",
-        "price": "750€ per day ",
-        "description": "Strategic story consultation with Boldmove’s professional writing team. From structure to tone, we identify what matters most and how it should land."
-      },
-      {
-        "id": "sound-design-music",
-        "name": "Sound Design and Music ",
-        "price": "Price on request",
-        "description": "Bespoke composition and audio production, designed to heighten emotion, reinforce narrative beats and elevate the overall experience. "
-      },
-      {
-        "name": "Custom Navigation Experiences (Coding)",
-        "id": "coding",
-        "price": "800€ per day ",
-        "description": "Interactive, code-driven navigation crafted by specialists to create engaging experiences that will leave your audience speechless."
-      }
-    ]
-  },
-  "platformsSection": {
-    "title": "Platforms",
-    "body": {
-      "p1": "Here at Boldmove, we cater to every client. Our signature special sauce is a scrolling, immersive deck that puts the viewer firmly in amongst the action.",
-      "p2": "But we understand that sometimes simplicity is king and we do also create classic, linear decks. And of course we do it all with the same stylised art direction we sprinkle on every Boldmove project.",
-      "emphasis": "Here's an example of a deck made for two different formats."
-    },
-    "videos": [
-      {
-        "label": "Immersive Scroll",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
-        "url": "",
-        "poster": "",
-        "muted": true,
-        "autoplay": true,
-        "loop": true,
-        "controls": false
-      },
-      {
-        "label": "Classic Navigation",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
-        "url": "",
-        "poster": "",
-        "muted": true,
-        "autoplay": true,
-        "loop": true,
-        "controls": false
-      }
-    ]
-  },
-  "testimonialsSection": {
-    "title": "What our clients say about us",
-    "underline": "/uploads/image-88256f96-dd76-4b96-a53b-3adfb7d91a6f.webp",
-    "cards": [
-      {
-        "quote": "“Working with the team was truly collaborative and creatively energizing. They immediately understood our vision, were accommodating, and approached every idea with a \"let's try it\" mentality. It was a genuinely fun process from start to finish.”",
-        "author": "Samantha Cutler, UNIVERSAL TELEVISION "
-      },
-      {
-        "quote": "\"The Boldmove team truly cares about every single project we bring them. They love to push the boundaries of what's possible. We got nothing but love for these artists.\"",
-        "author": "Arturo Perez & Sam Jayne, THE YES BUS"
-      },
-      {
-        "author": "Juli Blachowiak",
-        "quote": "\"I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.\""
-      },
-      {
-        "quote": "“Highly creative, service-minded team with a very structured and efficient workflow. A local broadcaster is looking at the series right now and has shown interest in a potential commission.”",
-        "author": "Carla Mantilla (Filmlance)"
-      },
-      {
-        "author": "Morten Holst & Pelle Folmer (Astra Film)  ",
-        "quote": "\"Our Boldmove pitch deck has received remarkable feedback worldwide, with several people describing it as the best they’ve ever been presented with. We’ve truly loved working with Boldmove and the result exceeded our expectations.\""
-      },
-      {
-        "quote": "\"Boldmove are so passionate, accommodating, ambitious, creative and most importantly they just really GET IT. They’re the secret weapon we pull out when we want to blow people away.\"",
-        "author": "Luti Fagbenle - LUTI MEDIA"
-      },
-      {
-        "author": "Pierre Bouchard - MEDIAWAN RIGHTS",
-        "quote": "\"Their immersive pitch decks are like a deck and a sizzle tape bundled into one. They provide exciting new possibilities.\""
-      },
-      {
-        "author": "Vincent Riva - STUDIO TF1",
-        "quote": "\"Boldmove understands what buyers in the TV industry want to know and feel. There’s no waste, it’s all content, rich, fun, and to the point. The results are always captivating.\""
-      }
-    ],
-    "pinVh": 219
-  },
-  "contactSection": {
-    "title": "TALK TO US",
-    "emailLine": {
-      "text": "Please hit us up on",
-      "email": "hello@boldmove.tv"
-    },
-    "address": {
-      "label": "Address",
-      "text": "The Long Lodge, 265–269 Kingston Road,\nWimbledon, United Kingdom, SW19 3NW"
-    }
-  },
-  "threeColumnsCards": [
-    {
-      "id": "visual-experience",
-      "title": "The Visual Experience",
-      "items": [
-        {
-          "title": "BESPOKE AI VISUALS",
-          "body": "Our signature approach to visual research complimented – on request – by sophisticated and tasteful AI for bespoke imagery tailored to your story",
-          "icon": "/uploads/boldmove-icon-4.png",
-          "iconAlt": ""
-        },
-        {
-          "title": "SIGNATURE FORMATS",
-          "body": "From classic formats to fully immersive platforms, we design for every demographic – always with our unmistakable signature style",
-          "icon": "/uploads/boldmove-icon-3.png",
-          "iconAlt": ""
-        },
-        {
-          "title": "KEY ART",
-          "body": "Bold, cinematic key art design for projects that have already been greenlit",
-          "icon": "/uploads/boldmove-icon-2.png",
-          "iconAlt": ""
-        }
-      ]
-    },
-    {
-      "id": "client-value",
-      "title": "Client Value",
-      "items": [
-        {
-          "title": "WRITING DISCOUNT",
-          "body": "20% off content writing when added to a design package",
-          "icon": "/uploads/boldmove-icon-2.png",
-          "iconAlt": ""
-        },
-        {
-          "title": "FLEXIBLE PAYMENTS",
-          "body": "Flexible, manageable payment options available upon request",
-          "icon": "/uploads/boldmove-icon-5.png",
-          "iconAlt": ""
-        },
-        {
-          "title": "CLIENT TRAINING",
-          "body": "Complimentary client training on our design tools, helping you save time (and money) on revisions",
-          "icon": "/uploads/boldmove-icon-1.png",
-          "iconAlt": ""
-        }
-      ]
-    }
-  ]
+  }
 }

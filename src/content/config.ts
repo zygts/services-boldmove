@@ -73,6 +73,25 @@ const landing = defineCollection({
   ).default([]),
 }),
 
+whatsNewSection: z.object({
+  rows: z.array(
+    z.array(
+      z.discriminatedUnion("type", [
+        z.object({
+          type: z.literal("image"),
+          src: z.string(),
+          alt: z.string().optional().default(""),
+        }),
+        z.object({
+          type: z.literal("video"),
+          src: z.string(),
+          poster: z.string().optional().default(""),
+          alt: z.string().optional().default(""),
+        }),
+      ])
+    )
+  ).length(3),
+}),
 
     upgradeSection: z.object({
       title: z.string(),

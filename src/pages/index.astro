@@ -14,36 +14,17 @@ import TestimonialsSection from "../components/TestimonialsSection.astro";
 import ContactSection from "../components/ContactSection.astro";
 
 const home = await getEntry("landing", "home");
-const { fullWidthCard, threeColumnsCards, packagesSection, upgradeSection, servicesSection, platformsSection, testimonialsSection, contactSection } = home.data;
-
-const whatsNewRows = [
-  [
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-    { type: "image", src: "/images/video-2.webp", alt: "..." },
-    { type: "image", src: "/images/video-3.webp", alt: "..." },
-    { type: "image", src: "/images/video-4.webp", alt: "..." },
-    { type: "image", src: "/images/video-5.webp", alt: "..." },
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-  ],
-  [
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-    { type: "image", src: "/images/video-3.webp", alt: "..." },
-    { type: "image", src: "/images/video-2.webp", alt: "..." },
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-    { type: "image", src: "/images/video-2.webp", alt: "..." },
-    { type: "image", src: "/images/video-3.webp", alt: "..." },
-    { type: "image", src: "/images/video-5.webp", alt: "..." },
-  ],
-  [
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-    { type: "image", src: "/images/video-2.webp", alt: "..." },
-    { type: "image", src: "/images/video-3.webp", alt: "..." },
-    { type: "image", src: "/images/video-4.webp", alt: "..." },
-    { type: "image", src: "/images/video-3.webp", alt: "..." },
-    { type: "image", src: "/images/video-1.webp", alt: "..." },
-    { type: "image", src: "/images/video-2.webp", alt: "..." },
-  ],
-];
+const { 
+  whatsNewSection,  // ← añadido
+  fullWidthCard, 
+  threeColumnsCards, 
+  packagesSection, 
+  upgradeSection, 
+  servicesSection, 
+  platformsSection, 
+  testimonialsSection, 
+  contactSection 
+} = home.data;
 ---
 
 <!doctype html>
@@ -59,7 +40,7 @@ const whatsNewRows = [
   <body style="margin:0;background:#0b0b0c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;">
   <SiteNav />
     <main>
-    <WhatsNewSection rows={whatsNewRows} />
+    <WhatsNewSection rows={whatsNewSection.rows} />
 
       <FullWidthCard
         title={fullWidthCard.title}

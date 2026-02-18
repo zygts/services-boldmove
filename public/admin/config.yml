@@ -16,6 +16,40 @@ collections:
         file: "src/content/landing/home.json"
         format: "json"
         fields:
+
+          - label: "What's New Section"
+            name: "whatsNewSection"
+            widget: "object"
+            fields:
+              - label: "Rows (3)"
+                name: "rows"
+                widget: "list"
+                min: 3
+                max: 3
+                summary: "Row {{index}} - {{fields.length}} items"
+                field:
+                  label: "Row Items"
+                  name: "items"
+                  widget: "list"
+                  summary: "{{fields.type}}"
+                  types:
+                    - label: "Image"
+                      name: "image"
+                      widget: "object"
+                      fields:
+                        - { label: "Type", name: "type", widget: "hidden", default: "image" }
+                        - { label: "Image", name: "src", widget: "image" }
+                        - { label: "Alt text", name: "alt", widget: "string", required: false }
+
+                    - label: "Video"
+                      name: "video"
+                      widget: "object"
+                      fields:
+                        - { label: "Type", name: "type", widget: "hidden", default: "video" }
+                        - { label: "Video", name: "src", widget: "file", media_library: { config: { multiple: false } } }
+                        - { label: "Poster (optional)", name: "poster", widget: "image", required: false }
+                        - { label: "Alt text", name: "alt", widget: "string", required: false }
+
           - label: "Full Width Card"
             name: "fullWidthCard"
             widget: "object"
