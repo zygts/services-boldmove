@@ -56,22 +56,22 @@ const bottomItems: NavItem[] = [
     <img class="navigation nav__logo" src="/images/logo-boldmove.png" alt="Boldmove logo" />
   </a>
   <!-- Desktop: top bar -->
-  <div class="navigation nav__bar nav__bar--top" aria-hidden="false">
+  <div class="nav__bar nav__bar--top" aria-hidden="false">
     <div class="nav__inner">
       <ul class="nav__list">
         {topItems.map((i) => (
-          <li class="nav__item"><a class="nav__link" href={i.href}>{i.label}</a></li>
+          <li class="navigation nav__item"><a class="nav__link" href={i.href}>{i.label}</a></li>
         ))}
       </ul>
     </div>
   </div>
 
   <!-- Desktop: bottom bar -->
-  <div class="navigation nav__bar nav__bar--bottom" aria-hidden="false">
+  <div class="nav__bar nav__bar--bottom" aria-hidden="false">
     <div class="nav__inner">
       <ul class="nav__list">
         {bottomItems.map((i) => (
-          <li class="nav__item"><a class="nav__link" href={i.href}>{i.label}</a></li>
+          <li class="navigation nav__item"><a class="nav__link" href={i.href}>{i.label}</a></li>
         ))}
       </ul>
     </div>
