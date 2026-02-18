@@ -10,78 +10,62 @@ type Props = {
 const { rows } = Astro.props;
 const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
   rows?.length === 3 ? rows : [[], [], []];
-
-const centerItem: MediaItem | null = safeRows?.[2]?.[2] ?? safeRows?.[2]?.[0] ?? null;
-const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 ---
 
 <section id="" class="wn" aria-label="What's new">
   <div class="wn__inner">
     <div class="wn__bg mobile-only" aria-hidden="true">
-        <video
-            class="wn__bgVideo"
-            src="/uploads/video1.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-        ></video>
+      <video
+        class="wn__bgVideo"
+        src="/uploads/video1.mp4"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
     </div>
 
     {safeRows.map((rowItems, rowIndex) => (
       <div class="wn__row" data-dir={rowIndex === 1 ? "rtl" : "ltr"}>
         <div class="wn__track">
-          {rowItems.map((it) => (
-            <figure class="wn__card" role="group" aria-label={it.alt ?? "Media"}>
-              {it.type === "video" ? (
-                <video
-                  class="wn__media"
-                  src={it.src}
-                  poster={it.poster}
-                  muted
-                  playsinline
-                  preload="metadata"
-                />
-              ) : (
-                <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
-              )}
-            </figure>
-          ))}
+          {rowItems.map((it, cardIndex) => {
+            const isSpecialCard = rowIndex === 1 && cardIndex === 4;
+            return (
+              <figure class="wn__card" class:list={{ "wn__card--special": isSpecialCard }} role="group" aria-label={it.alt ?? "Media"}>
+                {it.type === "video" ? (
+                  <video
+                    class="wn__media"
+                    src={it.src}
+                    poster={it.poster}
+                    muted
+                    playsinline
+                    preload="metadata"
+                  />
+                ) : (
+                  <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
+                )}
+
+                {isSpecialCard && (
+                  <>
+                    <div class="wn__cardOverlay"></div>
+                    <div class="wn__cardTitle">
+                      <div class="desktop-only">
+                        <span>WHAT'S NEW</span>
+                        <span>AT BOLDMOVE?</span>
+                      </div>
+                      <div class="mobile-only">
+                        <span>WHAT'S<br>NEW AT<br>BOLDMOVE?</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </figure>
+            );
+          })}
         </div>
       </div>
     ))}
-
-    <div class="wn__center" aria-hidden="true">
-      <div class="wn__centerMedia">
-        {centerItem ? (
-          centerItem.type === "video" ? (
-            <video
-              class="wn__media"
-              src={centerItem.src}
-              poster={centerItem.poster}
-              muted
-              playsinline
-              preload="metadata"
-            />
-          ) : (
-            <img class="wn__media" src={centerItem.src} alt={centerAlt} loading="eager" />
-          )
-        ) : null}
-      </div>
-
-      <div class="wn__centerOverlay"></div>
-
-      <div class="wn__centerTitle" aria-hidden="true">
-        <div class="desktop-only">
-            <span>WHAT'S NEW</span>
-            <span>AT BOLDMOVE?</span>
-        </div>
-        <div class="mobile-only">
-            <span>WHAT'S<br>NEW AT<br>BOLDMOVE?</span>
-        </div>
-      </div>
-    </div>
   </div>
 
   <script is:inline>
@@ -90,8 +74,9 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
       if (!root) return;
 
       const rows = Array.from(root.querySelectorAll(".wn__row"));
-      const centerOverlay = root.querySelector(".wn__centerOverlay");
-      const centerTitle = root.querySelector(".wn__centerTitle");
+      const specialCard = root.querySelector(".wn__card--special");
+      const cardOverlay = specialCard?.querySelector(".wn__cardOverlay");
+      const cardTitle = specialCard?.querySelector(".wn__cardTitle");
 
       const TRIGGER_ID = "whats-new-scroll";
       const DESKTOP_MQ = "(min-width: 991px)";
@@ -119,14 +104,13 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 
         window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
 
-        // Limpia transforms
         rows.forEach((row) => {
           const track = row.querySelector(".wn__track");
           if (track) window.gsap.set(track, { clearProps: "all" });
         });
 
-        if (centerOverlay) window.gsap.set(centerOverlay, { clearProps: "all", opacity: 0 });
-        if (centerTitle) window.gsap.set(centerTitle, { clearProps: "all", opacity: 1, y: 0 });
+        if (cardOverlay) window.gsap.set(cardOverlay, { clearProps: "all", opacity: 1 });
+        if (cardTitle) window.gsap.set(cardTitle, { clearProps: "all", opacity: 1, y: 0 });
       }
 
       function buildDesktop() {
@@ -136,12 +120,11 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         const gsap = window.gsap;
         const ScrollTrigger = window.ScrollTrigger;
 
-        // Kill + reset
         killDesktop();
 
-        // En desktop, el título empieza oculto (hará fade in al final)
-        if (centerTitle) gsap.set(centerTitle, { opacity: 0, y: 10 });
-        if (centerOverlay) gsap.set(centerOverlay, { opacity: 0 });
+        // Título y overlay empiezan visibles
+        if (cardTitle) gsap.set(cardTitle, { opacity: 1, y: 0 });
+        if (cardOverlay) gsap.set(cardOverlay, { opacity: 1 });
 
         const progressRatio = 0.8;
         const travels = rows.map(measureTravel);
@@ -152,7 +135,7 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 
         const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-        // Fase A: filas
+        // Fase A: filas (0 a 1)
         rows.forEach((row, idx) => {
           const track = row.querySelector(".wn__track");
           if (!track) return;
@@ -160,9 +143,8 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
           const travel = (travels[idx] || 0) * progressRatio;
           const dir = row.getAttribute("data-dir");
 
-          // Ajustes finos fila 2
-          const startOffset = -330;
-          const endOffset = -300;
+          const startOffset = -60;
+          const endOffset = 0;
 
           if (dir === "rtl") {
             gsap.set(track, { x: -travel + startOffset });
@@ -173,17 +155,15 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
           }
         });
 
-        // Fase B: overlay + título
-        tl.addLabel("endRows", 1);
-
-        if (centerOverlay) {
-          tl.to(centerOverlay, { opacity: 1, duration: 0.35, ease: "power1.out" }, "endRows");
+        // Fade out del título y overlay: empieza después de un 15% del scroll
+        if (cardOverlay) {
+          tl.to(cardOverlay, { opacity: 0, duration: 0.8, ease: "power1.out" }, 0.1);
         }
-        if (centerTitle) {
-          tl.to(centerTitle, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, "endRows+=0.05");
+        if (cardTitle) {
+          tl.to(cardTitle, { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.1);
         }
 
-        const factor = 1.1; // desktop fijo
+        const factor = 1.1;
         const extraHoldPx = Math.round(window.innerHeight * 0.65);
 
         ScrollTrigger.create({
@@ -202,7 +182,6 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
         queueRefresh();
       }
 
-      // Desktop-only init (espera a media para medir bien)
       function initDesktopWhenReady() {
         const media = Array.from(root.querySelectorAll("img, video"));
         const pending = media.filter((el) => {
@@ -237,27 +216,23 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
 
         const apply = () => {
           if (mq.matches) {
-            // Desktop: animación + pin
             initDesktopWhenReady();
           } else {
-            // Mobile: sin gsap; solo título visible
             killDesktop();
           }
         };
 
         apply();
 
-        // Si cruzas el breakpoint, reconstruye
         mq.addEventListener?.("change", apply);
 
-        // Resize solo tiene sentido en desktop
         let resizeTimeout;
         window.addEventListener("resize", () => {
           if (!mq.matches) return;
           clearTimeout(resizeTimeout);
           resizeTimeout = setTimeout(() => {
             buildDesktop();
-          }, 200);
+          }, 100);
         });
       }
 
@@ -265,4 +240,41 @@ const centerAlt = centerItem?.alt ?? "What's new at Boldmove";
       else window.addEventListener("load", init);
     })();
   </script>
+
+  <style>
+    .wn__card {
+      position: relative;
+    }
+
+    .wn__cardOverlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 1);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .wn__cardTitle {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      pointer-events: none;
+      color: var(--color-secondary);
+      font-family: 'Druk Cond LCG Super', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      font-size: 6vw;
+      margin-left: 1vw;
+      text-align: left;
+      line-height: 0.85;
+
+    }
+
+    .wn__cardTitle span {
+      display: block;
+    }
+  </style>
 </section>
