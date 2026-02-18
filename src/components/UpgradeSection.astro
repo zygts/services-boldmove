@@ -56,9 +56,17 @@ const fmt = new Intl.NumberFormat(locale, {
 
       <div class="up__price">{fmt.format(card.standardPrice)}</div>
 
-      <button class="up__cta" type="button">
+      <button
+        class="up__cta"
+        type="button"
+        data-open-package
+        data-package-id={card.id}
+        data-package-title={card.title}
+        data-package-price={String(card.standardPrice)}
+      >
         {card.ctaLabel}
-      </button>
+</button>
+
     </div>
 
     <div class="up__features">
@@ -112,7 +120,27 @@ const fmt = new Intl.NumberFormat(locale, {
     <a href="#contact" class="pk__cta" type="button">Give us a shout out</a>
   </div>
 )}
-  <style>
-    
-  </style>
+
+  <script is:inline>
+  (function () {
+    const root = document.currentScript?.closest(".up");
+    if (!root) return;
+
+    root.addEventListener("click", (e) => {
+      const btn = e.target.closest("[data-open-package]");
+      if (!btn) return;
+
+      window.dispatchEvent(
+        new CustomEvent("open-package-modal", {
+          detail: {
+            packageId: btn.getAttribute("data-package-id"),
+            packageTitle: btn.getAttribute("data-package-title"),
+            packagePrice: btn.getAttribute("data-package-price"),
+          },
+        })
+      );
+    });
+  })();
+</script>
+
 </section>

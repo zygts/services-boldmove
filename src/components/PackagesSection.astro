@@ -489,6 +489,35 @@ if (canHover) {
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modal && !modal.hidden) closeModal();
     });
+
+    // ── External open (UpgradeSection, etc.) ───────────────────
+    window.addEventListener("open-package-modal", (e) => {
+      const detail = e.detail || {};
+      if (!detail.packageId || !detail.packageTitle) return;
+
+      // Abrimos modal sin card (no hay writing/toggle aquí)
+      // Precio: usamos el que venga del evento, formateado
+      const priceNumber = Number(detail.packagePrice || 0);
+      const cents = Math.round(priceNumber * 100);
+
+      // Pintar título/subtitle
+      const nameEl = modalTitle?.querySelector(".pkModal__titleName");
+      if (nameEl) nameEl.textContent = String(detail.packageTitle).toUpperCase();
+      if (modalSubtitle) modalSubtitle.textContent = root.getAttribute("data-modal-subtitle") || "";
+
+      setHidden("package_id", String(detail.packageId));
+      setHidden("package_title", String(detail.packageTitle));
+      setHidden("package_price", fmt.format(priceFromCents(cents)));
+      setHidden("discounted", "0");
+      setHidden("writing_days", "0");
+
+      modal.hidden = false;
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+
+      form?.querySelector('input[name="name"]')?.focus();
+    });
+
   })();
 </script>
 
