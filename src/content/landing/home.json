@@ -234,34 +234,42 @@
       [
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg",
+          "src": "/uploads/scrollcapture-2026-02-17-at-10.20.03-compressed.mp4",
+          "poster": "",
           "alt": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-17-at-12.41.36-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-17-at-12.42.32-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-18-at-1.47.53-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-18-at-1.47.53-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-18-at-1.49.31-compressed.mp4",
+          "poster": ""
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-1.52.23-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-1.57.10-compressed.mp4"
         }
       ],
       [
