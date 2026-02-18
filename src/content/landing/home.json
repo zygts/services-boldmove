@@ -307,38 +307,44 @@
           "type": "video",
           "src": "/uploads/dfasfv-compressed.mp4",
           "poster": ""
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-17-at-10.03.42-compressed.mp4"
         }
       ],
       [
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-17-at-10.55.53-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.01.34-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.02.05-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/s-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.28.02-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.28.37-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.30.24-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.09.10-compressed.mp4"
         }
       ]
     ]
