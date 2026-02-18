@@ -235,7 +235,8 @@
         {
           "type": "video",
           "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "poster": "/uploads/knight.jpg",
+          "alt": "d"
         },
         {
           "type": "video",
