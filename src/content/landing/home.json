@@ -59,7 +59,7 @@
         "additionalFeatures": [
           {
             "icon": "/uploads/tick.svg",
-            "text": "Free Text Polish (2h)"
+            "text": "Free Text Polish (1.5h)"
           },
           {
             "icon": "/uploads/tick.svg",
@@ -174,7 +174,7 @@
         "badge": "",
         "additionalFeatures": [
           {
-            "text": "Free Text Polish",
+            "text": "Free Text Polish (2 hours)",
             "icon": "/uploads/tick.svg"
           },
           {
