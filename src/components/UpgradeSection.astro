@@ -21,8 +21,8 @@ type UpgradeCard = {
 type Props = {
   title: string;
   card: UpgradeCard;
-  locale?: string;   // opcional, por si luego quieres formatear distinto
-  currency?: string; // opcional
+  locale?: string;
+  currency?: string;
 };
 
 const { title, card, footerText, locale = "en-GB", currency = "EUR" } = Astro.props;
