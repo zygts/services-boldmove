@@ -48,12 +48,15 @@ const bottomItems: NavItem[] = [
 <div class="desktop-only" style="position: fixed; left: 0; top: 0; width: 4.1rem; background-color: black; height: 100%; z-index: 313; pointer-events: none;"></div>
 <div class="desktop-only" style="position: fixed; right: 0; top: 0; width: 4.1rem; background-color: black; height: 100%; z-index: 313; pointer-events: none;"></div>
 
+<span class="desktop-only arrow arrow-left">↓</span>
+<span class="desktop-only arrow arrow-right">↓</span>
+
 <nav class="nav" aria-label="Primary">
   <a href="https://boldmove.tv/">
-    <img class="nav__logo" src="/images/logo-boldmove.png" alt="Boldmove logo" />
+    <img class="navigation nav__logo" src="/images/logo-boldmove.png" alt="Boldmove logo" />
   </a>
   <!-- Desktop: top bar -->
-  <div class="nav__bar nav__bar--top" aria-hidden="false">
+  <div class="navigation nav__bar nav__bar--top" aria-hidden="false">
     <div class="nav__inner">
       <ul class="nav__list">
         {topItems.map((i) => (
@@ -64,7 +67,7 @@ const bottomItems: NavItem[] = [
   </div>
 
   <!-- Desktop: bottom bar -->
-  <div class="nav__bar nav__bar--bottom" aria-hidden="false">
+  <div class="navigation nav__bar nav__bar--bottom" aria-hidden="false">
     <div class="nav__inner">
       <ul class="nav__list">
         {bottomItems.map((i) => (

@@ -98,6 +98,46 @@ html {
     }
 }
 
+.arrow {
+    position: fixed;
+    top: 50%;
+    z-index: 999999;
+    font-weight:400;
+    font-family: 'Druk LCG';
+    color:rgba(246, 244, 229, 1);
+    font-size:4rem;
+    text-transform:capitalize;
+    transform: translateY(-50%);
+    animation-name: animationbounce;
+    animation-duration: 0.5s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: none;
+}
+
+.arrow-left {
+    left: 5px;
+}
+
+.arrow-right {
+    right: 5px;
+}
+
+.navigation {
+    opacity: 0;
+}
+
+@keyframes animationbounce {
+    0% {
+        margin-top: 0;
+        animation-timing-function: ease-in-out;
+    }
+    100% {
+        margin-top: 17.5px;
+    }
+}
+
 .noise {
   position: fixed;
   inset: 0;

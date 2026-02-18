@@ -76,6 +76,8 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
       const rows = Array.from(root.querySelectorAll(".wn__row"));
       const specialCard = root.querySelector(".wn__card--special");
+      const navEls = document.querySelectorAll(".navigation");
+      const arrowEls = document.querySelectorAll(".arrow");
       const cardOverlay = specialCard?.querySelector(".wn__cardOverlay");
       const cardTitle = specialCard?.querySelector(".wn__cardTitle");
 
@@ -123,6 +125,10 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
         killDesktop();
 
+        // Estado inicial
+        if (navEls.length) gsap.set(navEls, { opacity: 0 });
+        if (arrowEls.length) gsap.set(arrowEls, { opacity: 1 });
+
         // Título y overlay empiezan visibles
         if (cardTitle) gsap.set(cardTitle, { opacity: 1, y: 0 });
         if (cardOverlay) gsap.set(cardOverlay, { opacity: 1 });
@@ -166,6 +172,23 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
         const factor = 1.1;
         const extraHoldPx = Math.round(window.innerHeight * 0.65);
+
+        // Animaciones globales UI (inicio del scroll)
+        if (navEls.length) {
+          tl.to(navEls, {
+            opacity: 1,
+            duration: 0.1,
+            ease: "power1.out",
+          }, 0.05); // empieza al 5% del scroll
+        }
+
+        if (arrowEls.length) {
+          tl.to(arrowEls, {
+            opacity: 0,
+            duration: 0.1,
+            ease: "power1.out",
+          }, 0.05);
+        }
 
         ScrollTrigger.create({
           id: TRIGGER_ID,
