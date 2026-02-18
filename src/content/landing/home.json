@@ -278,9 +278,7 @@
       ],
       "ctaLabel": "Upgrade My Deck",
       "standardPrice": 2500,
-      "video": "/uploads/upgrade.mp4",
       "poster": "/uploads/upgrade.jpg",
-      "videoLabel": "Upgrade preview",
       "requirements": "Text and source visuals must be provided",
       "mainFeatures": [
         {
@@ -301,6 +299,8 @@
         }
       ],
       "title": "Pimp My Deck",
+      "videoLabel": "Upgrade preview",
+      "video": "/uploads/video1.mp4",
       "id": "premium-upgrade",
       "image": "/uploads/pimp-cover.png",
       "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate."
