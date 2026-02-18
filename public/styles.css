@@ -1944,7 +1944,8 @@ body.nav-open {
 
 @media (max-width: 991px) {
     .wn {
-        padding: 72px 0;
+        padding: 0;
+        height: 100dvh;
     }
 
     .wn__row,
