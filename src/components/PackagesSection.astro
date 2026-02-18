@@ -2,7 +2,7 @@
 type Feature = { icon: string; text: string };
 
 type WritingConfig = {
-  enabled?: boolean; // si quieres mantenerlo, pero lo renderizamos siempre (tu decisión)
+  enabled?: boolean;
   label: string;
   unitLabel: string;
   minDays: number;
@@ -101,7 +101,6 @@ const toCents = (eur: number) => Math.round(eur * 100);
               muted
               loop
               playsinline
-              autoplay
               preload="metadata"
               aria-label={p.videoLabel ?? p.title}
             />
@@ -395,6 +394,27 @@ cards.forEach((card) => {
   setDays(min);
 });
 
+// ── Video hover (desktop only) ─────────────────────────────
+const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+if (canHover) {
+  cards.forEach((card) => {
+    const video = card.querySelector(".pk__video");
+    if (!video) return;
+
+    // Hover sobre la card completa (si prefieres solo media: usa card.querySelector(".pk__media"))
+    card.addEventListener("mouseenter", () => {
+      // si el vídeo no está listo aún, play() puede fallar: ignoramos
+      video.play().catch(() => {});
+    });
+
+    card.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0; // ← quita esta línea si quieres que continúe donde iba
+    });
+  });
+}
+
 
     // ── Toggle ────────────────────────────────────────────────
     const saved = localStorage.getItem("pk_discounted");
@@ -420,7 +440,7 @@ cards.forEach((card) => {
       const nowCents = calcCardPriceCents(card, discounted);
 
       const nameEl = modalTitle?.querySelector(".pkModal__titleName");
-if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
+      if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
       if (modalSubtitle) modalSubtitle.textContent = root.getAttribute("data-modal-subtitle") || "";
 
       setHidden("package_id", packageId);
@@ -428,6 +448,9 @@ if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
       setHidden("package_price", fmt.format(priceFromCents(nowCents)));
       setHidden("discounted", discounted ? "1" : "0");
       setHidden("writing_days", card.getAttribute("data-writing-days") || "0");
+
+      // pausa vídeos al abrir modal
+      cards.forEach((c) => c.querySelector(".pk__video")?.pause());
 
       modal.hidden = false;
       modal.setAttribute("aria-hidden", "false");
@@ -441,6 +464,11 @@ if (nameEl) nameEl.textContent = packageTitle.toUpperCase();
       modal.hidden = true;
       modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
+      cards.forEach((c) => {
+      const v = c.querySelector(".pk__video");
+      if (v) { v.pause(); v.currentTime = 0; }
+    });
+
     }
 
     root.addEventListener("click", (e) => {
