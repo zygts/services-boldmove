@@ -45,6 +45,7 @@ const fmt = new Intl.NumberFormat(locale, {
         src={card.video}
         poster={card.poster}
         muted
+        
         loop
         playsinline
         preload="metadata"
@@ -145,6 +146,26 @@ const fmt = new Intl.NumberFormat(locale, {
         })
       );
     });
+
+    // ── Video hover (desktop only) ─────────────────────────────
+  const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (canHover) {
+    const card = root.querySelector(".up__card");
+      const video = card.querySelector(".up__video");
+      if (!video) return;
+
+      // Hover sobre la card completa (si prefieres solo media: usa card.querySelector(".up__media"))
+      card.addEventListener("mouseenter", () => {
+        // si el vídeo no está listo aún, play() puede fallar: ignoramos
+        video.play().catch(() => {});
+      });
+
+      card.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0; // ← quita esta línea si quieres que continúe donde iba
+      });
+  }
   })();
 </script>
 
