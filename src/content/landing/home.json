@@ -92,8 +92,8 @@
   },
   "fullWidthCard": {
     "title": "Our Bundles",
-    "headline": "DECK\nPACKAGEShhh ",
-    "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.dsadddsadsdsa",
+    "headline": "DECK\nPACKAGES",
+    "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.",
     "icons": [
       {
         "icon": "/uploads/boldmove-icon-2.png",
@@ -250,7 +250,7 @@
         },
         {
           "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-18-at-1.47.53-compressed.mp4",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.22.20-compressed.mp4",
           "poster": ""
         },
         {
@@ -270,75 +270,93 @@
         {
           "type": "video",
           "src": "/uploads/scrollcapture-2026-02-18-at-1.57.10-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/sdsdsdd.mp4"
         }
       ],
       [
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.23.03-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.25.00-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/sdfswdas-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/sdsdsd-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/sdsdsdd.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/untitledxzxz-compressed.mp4",
+          "poster": ""
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/knight.jpg"
+          "src": "/uploads/dfasfv-compressed.mp4",
+          "poster": ""
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-17-at-10.03.42-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.20.00-compressed.mp4"
         }
       ],
       [
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-17-at-10.55.53-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.01.34-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.02.05-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/s-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.28.02-compressed.mp4"
         },
         {
           "type": "video",
-          "src": "/uploads/video1.mp4",
-          "poster": "/uploads/video.png"
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.28.37-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.30.24-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.09.10-compressed.mp4"
+        },
+        {
+          "type": "video",
+          "src": "/uploads/scrollcapture-2026-02-18-at-2.20.27-compressed.mp4"
         }
       ]
     ]
