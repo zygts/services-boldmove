@@ -278,7 +278,9 @@
       ],
       "ctaLabel": "Upgrade My Deck",
       "standardPrice": 2500,
-      "imageAlt": "",
+      "video": "/uploads/upgrade.mp4",
+      "poster": "/uploads/upgrade.jpg",
+      "videoLabel": "Upgrade preview",
       "requirements": "Text and source visuals must be provided",
       "mainFeatures": [
         {

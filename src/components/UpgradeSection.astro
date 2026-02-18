@@ -8,8 +8,9 @@ type UpgradeCard = {
   id: string;
   title: string;
   description: string;
-  image: string;
-  imageAlt?: string;
+  video: string;
+  poster?: string;
+  videoLabel?: string;
   standardPrice: number;
   ctaLabel: string;
   badge?: string;
@@ -38,15 +39,19 @@ const fmt = new Intl.NumberFormat(locale, {
   <h2 class="up__title">{title}</h2>
   <div class="up__card" data-id={card.id}>
     <div class="up__media">
-      {card.image && (
-        <img
-          class="up__img"
-          src={card.image}
-          alt={card.imageAlt ?? ""}
-          loading="lazy"
-        />
-      )}
-    </div>
+    {card.video && (
+      <video
+        class="up__video"
+        src={card.video}
+        poster={card.poster}
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-label={card.videoLabel ?? card.title}
+      />
+    )}
+  </div>
 
     <div class="up__main">
       {card.badge && <div class="up__badge">{card.badge}</div>}

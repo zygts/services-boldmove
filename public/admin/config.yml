@@ -123,8 +123,9 @@ collections:
                   - { label: "ID", name: "id", widget: "string" }
                   - { label: "Title", name: "title", widget: "string" }
                   - { label: "Description", name: "description", widget: "text" }
-                  - { label: "Image", name: "image", widget: "image" }
-                  - { label: "Image Alt", name: "imageAlt", widget: "string", required: false }
+                  - { label: "Video", name: "video", widget: "file" }
+                  - { label: "Poster (optional)", name: "poster", widget: "image", required: false }
+                  - { label: "Video label (optional)", name: "videoLabel", widget: "string", required: false }
                   - { label: "Standard Price (number)", name: "standardPrice", widget: "number" }
                   - { label: "CTA Label", name: "ctaLabel", widget: "string" }
                   - { label: "Badge (optional)", name: "badge", widget: "string", required: false }
