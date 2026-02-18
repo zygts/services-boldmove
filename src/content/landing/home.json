@@ -158,7 +158,7 @@
         ],
         "title": "Gambit",
         "videoLabel": "Gambit Package Preview",
-        "video": "/uploads/video1.mp4",
+        "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Gambit.mp4",
         "id": "gambit",
         "writing": {
           "enabled": true,
@@ -232,7 +232,7 @@
         ],
         "title": "Checkmate",
         "videoLabel": "Checkmate Package Preview",
-        "video": "/uploads/video1.mp4",
+        "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Checkmate.mp4",
         "id": "checkmate",
         "writing": {
           "enabled": true,
