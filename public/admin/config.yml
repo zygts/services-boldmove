@@ -2,6 +2,9 @@ backend:
   name: github
   repo: zygts/services-boldmove
   branch: master
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  site_id: 0d38e8fb-a78f-46e0-ad5b-102c9ae4c6a9
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
