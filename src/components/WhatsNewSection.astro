@@ -32,7 +32,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       <div class="wn__row" data-dir={rowIndex === 1 ? "rtl" : "ltr"}>
         <div class="wn__track">
           {rowItems.map((it, cardIndex) => {
-            const isSpecialCard = rowIndex === 1 && cardIndex === 4;
+            const isSpecialCard = rowIndex === 1 && cardIndex === 6;
             return (
               <figure class="wn__card" class:list={{ "wn__card--special": isSpecialCard }} role="group" aria-label={it.alt ?? "Media"}>
                 {it.type === "video" ? (
@@ -162,13 +162,13 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
           }
         });
 
-        // Fade out del título y overlay: empieza después de un 15% del scroll
+        /* Fade out del título y overlay: empieza después de un 15% del scroll
         if (cardOverlay) {
           tl.to(cardOverlay, { opacity: 0, duration: 0.8, ease: "power1.out" }, 0.1);
         }
         if (cardTitle) {
           tl.to(cardTitle, { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.1);
-        }
+        }*/
 
         const factor = 1.1;
         const extraHoldPx = Math.round(window.innerHeight * 0.65);
