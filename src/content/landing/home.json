@@ -1,27 +1,23 @@
 {
   "packagesSection": {
-    "title": "DECK PACKAGES",
-    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
-    "toggleLeftLabel": "Standard Price",
-    "toggleRightLabel": "Save 10%",
     "discountPercent": 10,
-    "locale": "en-GB",
-    "currency": "EUR",
+    "modalSubtitle": "DECK PACKAGES",
+    "toggleRightLabel": "Save 10%",
     "packages": [
       {
         "badge": " ",
         "additionalFeatures": [
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Free Text Polish (1h)"
           },
           {
-            "icon": "/uploads/icon-check.png",
-            "text": "Fixed, Condensed Schedule"
+            "icon": "/uploads/tick.svg",
+            "text": "Fixed and Condensed Schedule"
           },
           {
-            "icon": "/uploads/icon-check.png",
-            "text": "Music Track"
+            "icon": "/uploads/tick.svg",
+            "text": "Imbedded Music Track"
           }
         ],
         "ctaLabel": "Begin with Knight",
@@ -32,26 +28,26 @@
         "requirements": "Visual research is provided by the client.",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
+            "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard"
           },
           {
-            "icon": "/uploads/icon-2.png",
+            "icon": "/uploads/vr-mapping.svg",
             "text": "1 Day of Visual Research and Mapping"
           },
           {
-            "icon": "/uploads/icon-3.png",
+            "icon": "/uploads/design.svg",
             "text": "3 Days of Design"
           }
         ],
         "title": "Knight",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Knight Package Preview",
         "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
         "id": "knight",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -62,15 +58,15 @@
         "badge": "",
         "additionalFeatures": [
           {
-            "icon": "/uploads/icon-check.png",
-            "text": "Free Text Polish (2h)"
+            "icon": "/uploads/tick.svg",
+            "text": "Free Text Polish (1.5h)"
           },
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Fixed, Condensed Schedule"
           },
           {
-            "icon": "/uploads/icon-check.png",
+            "icon": "/uploads/tick.svg",
             "text": "Music Track"
           }
         ],
@@ -82,30 +78,30 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
-            "text": "Concept moodboard"
+            "icon": "/uploads/concept-moodboard.svg",
+            "text": "Concept Moodboard"
           },
           {
-            "icon": "/uploads/icon-2.png",
+            "icon": "/uploads/vr.svg",
             "text": "2 Days of Visual Research"
           },
           {
-            "icon": "/uploads/icon-4png.png",
+            "icon": "/uploads/mapping.svg",
             "text": "1 Day of Mapping"
           },
           {
-            "icon": "/uploads/icon-3.png",
+            "icon": "/uploads/design.svg",
             "text": "3 Days of Design"
           }
         ],
         "title": "Blitz",
-        "videoLabel": "Knight package preview",
+        "videoLabel": "Blitz Package Preview",
         "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Blitz.mp4",
         "id": "blitz",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -117,23 +113,23 @@
         "additionalFeatures": [
           {
             "text": "Free Text Polish (2 hours)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Flexible Schedule",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Adaptive Music Track(s)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "2 Months Free Edits (3 hours max)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "PDF Export Included",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           }
         ],
         "ctaLabel": "Select Gambit",
@@ -144,30 +140,30 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "icon": "/uploads/icon-1.png",
+            "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard"
           },
           {
             "text": "2 Days of Visual Research",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/vr.svg"
           },
           {
             "text": "1 Day of Mapping",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/mapping.svg"
           },
           {
             "text": "4 Days of Design",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/design.svg"
           }
         ],
         "title": "Gambit",
-        "videoLabel": "Knight package preview",
-        "video": "/uploads/video1.mp4",
+        "videoLabel": "Gambit Package Preview",
+        "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Gambit.mp4",
         "id": "gambit",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
@@ -178,28 +174,28 @@
         "badge": "",
         "additionalFeatures": [
           {
-            "text": "Free Text Polish",
-            "icon": "/uploads/icon-check.png"
+            "text": "Free Text Polish (2 hours)",
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Flexible Schedule",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "Adaptive Music Track(s)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "12 Month Free Edits (5 hours max)",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "2 Hours of Free Readymag Training",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           },
           {
             "text": "PDF Export Included",
-            "icon": "/uploads/icon-check.png"
+            "icon": "/uploads/tick.svg"
           }
         ],
         "ctaLabel": "Get Checkmate",
@@ -210,39 +206,50 @@
         "requirements": "",
         "mainFeatures": [
           {
-            "text": "Concept Moodboard"
+            "text": "Concept Moodboard",
+            "icon": "/uploads/concept-moodboard.svg"
           },
           {
-            "text": "2 Days of Visual Research"
+            "text": "2 Days of Visual Research",
+            "icon": "/uploads/vr.svg"
           },
           {
-            "text": "1 Day of Mapping"
+            "text": "1 Day of Mapping",
+            "icon": "/uploads/mapping.svg"
           },
           {
-            "text": "4 Days of Design"
+            "text": "4 Days of Design",
+            "icon": "/uploads/design.svg"
           },
           {
-            "text": "Custom Navigation Experiences"
+            "text": "Custom Navigation Experiences",
+            "icon": "/uploads/custom-navigation-experiences.svg"
           },
           {
-            "text": "Refined AI Image Generation"
+            "text": "Refined AI Image Generation",
+            "icon": "/uploads/ai.svg"
           }
         ],
         "title": "Checkmate",
-        "videoLabel": "Knight package preview",
-        "video": "/uploads/video1.mp4",
+        "videoLabel": "Checkmate Package Preview",
+        "video": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Checkmate.mp4",
         "id": "checkmate",
         "writing": {
           "enabled": true,
           "label": "CUSTOM WRITING",
-          "unitLabel": "writing days",
+          "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 600
         },
         "description": "Our trademark finishing move. Checkmate is a fully immersive premium experience. Engineered to close the deal and seal the fate of the competition. "
       }
-    ]
+    ],
+    "currency": "EUR",
+    "subtitle": "Smartly bundled deck packages designed\nto offer transparency and cost control",
+    "title": "DECK PACKAGES",
+    "toggleLeftLabel": "Standard Price",
+    "locale": "en-GB"
   },
   "fullWidthCard": {
     "title": "Our Bundles",
@@ -265,8 +272,8 @@
       "badge": "",
       "additionalFeatures": [
         {
-          "icon": "/uploads/icon-check.png",
-          "text": "Fixed, Condensed Schedule"
+          "icon": "/uploads/tick.svg",
+          "text": "Fixed and Condensed Schedule"
         }
       ],
       "ctaLabel": "Upgrade My Deck",
@@ -275,26 +282,26 @@
       "requirements": "Text and source visuals must be provided",
       "mainFeatures": [
         {
-          "icon": "/uploads/icon-1.png",
+          "icon": "/uploads/concept-moodboard.svg",
           "text": "Mini Concept Moodboard"
         },
         {
-          "icon": "/uploads/icon-4png.png",
+          "icon": "/uploads/text-polish.svg",
           "text": "2 Hours of Writing"
         },
         {
-          "icon": "/uploads/icon-3.png",
+          "icon": "/uploads/design.svg",
           "text": "2 Days of Design"
         },
         {
-          "icon": "/uploads/icon-2.png",
+          "icon": "/uploads/vr-mapping.svg",
           "text": "Half a Day of Visual Research and Mapping"
         }
       ],
       "title": "Pimp My Deck",
       "id": "premium-upgrade",
-      "image": "/uploads/video.png",
-      "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate "
+      "image": "/uploads/pimp-cover.png",
+      "description": "Have you got a deck that just feels a bit flat? Let us inject some Boldmove life into it with our signature design at a competitive rate."
     },
     "footerText": "Do you have specific or bespoke needs? At Boldmove we are super flexible. And we love a challenge! Give us a shout to talk it out."
   },
@@ -352,7 +359,7 @@
     "videos": [
       {
         "label": "Immersive Scroll",
-        "src": "/uploads/video1.mp4",
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
         "url": "",
         "poster": "",
         "muted": true,
@@ -362,7 +369,7 @@
       },
       {
         "label": "Classic Navigation",
-        "src": "/uploads/video1.mp4",
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
         "url": "",
         "poster": "",
         "muted": true,
@@ -377,36 +384,36 @@
     "underline": "/uploads/image-88256f96-dd76-4b96-a53b-3adfb7d91a6f.webp",
     "cards": [
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "“Working with the team was truly collaborative and creatively energizing. They immediately understood our vision, were accommodating, and approached every idea with a \"let's try it\" mentality. It was a genuinely fun process from start to finish.”",
+        "author": "Samantha Cutler, UNIVERSAL TELEVISION "
       },
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
-      },
-      {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
-      },
-      {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "\"The Boldmove team truly cares about every single project we bring them. They love to push the boundaries of what's possible. We got nothing but love for these artists.\"",
+        "author": "Arturo Perez & Sam Jayne, THE YES BUS"
       },
       {
         "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+        "quote": "\"I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.\""
       },
       {
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again.",
-        "author": "Juli Blachowiak"
+        "quote": "“Highly creative, service-minded team with a very structured and efficient workflow. A local broadcaster is looking at the series right now and has shown interest in a potential commission.”",
+        "author": "Carla Mantilla (Filmlance)"
       },
       {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+        "author": "Morten Holst & Pelle Folmer (Astra Film)  ",
+        "quote": "\"Our Boldmove pitch deck has received remarkable feedback worldwide, with several people describing it as the best they’ve ever been presented with. We’ve truly loved working with Boldmove and the result exceeded our expectations.\""
       },
       {
-        "author": "Juli Blachowiak",
-        "quote": "I had an incredible experience working with Boldmove, not only were they professional but seemed to truly care about the project. I was enthralled with the results for my pitch deck and will happily work with them again."
+        "quote": "\"Boldmove are so passionate, accommodating, ambitious, creative and most importantly they just really GET IT. They’re the secret weapon we pull out when we want to blow people away.\"",
+        "author": "Luti Fagbenle - LUTI MEDIA"
+      },
+      {
+        "author": "Pierre Bouchard - MEDIAWAN RIGHTS",
+        "quote": "\"Their immersive pitch decks are like a deck and a sizzle tape bundled into one. They provide exciting new possibilities.\""
+      },
+      {
+        "author": "Vincent Riva - STUDIO TF1",
+        "quote": "\"Boldmove understands what buyers in the TV industry want to know and feel. There’s no waste, it’s all content, rich, fun, and to the point. The results are always captivating.\""
       }
     ],
     "pinVh": 219
