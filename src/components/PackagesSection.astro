@@ -363,47 +363,26 @@ const toCents = (eur: number) => Math.round(eur * 100);
       setDays(min);
     });
 
-    // ── Mostrar primer frame ───────────────────────────────────
-function showFirstFrame(video) {
-  const seek = () => {
-    // Algunos navegadores móvil necesitan un pequeño delay
-    requestAnimationFrame(() => {
-      video.currentTime = 0.001;
-    });
-  };
+    // ── Mostrar primer frame en todos los videos ───────────────
+    // Funciona en desktop y móvil. Fuerza el primer frame visible
+    // sin reproducir el vídeo.
+    function showFirstFrame(video) {
+      // Si ya tiene poster, el navegador lo usará — no hacemos nada
+      if (video.poster) return;
 
-  if (video.readyState >= 1) {
-    seek();
-  } else {
-    video.addEventListener("loadedmetadata", seek, { once: true });
-  }
-}
+      const trySeek = () => {
+        // readyState >= 1 significa que los metadatos están listos
+        if (video.readyState >= 1) {
+          video.currentTime = 0.001;
+        } else {
+          video.addEventListener("loadedmetadata", () => {
+            video.currentTime = 0.001;
+          }, { once: true });
+        }
+      };
 
-root.querySelectorAll(".pk__video").forEach((video) => {
-  showFirstFrame(video);
-});
-
-// ── Video hover (desktop only) ─────────────────────────────
-const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-if (canHover) {
-  cards.forEach((card) => {
-    const video = card.querySelector(".pk__video");
-    if (!video) return;
-
-    card.addEventListener("mouseenter", () => {
-      video.play().catch(() => {});
-    });
-
-    card.addEventListener("mouseleave", () => {
-      video.pause();
-      // Restaurar primer frame
-      video.currentTime = 0.001;
-    });
-  });
-}
-// En móvil (canHover === false): no se añade ningún listener,
-// el video queda estático mostrando el primer frame.
+      trySeek();
+    }
 
     root.querySelectorAll(".pk__video").forEach(showFirstFrame);
 
