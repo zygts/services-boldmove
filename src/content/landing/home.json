@@ -382,11 +382,12 @@
           {
             "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard",
-            "tooltip": "help"
+            "tooltip": ""
           },
           {
             "icon": "/uploads/vr-mapping.svg",
-            "text": "1 Day of Visual Research and Mapping"
+            "text": "1 Day of Visual Research and Mapping",
+            "tooltip": "Mapping is our in-house term for determining the right visuals for each page, much like a film storyboard. It’s an indispensable part of our process."
           },
           {
             "icon": "/uploads/design.svg",
