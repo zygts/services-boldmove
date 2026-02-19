@@ -372,7 +372,7 @@
         "ctaLabel": "Begin with Knight",
         "footerText": " ",
         "standardPrice": 3200,
-        "poster": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
+        "poster": "",
         "imageAlt": "",
         "requirements": {
           "icon": "/uploads/icon-check.png",
@@ -422,10 +422,10 @@
             "text": "Music Track"
           }
         ],
-        "ctaLabel": "Choose Blitz",
+        "ctaLabel": "Choose Blitzz",
         "footerText": " ",
         "standardPrice": 4450,
-        "poster": "/uploads/video.png",
+        "poster": "",
         "imageAlt": "",
         "requirements": {
           "icon": "",
@@ -490,7 +490,7 @@
         "ctaLabel": "Select Gambit",
         "footerText": " ",
         "standardPrice": 5075,
-        "poster": "/uploads/video.png",
+        "poster": "",
         "imageAlt": "",
         "requirements": {
           "icon": "",
@@ -559,7 +559,7 @@
         "ctaLabel": "Get Checkmate",
         "footerText": " ",
         "standardPrice": 6575,
-        "poster": "/uploads/video.png",
+        "poster": "",
         "imageAlt": "",
         "requirements": {
           "icon": "",
