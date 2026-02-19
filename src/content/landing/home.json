@@ -384,7 +384,7 @@
           {
             "icon": "/uploads/concept-moodboard.svg",
             "text": "Concept Moodboard",
-            "tooltip": ""
+            "tooltip": "From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go. "
           },
           {
             "icon": "/uploads/vr-mapping.svg",
@@ -438,7 +438,8 @@
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
-            "text": "Concept Moodboard"
+            "text": "Concept Moodboard",
+            "tooltip": "From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go. "
           },
           {
             "icon": "/uploads/vr.svg",
@@ -504,7 +505,8 @@
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
-            "text": "Concept Moodboard"
+            "text": "Concept Moodboard",
+            "tooltip": "From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go. "
           },
           {
             "text": "2 Days of Visual Research",
@@ -574,7 +576,8 @@
         "mainFeatures": [
           {
             "text": "Concept Moodboard",
-            "icon": "/uploads/concept-moodboard.svg"
+            "icon": "/uploads/concept-moodboard.svg",
+            "tooltip": "From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go. "
           },
           {
             "text": "2 Days of Visual Research",
