@@ -2253,5 +2253,5 @@ body.nav-open {
     /* Móvil: mostrar imagen, ocultar video desktop */
     @media (max-width: 991px) {
       .plt__desktop { display: none; }
-      .plt__mobile  { display: block; }
+      .plt__mobile  { display: block; max-width: 100%;}
     }
