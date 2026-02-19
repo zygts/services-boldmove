@@ -895,15 +895,15 @@ section[id] {
 
 .up__card {
     position: relative;
-    border-radius: 36px;
+    border-radius: 4rem;
     max-width: 90%;
     margin: 5rem auto 0;
     background-color: var(--color-primary);
     color: var(--color-secondary);
     border: 1px dashed rgba(255, 255, 255, 0.55);
     display: grid;
-    grid-template-columns: 1.75fr 1fr 1fr 1fr;
-    gap: 22px;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
     overflow: hidden;
     align-items: stretch;
 }
