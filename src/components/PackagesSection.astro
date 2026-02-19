@@ -1,5 +1,5 @@
 ---
-type Feature = { icon: string; text: string };
+type Feature = { icon: string; text: string; tooltip?: string };
 
 type WritingConfig = {
   enabled?: boolean;
@@ -129,10 +129,20 @@ const toCents = (eur: number) => Math.round(eur * 100);
             <div class="pk__blockTitle">MAIN FEATURES</div>
             <ul class="pk__featureList">
               {(p.mainFeatures ?? []).map((f) => (
-                <li class="pk__featureItem">
+                <li
+                  class="pk__featureItem"
+                  tabindex={f.tooltip && f.tooltip.trim() !== "" ? "0" : undefined}
+                >
                   <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
                   <span class="pk__featureText">{f.text}</span>
+
+                  {f.tooltip && f.tooltip.trim() !== "" && (
+                    <span class="pk__tipBubble" role="tooltip">
+                      {f.tooltip}
+                    </span>
+                  )}
                 </li>
+
               ))}
             </ul>
           </div>
@@ -168,10 +178,20 @@ const toCents = (eur: number) => Math.round(eur * 100);
             <div class="pk__blockTitle">ADDITIONAL FEATURES</div>
             <ul class="pk__featureList">
               {(p.additionalFeatures ?? []).map((f) => (
-                <li class="pk__featureItem">
+                <li
+                  class="pk__featureItem"
+                  tabindex={f.tooltip && f.tooltip.trim() !== "" ? "0" : undefined}
+                >
                   <img class="pk__featureIcon" src={f.icon} alt="" loading="lazy" />
                   <span class="pk__featureText">{f.text}</span>
+
+                  {f.tooltip && f.tooltip.trim() !== "" && (
+                    <span class="pk__tipBubble" role="tooltip">
+                      {f.tooltip}
+                    </span>
+                  )}
                 </li>
+
               ))}
             </ul>
           </div>

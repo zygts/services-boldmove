@@ -2255,3 +2255,48 @@ body.nav-open {
       .plt__desktop { display: none; }
       .plt__mobile  { display: block; max-width: 100%;}
     }
+
+.pk__featureItem{
+  position:relative;
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.pk__tipBubble{
+  position:absolute;
+  left:0;
+  bottom:calc(100% + 10px);
+  min-width:220px;
+  max-width:340px;
+  padding:10px 12px;
+  border-radius:12px;
+  background:rgba(10,10,10,.95);
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(2px);
+  transition:opacity .15s ease, transform .15s ease;
+}
+
+/* Flecha */
+.pk__tipBubble::after{
+  content:"";
+  position:absolute;
+  left:22px;          /* ajusta según icono */
+  top:100%;
+  border:8px solid transparent;
+  border-top-color:rgba(10,10,10,.95);
+}
+
+/* SHOW: hover en toda la fila */
+.pk__featureItem:hover .pk__tipBubble,
+.pk__featureItem:focus .pk__tipBubble,
+.pk__featureItem:focus-within .pk__tipBubble{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}

@@ -121,6 +121,7 @@ collections:
                     fields:
                       - { label: "Icon", name: "icon", widget: "image" }
                       - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Tooltip (optional)", name: "tooltip", widget: "text", required: false }
 
                   # Custom writing selector (0..3)
                   - label: "Custom Writing"
@@ -140,6 +141,7 @@ collections:
                     fields:
                       - { label: "Icon", name: "icon", widget: "image" }
                       - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Tooltip (optional)", name: "tooltip", widget: "text", required: false }
 
                   # Requirements (text block)
                   - label: "Requirements"
@@ -179,6 +181,7 @@ collections:
                     fields:
                       - { label: "Icon", name: "icon", widget: "image" }
                       - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Tooltip (optional)", name: "tooltip", widget: "text", required: false }
 
                   - label: "Additional Features"
                     name: "additionalFeatures"
@@ -186,6 +189,7 @@ collections:
                     fields:
                       - { label: "Icon", name: "icon", widget: "image" }
                       - { label: "Text", name: "text", widget: "string" }
+                      - { label: "Tooltip (optional)", name: "tooltip", widget: "text", required: false }
 
                   - label: "Requirements"
                     name: "requirements"
