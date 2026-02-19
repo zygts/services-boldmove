@@ -2307,7 +2307,6 @@ body.nav-open {
   display: inline-flex;
   align-items: baseline;
   gap: .35rem;
-  cursor: help;
   outline: none;
 }
 
