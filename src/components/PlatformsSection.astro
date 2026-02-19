@@ -1,8 +1,8 @@
 ---
 type PlatformVideo = {
   label: string;
-  src?: string;  // uploaded file (e.g. /uploads/x.mp4)
-  url?: string;  // external url
+  src?: string;
+  url?: string;
   poster?: string;
   muted?: boolean;
   autoplay?: boolean;
@@ -39,7 +39,13 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
         <div class="plt__videoCol" data-i={i}>
           <div class="plt__videoLabel">{v.label}</div>
 
-          <div class="plt__videoFrame">
+          <a 
+            href={src || "#"} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="plt__videoFrame"
+            aria-label={`Open ${v.label} in new tab`}
+          >
             {src ? (
               <video
                 class="plt__video"
@@ -50,13 +56,12 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
                 playsinline
                 preload="metadata"
               />
-
             ) : (
               <div class="plt__videoPlaceholder">
                 Add a video in Decap (mp4/webm) or paste a URL.
               </div>
             )}
-          </div>
+          </a>
         </div>
       );
     })}
@@ -73,6 +78,10 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     if (!isDesktop) return;
 
     videos.forEach((video) => {
+      // Prevenir que el click en el video active el link
+      video.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
 
       video.addEventListener("mouseenter", () => {
         video.play().catch(() => {});
@@ -80,12 +89,18 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
 
       video.addEventListener("mouseleave", () => {
         video.pause();
-        video.currentTime = 0; // quita esto si quieres que continúe
+        video.currentTime = 0;
       });
-
     });
   })();
+  </script>
 
-</script>
-
+  <style>
+    .plt__videoFrame {
+      display: block;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
 </section>

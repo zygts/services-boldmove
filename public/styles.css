@@ -418,7 +418,7 @@ section[id] {
 }
 
 .tcc__icon {
-    width: 20rem;
+    width: 26rem;
     height: auto;
     object-fit: cover;
     display: block;
@@ -735,13 +735,17 @@ section[id] {
     color: var(--color-primary);
 }
 
-.pk__block:not(:first-child) {
+.pk__block {
     padding-top: 2rem;
     border-top: 1px solid #4c4c4c;
 
     .pk__blockTitle {
         margin-top: 0;
     }
+}
+
+.pk__cta + .pk__block {
+    border-top: none;
 }
 
 .pk__blockTitle {
@@ -1955,6 +1959,7 @@ body.nav-open {
     height: 100%;
     object-fit: cover;
     display: block;
+    opacity: 80%;
 }
 
 /* Centro */
