@@ -2267,6 +2267,7 @@ body.nav-open {
   position:absolute;
   left:0;
   bottom:calc(100% + 10px);
+  font-size: 1.2rem !important;
   min-width:220px;
   max-width:340px;
   padding:10px 12px;
@@ -2274,7 +2275,7 @@ body.nav-open {
   background:rgba(10,10,10,.95);
   border:1px solid rgba(255,255,255,.14);
   box-shadow:0 10px 30px rgba(0,0,0,.35);
-
+    text-align: center;
   opacity:0;
   visibility:hidden;
   pointer-events:none;
@@ -2321,9 +2322,10 @@ body.nav-open {
   max-width: 80vw;
   padding: 12px 14px;
   border-radius: 14px;
-  background: #111;
-  color: #fff;
-  font-size: 12px;
+  background: #000;
+  color: var(--color-secondary);
+  font-family: "obviously", sans-serif;
+  font-size: 1.2rem;
   line-height: 1.4;
   text-align: center;
   box-shadow: 0 12px 30px rgba(0,0,0,.18);
