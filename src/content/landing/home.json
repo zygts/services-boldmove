@@ -58,26 +58,26 @@
     },
     "videos": [
       {
-        "label": "Immersive Scroll",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
-        "url": "",
-        "link": "https://boldmove.tv/aunty-sample",
-        "poster": "",
-        "muted": true,
         "autoplay": true,
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
         "loop": true,
-        "controls": false
+        "muted": true,
+        "poster": "",
+        "url": "",
+        "label": "Immersive Scroll",
+        "controls": false,
+        "link": "https://boldmove.tv/aunty-sample"
       },
       {
-        "label": "Classic Navigation",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
-        "url": "",
-        "link": "https://boldmove.tv/pageclick-aunty/",
-        "poster": "",
-        "muted": true,
         "autoplay": true,
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
         "loop": true,
-        "controls": false
+        "muted": true,
+        "poster": "",
+        "url": "",
+        "label": "Classic Navigation",
+        "controls": false,
+        "link": "https://boldmove.tv/pageclick-aunty/"
       }
     ]
   },
@@ -277,14 +277,6 @@
         {
           "type": "video",
           "src": "/uploads/scrollcapture-2026-02-18-at-1.52.23-compressed.mp4"
-        },
-        {
-          "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-18-at-1.57.10-compressed.mp4"
-        },
-        {
-          "type": "video",
-          "src": "/uploads/sdsdsdd.mp4"
         }
       ],
       [
@@ -322,14 +314,6 @@
           "type": "video",
           "src": "/uploads/dfasfv-compressed.mp4",
           "poster": ""
-        },
-        {
-          "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-17-at-10.03.42-compressed.mp4"
-        },
-        {
-          "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-18-at-2.20.00-compressed.mp4"
         }
       ],
       [
@@ -360,14 +344,6 @@
         {
           "type": "video",
           "src": "/uploads/scrollcapture-2026-02-18-at-2.30.24-compressed.mp4"
-        },
-        {
-          "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-18-at-2.09.10-compressed.mp4"
-        },
-        {
-          "type": "video",
-          "src": "/uploads/scrollcapture-2026-02-18-at-2.20.27-compressed.mp4"
         }
       ]
     ]
