@@ -2224,3 +2224,14 @@ body.nav-open {
     background: transparent;
     color: var(--color-primary);
 }
+
+@media (min-width: 992px) {
+      .plt__desktop { display: block; }
+      .plt__mobile  { display: none;  }
+    }
+
+    /* Móvil: mostrar imagen, ocultar video desktop */
+    @media (max-width: 991px) {
+      .plt__desktop { display: none; }
+      .plt__mobile  { display: block; }
+    }
