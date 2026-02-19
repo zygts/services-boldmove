@@ -65,6 +65,7 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
                     src={v.poster}
                     alt={v.label ?? ""}
                     loading="lazy"
+                    data-link={hasLink ? link : undefined}
                   />
                 ) : (
                   // Si no hay poster, mostramos el video igual (sin autoplay)
@@ -89,51 +90,59 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     })}
   </div>
 
-  <script is:inline>
-  (function () {
-    const root = document.currentScript?.closest(".plt");
-    if (!root) return;
+<script is:inline>
+(function () {
+  const root = document.currentScript?.closest(".plt");
+  if (!root) return;
 
-    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    if (!isDesktop) {
-      // Móvil: forzar primer frame en videos mobile (los sin poster)
-      root.querySelectorAll(".plt__mobile video").forEach((video) => {
-        const seek = () => { video.currentTime = 0.001; };
-        if (video.readyState >= 1) seek();
-        else video.addEventListener("loadedmetadata", seek, { once: true });
-      });
-      return;
-    }
+  // Helper: abrir link si existe
+  const bindLink = (el) => {
+    const link = el.getAttribute("data-link");
+    if (!link) return;
 
-    // Desktop: comportamiento hover en los videos desktop
-    root.querySelectorAll(".plt__video.plt__desktop").forEach((video) => {
-      const link = video.getAttribute("data-link");
+    el.style.cursor = "pointer";
+    el.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.open(link, "_blank", "noopener,noreferrer");
+    });
+  };
 
-      if (link) {
-        video.style.cursor = "pointer";
-        video.addEventListener("click", (e) => {
-          e.preventDefault();
-          window.open(link, "_blank", "noopener,noreferrer");
-        });
-      }
+  if (!isDesktop) {
+    // ✅ 1) En móvil: hacer clic en poster o video abre link
+    root.querySelectorAll(".plt__mobile[data-link]").forEach(bindLink);
 
-      // Mostrar primer frame en reposo
+    // ✅ 2) En móvil: forzar primer frame SOLO para videos mobile (los sin poster)
+    root.querySelectorAll("video.plt__mobile").forEach((video) => {
       const seek = () => { video.currentTime = 0.001; };
       if (video.readyState >= 1) seek();
       else video.addEventListener("loadedmetadata", seek, { once: true });
-
-      video.addEventListener("mouseenter", () => {
-        video.play().catch(() => {});
-      });
-
-      video.addEventListener("mouseleave", () => {
-        video.pause();
-        video.currentTime = 0.001;
-      });
     });
-  })();
-  </script>
+
+    return;
+  }
+
+  // Desktop: hover + click
+  root.querySelectorAll(".plt__video.plt__desktop").forEach((video) => {
+    bindLink(video);
+
+    const seek = () => { video.currentTime = 0.001; };
+    if (video.readyState >= 1) seek();
+    else video.addEventListener("loadedmetadata", seek, { once: true });
+
+    video.addEventListener("mouseenter", () => {
+      video.play().catch(() => {});
+    });
+
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0.001;
+    });
+  });
+})();
+</script>
+
 
   <style>
    
