@@ -6,7 +6,7 @@
       "items": [
         {
           "title": "BESPOKE AI VISUALS",
-          "body": "Our signature approach to visual research complimented – on request – by sophisticated and tasteful AI for bespoke imagery tailored to your story",
+          "body": "Our signature approach to visual research complemented - on request - by sophisticated and tasteful AI tailored to your story",
           "icon": "/uploads/ai.jpg",
           "iconAlt": ""
         },
@@ -36,7 +36,7 @@
         },
         {
           "title": "FLEXIBLE PAYMENTS",
-          "body": "Flexible, manageable payment options available upon request",
+          "body": "Manageable installment options available upon request",
           "icon": "/uploads/payments-b.jpg",
           "iconAlt": ""
         },
@@ -93,7 +93,7 @@
   "fullWidthCard": {
     "title": "Our Bundles",
     "headline": "DECK\nPACKAGES",
-    "body": "Attractive bundle options that combine our services at a discounted rate. These bundles offer excellent value while providing clear structure, making it easier to understand exactly what you're getting for your money.",
+    "body": "Attractive bundle options that combine our services at a discounted rate. These new packages offer clear structure, making it easier to understand exactly what you’re getting for your money ",
     "icons": [
       {
         "icon": "/uploads/packs.jpg",
@@ -108,28 +108,34 @@
     "separatorImage": "",
     "services": [
       {
+        "id": "concept-moodboard",
+        "price": "700€ per day / €75 per hour",
+        "name": "Concept moodboard",
+        "description": "A tapestry of visual and conceptual ideas to give your project a unique visual identity. From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go."
+      },
+      {
         "id": "immersive-deck-design",
         "name": "Immersive Deck Design",
-        "price": "625€ per day",
+        "price": "€625 per day / €70 per hour",
         "description": "Boldmove communicates in a visual cinematic language. We create decks that guide the eye, support the story and elevate your project. Every design choice is made to reinforce tone, genre and intent — so your deck looks as strong as it reads."
       },
       {
         "id": "visual-research",
         "name": "Visual Research",
-        "price": "625€ per day",
+        "price": "€625 per day / €70 per hour",
         "description": "Boldmove curates visual references that define the world of your film or series. Through focused research we build image selections that give an unmistakable sense of the project's look and feel."
       },
       {
         "id": "deck-writing",
         "name": "Deck Writing",
-        "price": "750€ per day",
+        "price": "750€ per day / €80 per hour",
         "description": "Boldmove’s industry professionals write pitch deck copy that clarifies and sharpens your story. Every line of text is designed to hold attention and draw your audience into the project."
       },
       {
-        "id": "story-consulting",
-        "name": "Story Consulting",
-        "price": "750€ per day ",
-        "description": "Strategic story consultation with Boldmove’s professional writing team. From structure to tone, we identify what matters most and how it should land."
+        "id": "script-consultation",
+        "name": "Script Consultation",
+        "price": "750€ per day / €80 per hour",
+        "description": "Strategic screenplay consultation with Boldmove’s professional writing team. From structure to tone, we help you shape scripts that are clear, compelling and memorable"
       },
       {
         "id": "sound-design-music",
@@ -140,7 +146,7 @@
       {
         "name": "Custom Navigation Experiences (Coding)",
         "id": "coding",
-        "price": "800€ per day ",
+        "price": "750€ per day / €80 per hour",
         "description": "Interactive, code-driven navigation crafted by specialists to create engaging experiences that will leave your audience speechless."
       }
     ]
@@ -169,7 +175,7 @@
         },
         {
           "icon": "/uploads/text-polish.svg",
-          "text": "2 Hours of Writing"
+          "text": "Free Text Polish (1 hour)"
         },
         {
           "icon": "/uploads/design.svg",
@@ -443,7 +449,10 @@
         "standardPrice": 4450,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": { "icon": "", "text": "" },
+        "requirements": {
+          "icon": "",
+          "text": ""
+        },
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
@@ -505,7 +514,10 @@
         "standardPrice": 5075,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": { "icon": "", "text": "" },
+        "requirements": {
+          "icon": "",
+          "text": ""
+        },
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
@@ -571,7 +583,10 @@
         "standardPrice": 6575,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": { "icon": "", "text": "" },
+        "requirements": {
+          "icon": "",
+          "text": ""
+        },
         "mainFeatures": [
           {
             "text": "Concept Moodboard",
