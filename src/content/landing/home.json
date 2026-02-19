@@ -58,24 +58,26 @@
     },
     "videos": [
       {
-        "label": "Immersive Scroll",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
-        "url": "",
-        "poster": "",
-        "muted": true,
         "autoplay": true,
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-scroll-compressed.mp4",
         "loop": true,
-        "controls": false
+        "muted": true,
+        "poster": "",
+        "url": "",
+        "label": "Immersive Scroll",
+        "controls": false,
+        "link": "https://boldmove.tv/aunty-sample/"
       },
       {
-        "label": "Classic Navigation",
-        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
-        "url": "",
-        "poster": "",
-        "muted": true,
         "autoplay": true,
+        "src": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/aunty-click-compressed.mp4",
         "loop": true,
-        "controls": false
+        "muted": true,
+        "poster": "",
+        "url": "",
+        "label": "Classic Navigation",
+        "controls": false,
+        "link": "https://boldmove.tv/pageclick-aunty/"
       }
     ]
   },
