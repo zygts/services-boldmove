@@ -13,13 +13,12 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 ---
 
 <section id="" class="wn" aria-label="What's new">
-<h1 class="mobile-only">WHAT’S<br>NEW AT<br>BOLDMOVE?</h1>
+<h1 class="mobile-only">WHAT'S<br>NEW AT<br>BOLDMOVE?</h1>
   <div class="wn__inner">
     <div class="wn__bg mobile-only" aria-hidden="true">
-    
       <video
         class="wn__bgVideo"
-        src="/uploads/video1.mp4"
+        src="/uploads/scrollcapture-2026-02-18-at-1.49.31-compressed.mp4"
         autoplay
         muted
         loop
@@ -38,15 +37,14 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
                 {it.type === "video" ? (
                   <video
                     class="wn__media"
-                    src={it.src}
+                    data-src={it.src}
                     poster={it.poster}
                     muted
                     playsinline
-                    preload="metadata"
+                    preload="none"
                     data-desktop-autoplay
                   />
                 ) : (
-
                   <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
                 )}
 
@@ -84,6 +82,26 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     const TRIGGER_ID = "whats-new-scroll";
     const DESKTOP_MQ = "(min-width: 991px)";
 
+    // ── Carga lazy de src solo en desktop ──────────────────────────────
+    function loadDesktopVideos() {
+      root.querySelectorAll("video[data-desktop-autoplay][data-src]").forEach((v) => {
+        if (!v.src || v.src === window.location.href) {
+          // aún no tiene src real → asignarlo
+          v.src = v.dataset.src;
+          v.load();
+        }
+      });
+    }
+
+    function unloadMobileVideos() {
+      root.querySelectorAll("video[data-desktop-autoplay]").forEach((v) => {
+        v.pause();
+        v.removeAttribute("src");
+        v.load(); // cancela la carga en curso
+      });
+    }
+    // ──────────────────────────────────────────────────────────────────
+
     function measureTravel(row) {
       const track = row.querySelector(".wn__track");
       if (!track) return 0;
@@ -106,20 +124,16 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       if (!window.ScrollTrigger || !window.gsap) return;
       const gsap = window.gsap;
 
-      // mata SOLO el trigger de esta sección
       window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
 
-      // resetea transforms de las filas
       rows.forEach((row) => {
         const track = row.querySelector(".wn__track");
         if (track) gsap.set(track, { clearProps: "all" });
       });
 
-      // resetea overlay/título
       if (cardOverlay) gsap.set(cardOverlay, { clearProps: "all" });
       if (cardTitle) gsap.set(cardTitle, { clearProps: "all" });
 
-      // 🔑 IMPORTANTÍSIMO: reset UI global (si no, se queda “pegado” en mobile)
       if (navEls.length) gsap.set(navEls, { clearProps: "opacity" });
       if (arrowEls.length) gsap.set(arrowEls, { clearProps: "opacity" });
     }
@@ -133,11 +147,9 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
       killDesktop();
 
-      // Estado inicial (solo desktop)
       if (navEls.length) gsap.set(navEls, { opacity: 0 });
       if (arrowEls.length) gsap.set(arrowEls, { opacity: 1 });
 
-      // Título y overlay empiezan visibles
       if (cardTitle) gsap.set(cardTitle, { opacity: 1, y: 0 });
       if (cardOverlay) gsap.set(cardOverlay, { opacity: 1 });
 
@@ -150,7 +162,6 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
       const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-      // Fase A: filas
       rows.forEach((row, idx) => {
         const track = row.querySelector(".wn__track");
         if (!track) return;
@@ -170,7 +181,6 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
         }
       });
 
-      // UI global al principio del scroll (desktop)
       if (navEls.length) {
         tl.to(navEls, { opacity: 1, duration: 0.1, ease: "power1.out" }, 0.05);
       }
@@ -198,7 +208,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     }
 
     function initDesktopWhenReady() {
-      const media = Array.from(root.querySelectorAll("img, video"));
+      const media = Array.from(root.querySelectorAll("img, video[src]"));
       const pending = media.filter((el) => {
         if (el.tagName === "IMG") return !el.complete;
         return el.readyState < 1;
@@ -227,51 +237,43 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     }
 
     function init() {
-  const mq = window.matchMedia(DESKTOP_MQ);
+      const mq = window.matchMedia(DESKTOP_MQ);
 
-  const apply = () => {
-    const videos = root.querySelectorAll("video[data-desktop-autoplay]");
+      const apply = () => {
+        if (mq.matches) {
+          // ✅ Desktop → cargar videos y activar autoplay
+          loadDesktopVideos();
 
-    if (mq.matches) {
-      // ✅ Desktop → activar autoplay
-      videos.forEach((v) => {
-        v.loop = true;
-        v.muted = true;
-        v.play().catch(() => {});
+          root.querySelectorAll("video[data-desktop-autoplay]").forEach((v) => {
+            v.loop = true;
+            v.muted = true;
+            v.play().catch(() => {});
+          });
+
+          initDesktopWhenReady();
+        } else {
+          // ✅ Mobile → descargar videos y limpiar scroll
+          unloadMobileVideos();
+          killDesktop();
+        }
+      };
+
+      apply();
+      mq.addEventListener?.("change", apply);
+
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        if (!mq.matches) return;
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          buildDesktop();
+        }, 250);
+      }, { passive: true });
+
+      window.addEventListener("orientationchange", () => {
+        if (mq.matches) buildDesktop();
       });
-
-      initDesktopWhenReady();
-
-    } else {
-      // ✅ Mobile → parar vídeos y limpiar
-      videos.forEach((v) => {
-        v.pause();
-        v.loop = false;
-        v.currentTime = 0;
-      });
-
-      killDesktop();
     }
-  };
-
-  apply();
-  mq.addEventListener?.("change", apply);
-
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    if (!mq.matches) return;
-
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
-      buildDesktop();
-    }, 250);
-  }, { passive: true });
-
-  window.addEventListener("orientationchange", () => {
-    if (mq.matches) buildDesktop();
-  });
-}
-
 
     if (document.readyState === "complete") init();
     else window.addEventListener("load", init);
@@ -316,7 +318,6 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       margin-left: 1vw;
       text-align: left;
       line-height: 0.85;
-
     }
 
     .wn__cardTitle span {
