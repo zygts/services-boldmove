@@ -1945,6 +1945,7 @@ body.nav-open {
     position: absolute;
     inset: 0;
     background: rgb(0 0 0 / 0%);
+    pointer-events: none;
 }
 
 /* Breakpoint */
