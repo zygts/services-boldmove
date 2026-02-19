@@ -241,8 +241,8 @@
     "pinVh": 219
   },
   "whatsNewSection": {
-    "bgVideo": "/uploads/mobile-cover.mp4",
-    "bgPoster": "/images/mobile-cover.jpg",
+    "bgVideo": "",
+    "bgPoster": "/uploads/mobile-bg.jpg",
     "rows": [
       [
         {
