@@ -98,6 +98,11 @@ html {
     }
 }
 
+video { contain: layout paint size; }
+
+.wn__track { will-change: transform; transform: translate3d(0,0,0); }
+.wn__media { backface-visibility: hidden; transform: translateZ(0); }
+
 .arrow {
     position: fixed;
     top: 50%;
@@ -126,6 +131,10 @@ html {
 
 .navigation {
     opacity: 0;
+
+    @media (max-width: 991px) {
+        opacity: 1;
+    }
 }
 
 @keyframes animationbounce {
@@ -334,6 +343,7 @@ section[id] {
         grid-template-columns: 1fr 33%;
         grid-template-rows: min-content;
         min-height: auto;
+        padding-right: 1rem;
     }
 }
 
@@ -351,15 +361,15 @@ section[id] {
 
 @media (max-width: 991px) {
     .tcc__col:first-child {
-        padding-right: 0;
+        padding-right: 1rem;
     }
 
     .tcc__col:nth-child(2) {
-        padding-inline: 0;
+        padding-inline: 2rem;
     }
 
     .tcc__col:last-child {
-        padding-left: 0;
+        padding-left: 2rem;
     }
 }
 
@@ -1066,7 +1076,7 @@ section[id] {
     justify-content: center;
 
     .pk__cta {
-        width: fit-content;
+        width: auto;
         padding-inline: 2rem;
         text-decoration: none;
     }

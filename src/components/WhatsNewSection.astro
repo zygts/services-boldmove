@@ -41,12 +41,12 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
                     src={it.src}
                     poster={it.poster}
                     muted
-                    autoplay
-                    loop
                     playsinline
                     preload="metadata"
+                    data-desktop-autoplay
                   />
                 ) : (
+
                   <img class="wn__media" src={it.src} alt={it.alt ?? ""} loading="lazy" />
                 )}
 
@@ -227,29 +227,51 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     }
 
     function init() {
-      const mq = window.matchMedia(DESKTOP_MQ);
+  const mq = window.matchMedia(DESKTOP_MQ);
 
-      const apply = () => {
-        if (mq.matches) {
-          initDesktopWhenReady();
-        } else {
-          // mobile/tablet: asegúrate de no arrastrar estados
-          killDesktop();
-        }
-      };
+  const apply = () => {
+    const videos = root.querySelectorAll("video[data-desktop-autoplay]");
 
-      apply();
-      mq.addEventListener?.("change", apply);
-
-      let resizeTimeout;
-      window.addEventListener("resize", () => {
-        if (!mq.matches) return;
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          buildDesktop();
-        }, 100);
+    if (mq.matches) {
+      // ✅ Desktop → activar autoplay
+      videos.forEach((v) => {
+        v.loop = true;
+        v.muted = true;
+        v.play().catch(() => {});
       });
+
+      initDesktopWhenReady();
+
+    } else {
+      // ✅ Mobile → parar vídeos y limpiar
+      videos.forEach((v) => {
+        v.pause();
+        v.loop = false;
+        v.currentTime = 0;
+      });
+
+      killDesktop();
     }
+  };
+
+  apply();
+  mq.addEventListener?.("change", apply);
+
+  let resizeTimeout;
+  window.addEventListener("resize", () => {
+    if (!mq.matches) return;
+
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      buildDesktop();
+    }, 250);
+  }, { passive: true });
+
+  window.addEventListener("orientationchange", () => {
+    if (mq.matches) buildDesktop();
+  });
+}
+
 
     if (document.readyState === "complete") init();
     else window.addEventListener("load", init);
