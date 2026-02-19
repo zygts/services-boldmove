@@ -3,7 +3,7 @@ type PlatformVideo = {
   label: string;
   src?: string;
   url?: string;
-  link?: string;  // ← nuevo campo para el enlace externo
+  link?: string;
   poster?: string;
   muted?: boolean;
   autoplay?: boolean;
@@ -20,6 +20,9 @@ type Props = {
 const { title, body, videos = [] } = Astro.props;
 
 const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.url || "").trim());
+
+// 👇 DEBUG: Ver qué datos llegan
+console.log('Platform videos:', JSON.stringify(videos, null, 2));
 ---
 
 <section id="platforms" class="plt">
@@ -36,31 +39,69 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
   <div class="plt__videos">
     {videos.slice(0, 2).map((v, i) => {
       const src = getVideoSrc(v);
-      const link = v.link?.trim() || "#";
-      const hasLink = link && link !== "#";
+      const link = v.link?.trim();
+      const hasLink = link && link !== "#" && link !== "";
+      
+      // 👇 DEBUG: Ver valores por video
+      console.log(`Video ${i}:`, { 
+        label: v.label, 
+        link: v.link, 
+        linkTrimmed: link, 
+        hasLink 
+      });
       
       return (
         <div class="plt__videoCol" data-i={i}>
           <div class="plt__videoLabel">{v.label}</div>
 
-          <div class="plt__videoFrame">
-            {src ? (
-              <video
-                class="plt__video"
-                src={src}
-                poster={v.poster || undefined}
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                data-link={hasLink ? link : undefined}
-              />
-            ) : (
-              <div class="plt__videoPlaceholder">
-                Add a video in Decap (mp4/webm) or paste a URL.
-              </div>
-            )}
+          {/* 👇 DEBUG: Mostrar visualmente si tiene link */}
+          <div style="background: yellow; padding: 4px; font-size: 10px;">
+            DEBUG: hasLink={String(hasLink)} | link="{link}"
           </div>
+
+          {hasLink ? (
+            <a 
+              href={link} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="plt__videoFrame plt__videoFrame--link"
+              aria-label={`Open ${v.label} in new tab`}
+            >
+              {src ? (
+                <video
+                  class="plt__video"
+                  src={src}
+                  poster={v.poster || undefined}
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                />
+              ) : (
+                <div class="plt__videoPlaceholder">
+                  Add a video in Decap (mp4/webm) or paste a URL.
+                </div>
+              )}
+            </a>
+          ) : (
+            <div class="plt__videoFrame">
+              {src ? (
+                <video
+                  class="plt__video"
+                  src={src}
+                  poster={v.poster || undefined}
+                  muted
+                  loop
+                  playsinline
+                  preload="metadata"
+                />
+              ) : (
+                <div class="plt__videoPlaceholder">
+                  Add a video in Decap (mp4/webm) or paste a URL.
+                </div>
+              )}
+            </div>
+          )}
         </div>
       );
     })}
@@ -77,17 +118,6 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     if (!isDesktop) return;
 
     videos.forEach((video) => {
-      const link = video.getAttribute("data-link");
-
-      // Si tiene link, hacer click abre en nueva pestaña
-      if (link) {
-        video.style.cursor = "pointer";
-        video.addEventListener("click", (e) => {
-          e.preventDefault();
-          window.open(link, "_blank", "noopener,noreferrer");
-        });
-      }
-
       video.addEventListener("mouseenter", () => {
         video.play().catch(() => {});
       });
@@ -103,6 +133,12 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
   <style>
     .plt__videoFrame {
       display: block;
+    }
+
+    .plt__videoFrame--link {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
     }
   </style>
 </section>
