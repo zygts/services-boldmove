@@ -5,26 +5,34 @@ type MediaItem =
 
 type Props = {
   rows: [MediaItem[], MediaItem[], MediaItem[]];
+  bgVideo?: string;
+  bgPoster?: string;
 };
 
-const { rows } = Astro.props;
+const { rows, bgVideo = "", bgPoster = "" } = Astro.props;
 const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
   rows?.length === 3 ? rows : [[], [], []];
 ---
 
 <section id="" class="wn" aria-label="What's new">
-<h1 class="mobile-only">WHAT'S<br>NEW AT<br>BOLDMOVE?</h1>
+  <h1 class="mobile-only">WHAT'S<br>NEW AT<br>BOLDMOVE?</h1>
   <div class="wn__inner">
+
     <div class="wn__bg mobile-only" aria-hidden="true">
-      <video
-        class="wn__bgVideo"
-        src="/uploads/scrollcapture-2026-02-18-at-1.49.31-compressed.mp4"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
+      {bgVideo ? (
+        <video
+          class="wn__bgVideo"
+          src={bgVideo}
+          poster={bgPoster || undefined}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+        />
+      ) : bgPoster ? (
+        <img class="wn__bgImage" src={bgPoster} alt="" />
+      ) : null}
     </div>
 
     {safeRows.map((rowItems, rowIndex) => (
@@ -82,11 +90,9 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     const TRIGGER_ID = "whats-new-scroll";
     const DESKTOP_MQ = "(min-width: 991px)";
 
-    // ── Carga lazy de src solo en desktop ──────────────────────────────
     function loadDesktopVideos() {
       root.querySelectorAll("video[data-desktop-autoplay][data-src]").forEach((v) => {
         if (!v.src || v.src === window.location.href) {
-          // aún no tiene src real → asignarlo
           v.src = v.dataset.src;
           v.load();
         }
@@ -97,10 +103,9 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       root.querySelectorAll("video[data-desktop-autoplay]").forEach((v) => {
         v.pause();
         v.removeAttribute("src");
-        v.load(); // cancela la carga en curso
+        v.load();
       });
     }
-    // ──────────────────────────────────────────────────────────────────
 
     function measureTravel(row) {
       const track = row.querySelector(".wn__track");
@@ -241,7 +246,6 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
       const apply = () => {
         if (mq.matches) {
-          // ✅ Desktop → cargar videos y activar autoplay
           loadDesktopVideos();
 
           root.querySelectorAll("video[data-desktop-autoplay]").forEach((v) => {
@@ -252,7 +256,6 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
 
           initDesktopWhenReady();
         } else {
-          // ✅ Mobile → descargar videos y limpiar scroll
           unloadMobileVideos();
           killDesktop();
         }
@@ -265,9 +268,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       window.addEventListener("resize", () => {
         if (!mq.matches) return;
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-          buildDesktop();
-        }, 250);
+        resizeTimeout = setTimeout(() => { buildDesktop(); }, 250);
       }, { passive: true });
 
       window.addEventListener("orientationchange", () => {
@@ -278,18 +279,26 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
     if (document.readyState === "complete") init();
     else window.addEventListener("load", init);
   })();
-</script>
+  </script>
 
   <style>
-  .wn h1 {
-    margin: 15vh 0 0 2.8rem;
-    font-family: 'Druk Cond LCG Super', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    text-transform: uppercase;
-    font-size: 30vw;
-    color: var(--color-secondary);
-    padding: 0;
-    line-height: 0.82;
-  }
+    .wn h1 {
+      margin: 15vh 0 0 2.8rem;
+      font-family: 'Druk Cond LCG Super', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      text-transform: uppercase;
+      font-size: 30vw;
+      color: var(--color-secondary);
+      padding: 0;
+      line-height: 0.82;
+    }
+
+    .wn__bgImage {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .wn__card {
       position: relative;
     }

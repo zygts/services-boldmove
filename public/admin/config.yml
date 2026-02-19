@@ -23,6 +23,8 @@ collections:
             name: "whatsNewSection"
             widget: "object"
             fields:
+              - { label: "Background Video (mobile)", name: "bgVideo", widget: "file", required: false }
+              - { label: "Background Poster (mobile)", name: "bgPoster", widget: "image", required: false }
               - label: "Rows (3)"
                 name: "rows"
                 widget: "list"

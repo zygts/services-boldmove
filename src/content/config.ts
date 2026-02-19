@@ -83,6 +83,8 @@ const landing = defineCollection({
 }),
 
 whatsNewSection: z.object({
+  bgVideo: z.string().optional().default(""),
+  bgPoster: z.string().optional().default(""),
   rows: z.array(
     z.array(
       z.discriminatedUnion("type", [
