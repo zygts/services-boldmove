@@ -162,6 +162,7 @@ whatsNewSection: z.object({
           label: z.string(),
           src: z.string().optional().default(""),
           url: z.string().optional().default(""),
+          link: z.string().optional().default(""), // ← nuevo campo
           poster: z.string().optional().default(""),
           muted: z.boolean().optional().default(true),
           autoplay: z.boolean().optional().default(true),

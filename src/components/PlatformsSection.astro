@@ -3,6 +3,7 @@ type PlatformVideo = {
   label: string;
   src?: string;
   url?: string;
+  link?: string;  // ← nuevo campo para el enlace externo
   poster?: string;
   muted?: boolean;
   autoplay?: boolean;
@@ -35,17 +36,14 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
   <div class="plt__videos">
     {videos.slice(0, 2).map((v, i) => {
       const src = getVideoSrc(v);
+      const link = v.link?.trim() || "#";
+      const hasLink = link && link !== "#";
+      
       return (
         <div class="plt__videoCol" data-i={i}>
           <div class="plt__videoLabel">{v.label}</div>
 
-          <a 
-            href={src || "#"} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            class="plt__videoFrame"
-            aria-label={`Open ${v.label} in new tab`}
-          >
+          <div class="plt__videoFrame">
             {src ? (
               <video
                 class="plt__video"
@@ -55,13 +53,14 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
                 loop
                 playsinline
                 preload="metadata"
+                data-link={hasLink ? link : undefined}
               />
             ) : (
               <div class="plt__videoPlaceholder">
                 Add a video in Decap (mp4/webm) or paste a URL.
               </div>
             )}
-          </a>
+          </div>
         </div>
       );
     })}
@@ -78,10 +77,16 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     if (!isDesktop) return;
 
     videos.forEach((video) => {
-      // Prevenir que el click en el video active el link
-      video.addEventListener("click", (e) => {
-        e.stopPropagation();
-      });
+      const link = video.getAttribute("data-link");
+
+      // Si tiene link, hacer click abre en nueva pestaña
+      if (link) {
+        video.style.cursor = "pointer";
+        video.addEventListener("click", (e) => {
+          e.preventDefault();
+          window.open(link, "_blank", "noopener,noreferrer");
+        });
+      }
 
       video.addEventListener("mouseenter", () => {
         video.play().catch(() => {});
@@ -98,9 +103,6 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
   <style>
     .plt__videoFrame {
       display: block;
-      cursor: pointer;
-      text-decoration: none;
-      color: inherit;
     }
   </style>
 </section>

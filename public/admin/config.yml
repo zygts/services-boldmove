@@ -236,8 +236,9 @@ collections:
                 max: 2
                 fields:
                   - { label: "Label", name: "label", widget: "string" }
-                  - { label: "Video file", name: "src", widget: "file", required: false, hint: "Upload mp4/webm if you want to host it" }
-                  - { label: "Video URL (optional)", name: "url", widget: "string", required: false, hint: "Use if you host video elsewhere (CDN, etc.)" }
+                  - { label: "Video file", name: "src", widget: "file", required: false, hint: "Upload mp4/webm" }
+                  - { label: "Video URL (optional)", name: "url", widget: "string", required: false, hint: "External video URL" }
+                  - { label: "External Link", name: "link", widget: "string", required: false, hint: "URL to open when clicking video" }
                   - { label: "Poster (optional)", name: "poster", widget: "image", required: false }
                   - { label: "Muted", name: "muted", widget: "boolean", default: true }
                   - { label: "Autoplay", name: "autoplay", widget: "boolean", default: true }
