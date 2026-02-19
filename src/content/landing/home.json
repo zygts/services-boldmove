@@ -400,7 +400,7 @@
         "id": "knight",
         "writing": {
           "enabled": true,
-          "label": "CUSTOM WRITING",
+          "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
@@ -458,7 +458,7 @@
         "id": "blitz",
         "writing": {
           "enabled": true,
-          "label": "CUSTOM WRITING",
+          "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
@@ -524,7 +524,7 @@
         "id": "gambit",
         "writing": {
           "enabled": true,
-          "label": "CUSTOM WRITING",
+          "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
@@ -602,7 +602,7 @@
         "id": "checkmate",
         "writing": {
           "enabled": true,
-          "label": "CUSTOM WRITING",
+          "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
