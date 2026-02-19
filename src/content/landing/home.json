@@ -158,7 +158,10 @@
       "ctaLabel": "Upgrade My Deck",
       "standardPrice": 2500,
       "poster": "/uploads/knight.jpg",
-      "requirements": "Text and source visuals must be provided",
+      "requirements": {
+        "icon": "/uploads/icon-check.png",
+        "text": "Text and source visuals must be provided"
+      },
       "mainFeatures": [
         {
           "icon": "/uploads/concept-moodboard.svg",
@@ -387,7 +390,10 @@
         "standardPrice": 3200,
         "poster": "https://www.liveintention.tv/Media/Rates%20Card%20Showreels/Knight.mp4",
         "imageAlt": "",
-        "requirements": "Visual research is provided by the client.",
+        "requirements": {
+          "icon": "/uploads/icon-check.png",
+          "text": "Visual research is provided by the client."
+        },
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
@@ -437,7 +443,7 @@
         "standardPrice": 4450,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": "",
+        "requirements": { "icon": "", "text": "" },
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
@@ -499,7 +505,7 @@
         "standardPrice": 5075,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": "",
+        "requirements": { "icon": "", "text": "" },
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
@@ -565,7 +571,7 @@
         "standardPrice": 6575,
         "poster": "/uploads/video.png",
         "imageAlt": "",
-        "requirements": "",
+        "requirements": { "icon": "", "text": "" },
         "mainFeatures": [
           {
             "text": "Concept Moodboard",

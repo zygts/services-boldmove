@@ -67,7 +67,14 @@ const landing = defineCollection({
         })
       ).default([]),
 
-      requirements: z.string().default(""),
+      requirements: z
+        .object({
+          icon: z.string().default(""),
+          text: z.string().default(""),
+        })
+        .optional()
+        .default({ icon: "", text: "" }),
+
       footerText: z.string().optional().default(""),
     })
   ).default([]),
@@ -116,7 +123,14 @@ whatsNewSection: z.object({
           })
           .optional(),
         additionalFeatures: z.array(z.object({ icon: z.string(), text: z.string() })).default([]),
-        requirements: z.string().default(""),
+        requirements: z
+          .object({
+            icon: z.string().default(""),
+            text: z.string().default(""),
+          })
+          .optional()
+          .default({ icon: "", text: "" }),
+
       }),
       footerText: z.string(), 
     }),

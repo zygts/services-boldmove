@@ -142,7 +142,14 @@ collections:
                       - { label: "Text", name: "text", widget: "string" }
 
                   # Requirements (text block)
-                  - { label: "Requirements", name: "requirements", widget: "text", required: false }
+                  - label: "Requirements"
+                    name: "requirements"
+                    widget: "object"
+                    required: false
+                    fields:
+                      - { label: "Icon", name: "icon", widget: "image", required: false }
+                      - { label: "Text", name: "text", widget: "text", required: false }
+
 
                   - { label: "Footer Text", name: "footerText", widget: "text", required: false }
           
@@ -180,7 +187,13 @@ collections:
                       - { label: "Icon", name: "icon", widget: "image" }
                       - { label: "Text", name: "text", widget: "string" }
 
-                  - { label: "Requirements", name: "requirements", widget: "text", required: false }
+                  - label: "Requirements"
+                    name: "requirements"
+                    widget: "object"
+                    required: false
+                    fields:
+                      - { label: "Icon", name: "icon", widget: "image", required: false }
+                      - { label: "Text", name: "text", widget: "text", required: false }
 
           - label: "Services Section"
             name: "servicesSection"

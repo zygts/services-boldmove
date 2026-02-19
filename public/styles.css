@@ -682,8 +682,15 @@ section[id] {
     font-style: normal;
 }
 
+.pk__requirementsRow {
+    margin-top: 1.6rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
 .pk__requirements {
-    font-size: var(--body);
+    font-size: var(--body-sm);
+    margin: 0;
 }
 
 .pk__price {
@@ -1009,13 +1016,18 @@ section[id] {
     height: 18px;
     display: block;
     object-fit: contain;
-    opacity: 0.95;
+    opacity: 1;
 }
 
 .up__text {
     font-size: var(--body-sm);
     line-height: 1.35;
-    opacity: 0.92;
+    opacity: 1;
+}
+
+.up__reqRow {
+    display: flex;
+    gap: 1rem;
 }
 
 .up__req {

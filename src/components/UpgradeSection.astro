@@ -16,7 +16,7 @@ type UpgradeCard = {
   badge?: string;
   mainFeatures?: Feature[];
   additionalFeatures?: Feature[];
-  requirements?: string;
+  requirements?: Feature;
 };
 
 type Props = {
@@ -112,12 +112,19 @@ const fmt = new Intl.NumberFormat(locale, {
         )}
       </div>
 
-      {card.requirements && (
+      {card.requirements?.text && card.requirements.text.trim() !== "" && (
         <div class="up__block">
           <div class="up__blockTitle">REQUIREMENTS</div>
-          <p class="up__req">{card.requirements}</p>
+
+          <div class="up__reqRow">
+            {card.requirements.icon && (
+              <img class="up__icon" src={card.requirements.icon} alt="" loading="lazy" />
+            )}
+            <p class="up__req">{card.requirements.text}</p>
+          </div>
         </div>
       )}
+
     </div>
   </div>
 {footerText && (

@@ -27,7 +27,7 @@ type Package = {
   mainFeatures?: Feature[];
   writing: WritingConfig;
   additionalFeatures?: Feature[];
-  requirements?: string;
+  requirements?: Feature;
   footerText?: string;
 };
 
@@ -182,12 +182,24 @@ const toCents = (eur: number) => Math.round(eur * 100);
           </div>
         )}
 
-        {p.requirements && p.requirements.trim() !== "" && (
+        {p.requirements?.text && p.requirements.text.trim() !== "" && (
           <div class="pk__block">
             <div class="pk__blockTitle">REQUIREMENTS</div>
-            <p class="pk__requirements">{p.requirements}</p>
+
+            <div class="pk__requirementsRow">
+              {p.requirements.icon && (
+                <img
+                  class="pk__featureIcon"
+                  src={p.requirements.icon}
+                  alt=""
+                  loading="lazy"
+                />
+              )}
+              <p class="pk__requirements">{p.requirements.text}</p>
+            </div>
           </div>
         )}
+
 
         {p.footerText && p.footerText.trim() !== "" && (
           <div class="pk__footer">{p.footerText}</div>
