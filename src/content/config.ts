@@ -44,11 +44,12 @@ const landing = defineCollection({
       badge: z.string().optional().default(""),
 
       mainFeatures: z.array(
-        z.object({
-          icon: z.string().optional().default(""),
-          text: z.string(),
-        })
-      ).default([]),
+      z.object({
+        icon: z.string().optional().default(""),
+        text: z.string(),
+        tooltip: z.string().optional().default(""),
+      })
+    ).default([]),
 
       writing: z.object({
         // enabled opcional si lo quieres conservar
@@ -64,6 +65,7 @@ const landing = defineCollection({
         z.object({
           icon: z.string().optional().default(""),
           text: z.string(),
+          tooltip: z.string().optional().default(""),
         })
       ).default([]),
 
