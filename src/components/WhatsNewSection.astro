@@ -70,200 +70,191 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
   </div>
 
   <script is:inline>
-    (function () {
-      const root = document.currentScript?.closest(".wn");
-      if (!root) return;
+  (function () {
+    const root = document.currentScript?.closest(".wn");
+    if (!root) return;
 
-      const rows = Array.from(root.querySelectorAll(".wn__row"));
-      const specialCard = root.querySelector(".wn__card--special");
-      const navEls = document.querySelectorAll(".navigation");
-      const arrowEls = document.querySelectorAll(".arrow");
-      const cardOverlay = specialCard?.querySelector(".wn__cardOverlay");
-      const cardTitle = specialCard?.querySelector(".wn__cardTitle");
+    const rows = Array.from(root.querySelectorAll(".wn__row"));
+    const specialCard = root.querySelector(".wn__card--special");
+    const navEls = document.querySelectorAll(".navigation");
+    const arrowEls = document.querySelectorAll(".arrow");
+    const cardOverlay = specialCard?.querySelector(".wn__cardOverlay");
+    const cardTitle = specialCard?.querySelector(".wn__cardTitle");
 
-      const TRIGGER_ID = "whats-new-scroll";
-      const DESKTOP_MQ = "(min-width: 991px)";
+    const TRIGGER_ID = "whats-new-scroll";
+    const DESKTOP_MQ = "(min-width: 991px)";
 
-      function measureTravel(row) {
+    function measureTravel(row) {
+      const track = row.querySelector(".wn__track");
+      if (!track) return 0;
+      const vw = row.getBoundingClientRect().width;
+      const sw = track.scrollWidth;
+      return Math.max(0, sw - vw);
+    }
+
+    function queueRefresh() {
+      if (!window.ScrollTrigger) return;
+      if (window.__wnRefreshQueued) return;
+      window.__wnRefreshQueued = true;
+      requestAnimationFrame(() => {
+        window.__wnRefreshQueued = false;
+        window.ScrollTrigger.refresh();
+      });
+    }
+
+    function killDesktop() {
+      if (!window.ScrollTrigger || !window.gsap) return;
+      const gsap = window.gsap;
+
+      // mata SOLO el trigger de esta sección
+      window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+
+      // resetea transforms de las filas
+      rows.forEach((row) => {
         const track = row.querySelector(".wn__track");
-        if (!track) return 0;
-        const vw = row.getBoundingClientRect().width;
-        const sw = track.scrollWidth;
-        return Math.max(0, sw - vw);
-      }
+        if (track) gsap.set(track, { clearProps: "all" });
+      });
 
-      function queueRefresh() {
-        if (!window.ScrollTrigger) return;
-        if (window.__wnRefreshQueued) return;
-        window.__wnRefreshQueued = true;
-        requestAnimationFrame(() => {
-          window.__wnRefreshQueued = false;
-          window.ScrollTrigger.refresh();
-        });
-      }
+      // resetea overlay/título
+      if (cardOverlay) gsap.set(cardOverlay, { clearProps: "all" });
+      if (cardTitle) gsap.set(cardTitle, { clearProps: "all" });
 
-      function killDesktop() {
-        if (!window.ScrollTrigger || !window.gsap) return;
+      // 🔑 IMPORTANTÍSIMO: reset UI global (si no, se queda “pegado” en mobile)
+      if (navEls.length) gsap.set(navEls, { clearProps: "opacity" });
+      if (arrowEls.length) gsap.set(arrowEls, { clearProps: "opacity" });
+    }
 
-        window.ScrollTrigger.getById(TRIGGER_ID)?.kill(true);
+    function buildDesktop() {
+      if (!window.gsap || !window.ScrollTrigger) return;
+      if (rows.length !== 3) return;
 
-        rows.forEach((row) => {
-          const track = row.querySelector(".wn__track");
-          if (track) window.gsap.set(track, { clearProps: "all" });
-        });
+      const gsap = window.gsap;
+      const ScrollTrigger = window.ScrollTrigger;
 
-        if (cardOverlay) window.gsap.set(cardOverlay, { clearProps: "all", opacity: 1 });
-        if (cardTitle) window.gsap.set(cardTitle, { clearProps: "all", opacity: 1, y: 0 });
-      }
+      killDesktop();
 
-      function buildDesktop() {
-        if (!window.gsap || !window.ScrollTrigger) return;
-        if (rows.length !== 3) return;
+      // Estado inicial (solo desktop)
+      if (navEls.length) gsap.set(navEls, { opacity: 0 });
+      if (arrowEls.length) gsap.set(arrowEls, { opacity: 1 });
 
-        const gsap = window.gsap;
-        const ScrollTrigger = window.ScrollTrigger;
+      // Título y overlay empiezan visibles
+      if (cardTitle) gsap.set(cardTitle, { opacity: 1, y: 0 });
+      if (cardOverlay) gsap.set(cardOverlay, { opacity: 1 });
 
-        killDesktop();
+      const progressRatio = 0.8;
+      const travels = rows.map(measureTravel);
+      const maxTravel = Math.max(...travels);
+      if (maxTravel < 10) return;
 
-        // Estado inicial
-        if (navEls.length) gsap.set(navEls, { opacity: 0 });
-        if (arrowEls.length) gsap.set(arrowEls, { opacity: 1 });
+      const effectiveTravel = maxTravel * progressRatio;
 
-        // Título y overlay empiezan visibles
-        if (cardTitle) gsap.set(cardTitle, { opacity: 1, y: 0 });
-        if (cardOverlay) gsap.set(cardOverlay, { opacity: 1 });
+      const tl = gsap.timeline({ defaults: { ease: "none" } });
 
-        const progressRatio = 0.8;
-        const travels = rows.map(measureTravel);
-        const maxTravel = Math.max(...travels);
-        if (maxTravel < 10) return;
+      // Fase A: filas
+      rows.forEach((row, idx) => {
+        const track = row.querySelector(".wn__track");
+        if (!track) return;
 
-        const effectiveTravel = maxTravel * progressRatio;
+        const travel = (travels[idx] || 0) * progressRatio;
+        const dir = row.getAttribute("data-dir");
 
-        const tl = gsap.timeline({ defaults: { ease: "none" } });
+        const startOffset = -220;
+        const endOffset = 0;
 
-        // Fase A: filas (0 a 1)
-        rows.forEach((row, idx) => {
-          const track = row.querySelector(".wn__track");
-          if (!track) return;
-
-          const travel = (travels[idx] || 0) * progressRatio;
-          const dir = row.getAttribute("data-dir");
-
-          const startOffset = -220;
-          const endOffset = 0;
-
-          if (dir === "rtl") {
-            gsap.set(track, { x: -travel + startOffset });
-            tl.to(track, { x: endOffset }, 0);
-          } else {
-            gsap.set(track, { x: 0 });
-            tl.to(track, { x: -travel }, 0);
-          }
-        });
-
-        /* Fade out del título y overlay: empieza después de un 15% del scroll
-        if (cardOverlay) {
-          tl.to(cardOverlay, { opacity: 0, duration: 0.8, ease: "power1.out" }, 0.1);
+        if (dir === "rtl") {
+          gsap.set(track, { x: -travel + startOffset });
+          tl.to(track, { x: endOffset }, 0);
+        } else {
+          gsap.set(track, { x: 0 });
+          tl.to(track, { x: -travel }, 0);
         }
-        if (cardTitle) {
-          tl.to(cardTitle, { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.1);
-        }*/
+      });
 
-        const factor = 0.7;
-        const extraHoldPx = Math.round(window.innerHeight * 0.3);
-
-        // Animaciones globales UI (inicio del scroll)
-        if (navEls.length) {
-          tl.to(navEls, {
-            opacity: 1,
-            duration: 0.1,
-            ease: "power1.out",
-          }, 0.05); // empieza al 5% del scroll
-        }
-
-        if (arrowEls.length) {
-          tl.to(arrowEls, {
-            opacity: 0,
-            duration: 0.1,
-            ease: "power1.out",
-          }, 0.05);
-        }
-
-        ScrollTrigger.create({
-          id: TRIGGER_ID,
-          trigger: root,
-          start: "top top",
-          end: () => "+=" + Math.round(effectiveTravel * factor + extraHoldPx),
-          pin: true,
-          scrub: true,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          animation: tl,
-          refreshPriority: 0,
-        });
-
-        queueRefresh();
+      // UI global al principio del scroll (desktop)
+      if (navEls.length) {
+        tl.to(navEls, { opacity: 1, duration: 0.1, ease: "power1.out" }, 0.05);
+      }
+      if (arrowEls.length) {
+        tl.to(arrowEls, { opacity: 0, duration: 0.1, ease: "power1.out" }, 0.05);
       }
 
-      function initDesktopWhenReady() {
-        const media = Array.from(root.querySelectorAll("img, video"));
-        const pending = media.filter((el) => {
-          if (el.tagName === "IMG") return !el.complete;
-          return el.readyState < 1;
-        });
+      const factor = 0.7;
+      const extraHoldPx = Math.round(window.innerHeight * 0.3);
 
-        if (pending.length === 0) {
+      ScrollTrigger.create({
+        id: TRIGGER_ID,
+        trigger: root,
+        start: "top top",
+        end: () => "+=" + Math.round(effectiveTravel * factor + extraHoldPx),
+        pin: true,
+        scrub: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+        animation: tl,
+        refreshPriority: 0,
+      });
+
+      queueRefresh();
+    }
+
+    function initDesktopWhenReady() {
+      const media = Array.from(root.querySelectorAll("img, video"));
+      const pending = media.filter((el) => {
+        if (el.tagName === "IMG") return !el.complete;
+        return el.readyState < 1;
+      });
+
+      if (pending.length === 0) {
+        buildDesktop();
+        return;
+      }
+
+      let left = pending.length;
+      const done = () => {
+        left--;
+        if (left <= 0) buildDesktop();
+      };
+
+      pending.forEach((el) => {
+        if (el.tagName === "IMG") {
+          el.addEventListener("load", done, { once: true });
+          el.addEventListener("error", done, { once: true });
+        } else {
+          el.addEventListener("loadedmetadata", done, { once: true });
+          el.addEventListener("error", done, { once: true });
+        }
+      });
+    }
+
+    function init() {
+      const mq = window.matchMedia(DESKTOP_MQ);
+
+      const apply = () => {
+        if (mq.matches) {
+          initDesktopWhenReady();
+        } else {
+          // mobile/tablet: asegúrate de no arrastrar estados
+          killDesktop();
+        }
+      };
+
+      apply();
+      mq.addEventListener?.("change", apply);
+
+      let resizeTimeout;
+      window.addEventListener("resize", () => {
+        if (!mq.matches) return;
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
           buildDesktop();
-          return;
-        }
+        }, 100);
+      });
+    }
 
-        let left = pending.length;
-        const done = () => {
-          left--;
-          if (left <= 0) buildDesktop();
-        };
-
-        pending.forEach((el) => {
-          if (el.tagName === "IMG") {
-            el.addEventListener("load", done, { once: true });
-            el.addEventListener("error", done, { once: true });
-          } else {
-            el.addEventListener("loadedmetadata", done, { once: true });
-            el.addEventListener("error", done, { once: true });
-          }
-        });
-      }
-
-      function init() {
-        const mq = window.matchMedia(DESKTOP_MQ);
-
-        const apply = () => {
-          if (mq.matches) {
-            initDesktopWhenReady();
-          } else {
-            killDesktop();
-          }
-        };
-
-        apply();
-
-        mq.addEventListener?.("change", apply);
-
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-          if (!mq.matches) return;
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(() => {
-            buildDesktop();
-          }, 100);
-        });
-      }
-
-      if (document.readyState === "complete") init();
-      else window.addEventListener("load", init);
-    })();
-  </script>
+    if (document.readyState === "complete") init();
+    else window.addEventListener("load", init);
+  })();
+</script>
 
   <style>
   .wn h1 {
