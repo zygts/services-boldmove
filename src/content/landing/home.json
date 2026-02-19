@@ -404,7 +404,7 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 600
+          "pricePerDay": 750
         },
         "description": "A brave but decisive move where you must use your own cinematic expertise to help us build your vision."
       },
@@ -462,7 +462,7 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 600
+          "pricePerDay": 751
         },
         "description": "Fast, bold and impactful, Blitz grabs your attention by the collar and makes executives lean forward."
       },
@@ -528,7 +528,7 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 600
+          "pricePerDay": 751
         },
         "description": "Not for the faint hearted, Gambit attacks with immersive world-building, refined design and positions your project as a serious contender."
       },
@@ -606,7 +606,7 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 600
+          "pricePerDay": 751
         },
         "description": "Our trademark finishing move. Checkmate is a fully immersive premium experience. Engineered to close the deal and seal the fate of the competition. "
       }
