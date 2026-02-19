@@ -111,32 +111,32 @@
     "services": [
       {
         "id": "concept-moodboard",
-        "price": "700€ per day / €75 per hour",
+        "price": "700€/day - €75/hour",
         "name": "Concept moodboard",
         "description": "A tapestry of visual and conceptual ideas to give your project a unique visual identity. From fonts, transitions and texture to complex navigation and interactive easter eggs, we present you with multiple creative directions and see which way you want to go."
       },
       {
         "id": "immersive-deck-design",
         "name": "Immersive Deck Design",
-        "price": "€625 per day / €70 per hour",
+        "price": "€625/day - €70/hour",
         "description": "Boldmove communicates in a visual cinematic language. We create decks that guide the eye, support the story and elevate your project. Every design choice is made to reinforce tone, genre and intent — so your deck looks as strong as it reads."
       },
       {
         "id": "visual-research",
         "name": "Visual Research",
-        "price": "€625 per day / €70 per hour",
+        "price": "€625/day - €70/hour",
         "description": "Boldmove curates visual references that define the world of your film or series. Through focused research we build image selections that give an unmistakable sense of the project's look and feel."
       },
       {
         "id": "deck-writing",
         "name": "Deck Writing",
-        "price": "750€ per day / €80 per hour",
+        "price": "750€/day - €80/hour",
         "description": "Boldmove’s industry professionals write pitch deck copy that clarifies and sharpens your story. Every line of text is designed to hold attention and draw your audience into the project."
       },
       {
         "id": "script-consultation",
         "name": "Script Consultation",
-        "price": "750€ per day / €80 per hour",
+        "price": "750€/day - €80/hour",
         "description": "Strategic screenplay consultation with Boldmove’s professional writing team. From structure to tone, we help you shape scripts that are clear, compelling and memorable"
       },
       {
@@ -148,7 +148,7 @@
       {
         "name": "Custom Navigation Experiences (Coding)",
         "id": "coding",
-        "price": "750€ per day / €80 per hour",
+        "price": "750€/day - €80/hour",
         "description": "Interactive, code-driven navigation crafted by specialists to create engaging experiences that will leave your audience speechless."
       }
     ]
