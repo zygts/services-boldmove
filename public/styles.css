@@ -1380,6 +1380,7 @@ section[id] {
     padding-bottom: 3rem;
 
     @media (max-width: 991px) {
+        padding-top: 1rem;
         border-radius: 3rem !important;
         min-height: 0;
         aspect-ratio: 1.6;
@@ -1390,12 +1391,21 @@ section[id] {
     .plt__videoFrame {
         border-right: 1px dashed;
         padding-right: 3rem;
+
+        @media (max-width: 991px) {
+            border-right: 0;
+            padding-right: 0;
+        }
     }
 }
 
 .plt__videoCol:last-of-type {
     .plt__videoFrame {
         padding-left: 3rem;
+
+        @media (max-width: 991px) {
+            padding-left: 0;
+        }
     }
 }
 
@@ -1405,7 +1415,8 @@ section[id] {
 
 .plt__video {
     width: 100%;
-    height: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
     display: block;
     object-fit: cover;
     border-radius: 5rem;
