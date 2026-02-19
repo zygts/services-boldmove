@@ -43,12 +43,10 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
         <div class="plt__videoCol" data-i={i}>
           <div class="plt__videoLabel">{v.label}</div>
 
-          <div class="plt__videoFrame">
-            {src ? (
-              <>
-                {/* Desktop: video con hover */}
+            <div class="plt__videoFrame">
+              {src ? (
                 <video
-                  class="plt__video plt__desktop"
+                  class="plt__video"
                   src={src}
                   poster={v.poster || undefined}
                   muted
@@ -57,33 +55,13 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
                   preload="metadata"
                   data-link={hasLink ? link : undefined}
                 />
+              ) : (
+                <div class="plt__videoPlaceholder">
+                  Add a video in Decap (mp4/webm) or paste a URL.
+                </div>
+              )}
+            </div>
 
-                {/* Mobile: solo imagen estática */}
-                {v.poster ? (
-                  <img
-                    class="plt__poster plt__mobile"
-                    src={v.poster}
-                    alt={v.label ?? ""}
-                    loading="lazy"
-                    data-link={hasLink ? link : undefined}
-                  />
-                ) : (
-                  // Si no hay poster, mostramos el video igual (sin autoplay)
-                  <video
-                    class="plt__video plt__mobile"
-                    src={src}
-                    muted
-                    playsinline
-                    preload="metadata"
-                    data-link={hasLink ? link : undefined}
-                  />
-                )}
-              </>
-            ) : (
-              <div class="plt__videoPlaceholder">
-                Add a video in Decap (mp4/webm) or paste a URL.
-              </div>
-            )}
           </div>
         </div>
       );
@@ -97,11 +75,9 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
 
   const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-  // Helper: abrir link si existe
   const bindLink = (el) => {
     const link = el.getAttribute("data-link");
     if (!link) return;
-
     el.style.cursor = "pointer";
     el.addEventListener("click", (e) => {
       e.preventDefault();
@@ -109,36 +85,24 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
     });
   };
 
-  if (!isDesktop) {
-    // ✅ 1) En móvil: hacer clic en poster o video abre link
-    root.querySelectorAll(".plt__mobile[data-link]").forEach(bindLink);
-
-    // ✅ 2) En móvil: forzar primer frame SOLO para videos mobile (los sin poster)
-    root.querySelectorAll("video.plt__mobile").forEach((video) => {
-      const seek = () => { video.currentTime = 0.001; };
-      if (video.readyState >= 1) seek();
-      else video.addEventListener("loadedmetadata", seek, { once: true });
-    });
-
-    return;
-  }
-
-  // Desktop: hover + click
-  root.querySelectorAll(".plt__video.plt__desktop").forEach((video) => {
-    bindLink(video);
-
+  const showFirstFrame = (video) => {
     const seek = () => { video.currentTime = 0.001; };
     if (video.readyState >= 1) seek();
     else video.addEventListener("loadedmetadata", seek, { once: true });
+  };
 
-    video.addEventListener("mouseenter", () => {
-      video.play().catch(() => {});
-    });
+  root.querySelectorAll(".plt__video").forEach((video) => {
+    bindLink(video);
+    showFirstFrame(video); // siempre, móvil y desktop
 
-    video.addEventListener("mouseleave", () => {
-      video.pause();
-      video.currentTime = 0.001;
-    });
+    if (isDesktop) {
+      video.addEventListener("mouseenter", () => video.play().catch(() => {}));
+      video.addEventListener("mouseleave", () => {
+        video.pause();
+        video.currentTime = 0.001;
+      });
+    }
+    // En móvil: queda estático mostrando el poster o el primer frame
   });
 })();
 </script>
