@@ -300,7 +300,7 @@ section[id] {
     padding: 6.4rem 0;
 
     @media (max-width: 991px) {
-        padding: 0;
+        padding: 0 0 3rem;
     }
 }
 
@@ -309,7 +309,7 @@ section[id] {
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
-        padding-bottom: 6rem;
+        padding-bottom: 3rem;
     }
 }
 
