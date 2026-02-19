@@ -32,7 +32,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
       <div class="wn__row" data-dir={rowIndex === 1 ? "rtl" : "ltr"}>
         <div class="wn__track">
           {rowItems.map((it, cardIndex) => {
-            const isSpecialCard = rowIndex === 1 && cardIndex === 6;
+            const isSpecialCard = rowIndex === 1 && cardIndex === 4;
             return (
               <figure class="wn__card" class:list={{ "wn__card--special": isSpecialCard }} role="group" aria-label={it.alt ?? "Media"}>
                 {it.type === "video" ? (
@@ -158,7 +158,7 @@ const safeRows: [MediaItem[], MediaItem[], MediaItem[]] =
         const travel = (travels[idx] || 0) * progressRatio;
         const dir = row.getAttribute("data-dir");
 
-        const startOffset = -220;
+        const startOffset = -60;
         const endOffset = 0;
 
         if (dir === "rtl") {
