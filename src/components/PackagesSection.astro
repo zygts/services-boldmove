@@ -165,10 +165,16 @@ const toCents = (eur: number) => Math.round(eur * 100);
                 +
               </button>
 
-              <div class="pk__stepperValue">
+              <div
+                class="pk__stepperValue pk__stepperValue--hasTip"
+                tabindex="0"
+                data-tip="Boldmove offers specialist deck writing from experienced industry writers to ensure your words leap off the page"
+                aria-label="Boldmove offers specialist deck writing from experienced industry writers to ensure your words leap off the page"
+              >
                 <span class="pk__writingDays">0</span>
                 <span class="pk__writingUnit">{p.writing.unitLabel}</span>
               </div>
+
             </div>
           </div>
         )}

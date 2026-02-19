@@ -2300,3 +2300,68 @@ body.nav-open {
   visibility:visible;
   transform:translateY(0);
 }
+
+.pk__stepperValue--hasTip{
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  gap: .35rem;
+  cursor: help;
+  outline: none;
+}
+
+.pk__stepperValue--hasTip::after{
+  content: attr(data-tip);
+  position: absolute;
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 280px;
+  max-width: 70vw;
+  padding: 10px 12px;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: 12px;
+  background: #fff;
+  color: #111;
+  font-size: 12px;
+  line-height: 1.35;
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
+  z-index: 20;
+}
+
+.pk__stepperValue--hasTip::before{
+  content: "";
+  position: absolute;
+  left: calc(100% + 6px);
+  top: 50%;
+  transform: translateY(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent #fff transparent transparent;
+  filter: drop-shadow(-1px 0 0 rgba(0,0,0,.12));
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .15s ease, visibility .15s ease;
+  z-index: 21;
+}
+
+.pk__stepperValue--hasTip:hover::after,
+.pk__stepperValue--hasTip:focus::after,
+.pk__stepperValue--hasTip:focus-visible::after,
+.pk__stepperValue--hasTip:hover::before,
+.pk__stepperValue--hasTip:focus::before,
+.pk__stepperValue--hasTip:focus-visible::before{
+  opacity: 1;
+  visibility: visible;
+}
+
+.pk__stepperValue--hasTip:hover::after,
+.pk__stepperValue--hasTip:focus::after,
+.pk__stepperValue--hasTip:focus-visible::after{
+  transform: translateY(-50%) translateX(2px);
+}
