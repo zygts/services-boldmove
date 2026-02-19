@@ -886,7 +886,7 @@ section[id] {
 .up__card {
     position: relative;
     border-radius: 36px;
-    max-width: 130rem;
+    max-width: 90%;
     margin: 5rem auto 0;
     background-color: var(--color-primary);
     color: var(--color-secondary);
