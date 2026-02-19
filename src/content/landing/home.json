@@ -444,7 +444,8 @@
           },
           {
             "icon": "/uploads/mapping.svg",
-            "text": "1 Day of Mapping"
+            "text": "1 Day of Mapping",
+            "tooltip": "Mapping is our in-house term for determining the right visuals for each page, much like a film storyboard. It’s an indispensable part of our process."
           },
           {
             "icon": "/uploads/design.svg",
@@ -509,7 +510,8 @@
           },
           {
             "text": "1 Day of Mapping",
-            "icon": "/uploads/mapping.svg"
+            "icon": "/uploads/mapping.svg",
+            "tooltip": "Mapping is our in-house term for determining the right visuals for each page, much like a film storyboard. It’s an indispensable part of our process."
           },
           {
             "text": "4 Days of Design",
@@ -578,7 +580,8 @@
           },
           {
             "text": "1 Day of Mapping",
-            "icon": "/uploads/mapping.svg"
+            "icon": "/uploads/mapping.svg",
+            "tooltip": "Mapping is our in-house term for determining the right visuals for each page, much like a film storyboard. It’s an indispensable part of our process."
           },
           {
             "text": "4 Days of Design",
