@@ -7,23 +7,19 @@ type WritingConfig = {
   unitLabel: string;
   minDays: number;
   maxDays: number;
-  pricePerDay: number; // euros
+  pricePerDay: number;
 };
 
 type Package = {
   id: string;
   title: string;
   description: string;
-
-  // 🔁 CAMBIO: vídeo en lugar de imagen
   video: string;
   poster?: string;
-  videoLabel?: string; // accesibilidad (aria-label)
-
-  standardPrice: number; // euros
+  videoLabel?: string;
+  standardPrice: number;
   ctaLabel: string;
   badge?: string;
-
   mainFeatures?: Feature[];
   writing: WritingConfig;
   additionalFeatures?: Feature[];
@@ -85,13 +81,13 @@ const toCents = (eur: number) => Math.round(eur * 100);
     <div class="pk__discountInfo" hidden>
       In exchange for the discount, the client agrees for Boldmove to use a dummy text version of the deck for promotional purposes (including on the website) as soon as the project is complete.
     </div>
-
   </header>
 
   <div class="pk__grid">
     {(packages ?? []).slice(0, 4).map((p) => (
       <article class="pk__card" data-id={p.id}>
-      <div class="pk__discountBadge" hidden></div>
+        <div class="pk__discountBadge" hidden></div>
+
         {p.video && (
           <div class="pk__media">
             <video
@@ -142,7 +138,6 @@ const toCents = (eur: number) => Math.round(eur * 100);
           </div>
         )}
 
-        {/* Custom writing: si NO quieres condicional, quita el if */}
         {p.writing && (
           <div
             class="pk__writing"
@@ -185,21 +180,14 @@ const toCents = (eur: number) => Math.round(eur * 100);
         {p.requirements?.text && p.requirements.text.trim() !== "" && (
           <div class="pk__block">
             <div class="pk__blockTitle">REQUIREMENTS</div>
-
             <div class="pk__requirementsRow">
               {p.requirements.icon && (
-                <img
-                  class="pk__featureIcon"
-                  src={p.requirements.icon}
-                  alt=""
-                  loading="lazy"
-                />
+                <img class="pk__featureIcon" src={p.requirements.icon} alt="" loading="lazy" />
               )}
               <p class="pk__requirements">{p.requirements.text}</p>
             </div>
           </div>
         )}
-
 
         {p.footerText && p.footerText.trim() !== "" && (
           <div class="pk__footer">{p.footerText}</div>
@@ -208,47 +196,43 @@ const toCents = (eur: number) => Math.round(eur * 100);
     ))}
   </div>
 
-<div class="pkModal" hidden aria-hidden="true">
-  <div class="pkModal__overlay" data-close-modal></div>
+  <div class="pkModal" hidden aria-hidden="true">
+    <div class="pkModal__overlay" data-close-modal></div>
 
-  <div class="pkModal__panel" role="dialog" aria-modal="true" aria-labelledby="pkModalTitle">
-    <button class="pkModal__close" type="button" data-close-modal aria-label="Close">×</button>
+    <div class="pkModal__panel" role="dialog" aria-modal="true" aria-labelledby="pkModalTitle">
+      <button class="pkModal__close" type="button" data-close-modal aria-label="Close">×</button>
 
-    <h3 class="pkModal__title" id="pkModalTitle">YOU HAVE SELECTED THE <span class="pkModal__titleName"></span> PACKAGE</h3>
-    <p class="pkModal__subtitle" data-modal-subtitle={modalSubtitle}>{modalSubtitle}</p>
+      <h3 class="pkModal__title" id="pkModalTitle">YOU HAVE SELECTED THE <span class="pkModal__titleName"></span> PACKAGE</h3>
+      <p class="pkModal__subtitle" data-modal-subtitle={modalSubtitle}>{modalSubtitle}</p>
 
-    <form
-      class="pkModal__form"
-      name="package-enquiry"
-      method="POST"
-      action="/thanks/"
-      data-netlify="true"
-      netlify-honeypot="bot-field"
-    >
-      <input type="hidden" name="form-name" value="package-enquiry" />
-      <p hidden>
-        <label>
-          Don’t fill this out: <input name="bot-field" />
-        </label>
-      </p>
+      <form
+        class="pkModal__form"
+        name="package-enquiry"
+        method="POST"
+        action="/thanks/"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="package-enquiry" />
+        <p hidden>
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
 
-      <!-- Campos visibles -->
-      <input class="pkModal__input" type="text" name="name" placeholder="Name" required />
-      <input class="pkModal__input" type="email" name="email" placeholder="Email" required />
-      <textarea class="pkModal__input pkModal__textarea" name="message" placeholder="Message (Optional)" rows="1"></textarea>
+        <input class="pkModal__input" type="text" name="name" placeholder="Name" required />
+        <input class="pkModal__input" type="email" name="email" placeholder="Email" required />
+        <textarea class="pkModal__input pkModal__textarea" name="message" placeholder="Message (Optional)" rows="1"></textarea>
 
-      <!-- Campos ocultos con la selección -->
-      <input type="hidden" name="package_title" />
-      <input type="hidden" name="package_price" />
-      <input type="hidden" name="discounted" />
-      <input type="hidden" name="writing_days" />
+        <input type="hidden" name="package_title" />
+        <input type="hidden" name="package_price" />
+        <input type="hidden" name="discounted" />
+        <input type="hidden" name="writing_days" />
 
-      <button class="pkModal__submit" type="submit">Send</button>
-    </form>
+        <button class="pkModal__submit" type="submit">Send</button>
+      </form>
+    </div>
   </div>
-</div>
 
-<script is:inline>
+  <script is:inline>
   (function () {
     const root = document.currentScript?.closest(".pk");
     if (!root) return;
@@ -310,122 +294,117 @@ const toCents = (eur: number) => Math.round(eur * 100);
       if (info) info.hidden = !discounted;
 
       const labelLeft = root.querySelector(".pk__toggleLabel[data-side='left']");
-const labelRight = root.querySelector(".pk__toggleLabel[data-side='right']");
-
-if (labelLeft && labelRight) {
-  labelLeft.classList.toggle("pk__toggleLabel--dim", discounted);
-  labelRight.classList.toggle("pk__toggleLabel--dim", !discounted);
-}
+      const labelRight = root.querySelector(".pk__toggleLabel[data-side='right']");
+      if (labelLeft && labelRight) {
+        labelLeft.classList.toggle("pk__toggleLabel--dim", discounted);
+        labelRight.classList.toggle("pk__toggleLabel--dim", !discounted);
+      }
     }
 
     // ── Steppers ──────────────────────────────────────────────
-const DEFAULT_STEPS = [0, 0.5, 1, 2];
+    const DEFAULT_STEPS = [0, 0.5, 1, 2];
 
-function parseSteps(writingWrap) {
-  // Si en el futuro quieres configurarlo por card sin Decap,
-  // puedes poner data-writing-steps="0,0.5,1,2"
-  const raw = writingWrap?.getAttribute("data-writing-steps");
-  if (!raw) return DEFAULT_STEPS;
-
-  const steps = raw
-    .split(",")
-    .map((s) => Number(String(s).trim()))
-    .filter((n) => Number.isFinite(n))
-    .sort((a, b) => a - b);
-
-  return steps.length ? steps : DEFAULT_STEPS;
-}
-
-function clampToSteps(val, steps) {
-  // Devuelve el step más cercano
-  let best = steps[0];
-  let bestDist = Math.abs(val - best);
-  for (let i = 1; i < steps.length; i++) {
-    const d = Math.abs(val - steps[i]);
-    if (d < bestDist) {
-      best = steps[i];
-      bestDist = d;
+    function parseSteps(writingWrap) {
+      const raw = writingWrap?.getAttribute("data-writing-steps");
+      if (!raw) return DEFAULT_STEPS;
+      const steps = raw.split(",").map((s) => Number(String(s).trim())).filter((n) => Number.isFinite(n)).sort((a, b) => a - b);
+      return steps.length ? steps : DEFAULT_STEPS;
     }
-  }
-  return best;
-}
 
-function formatDays(n) {
-  // Si prefieres ½ en UI:
-  // if (n === 0.5) return "½";
-  // return String(n);
-  return (Number.isInteger(n) ? String(n) : String(n));
-}
+    function clampToSteps(val, steps) {
+      let best = steps[0];
+      let bestDist = Math.abs(val - best);
+      for (let i = 1; i < steps.length; i++) {
+        const d = Math.abs(val - steps[i]);
+        if (d < bestDist) { best = steps[i]; bestDist = d; }
+      }
+      return best;
+    }
 
-cards.forEach((card) => {
-  card.setAttribute("data-writing-days", "0");
+    function formatDays(n) {
+      return Number.isInteger(n) ? String(n) : String(n);
+    }
 
-  const writingWrap = card.querySelector(".pk__writing");
-  const valueEl = card.querySelector(".pk__writingDays");
-  if (!writingWrap || !valueEl) return;
+    cards.forEach((card) => {
+      card.setAttribute("data-writing-days", "0");
 
-  const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
-  const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+      const writingWrap = card.querySelector(".pk__writing");
+      const valueEl = card.querySelector(".pk__writingDays");
+      if (!writingWrap || !valueEl) return;
 
-  // steps permitidos (filtrados por min/max)
-  const stepsAll = parseSteps(writingWrap);
-  const steps = stepsAll.filter((s) => s >= min && s <= max);
+      const min = Number(writingWrap.getAttribute("data-writing-min") || "0");
+      const max = Number(writingWrap.getAttribute("data-writing-max") || "3");
+      const stepsAll = parseSteps(writingWrap);
+      const steps = stepsAll.filter((s) => s >= min && s <= max);
+      const safeSteps = steps.length ? steps : DEFAULT_STEPS.filter((s) => s >= min && s <= max);
 
-  // si por min/max se quedaron vacíos, fallback
-  const safeSteps = steps.length ? steps : DEFAULT_STEPS.filter((s) => s >= min && s <= max);
+      function setDays(next) {
+        const snapped = clampToSteps(next, safeSteps);
+        card.setAttribute("data-writing-days", String(snapped));
+        valueEl.textContent = formatDays(snapped);
+        renderPrices();
+      }
 
-  function setDays(next) {
-    const snapped = clampToSteps(next, safeSteps);
-    card.setAttribute("data-writing-days", String(snapped));
-    valueEl.textContent = formatDays(snapped);
-    renderPrices();
-  }
+      function getCurrent() {
+        return clampToSteps(Number(card.getAttribute("data-writing-days") || "0"), safeSteps);
+      }
 
-  function getCurrent() {
-    const cur = Number(card.getAttribute("data-writing-days") || "0");
-    // por seguridad, lo "snappeamos"
-    return clampToSteps(cur, safeSteps);
-  }
+      function step(action) {
+        const current = getCurrent();
+        const idx = safeSteps.indexOf(current);
+        const nextIdx = action === "inc" ? idx + 1 : idx - 1;
+        setDays(safeSteps[Math.max(0, Math.min(safeSteps.length - 1, nextIdx))]);
+      }
 
-  function step(action) {
-    const current = getCurrent();
-    const idx = safeSteps.indexOf(current);
-    const nextIdx = action === "inc" ? idx + 1 : idx - 1;
-    const clampedIdx = Math.max(0, Math.min(safeSteps.length - 1, nextIdx));
-    setDays(safeSteps[clampedIdx]);
-  }
+      card.querySelectorAll("[data-action]").forEach((btn) => {
+        btn.addEventListener("click", () => step(btn.getAttribute("data-action")));
+      });
 
-  card.querySelectorAll("[data-action]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const action = btn.getAttribute("data-action");
-      step(action);
-    });
-  });
-
-  // start at min (snap)
-  setDays(min);
-});
-
-// ── Video hover (desktop only) ─────────────────────────────
-const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-if (canHover) {
-  cards.forEach((card) => {
-    const video = card.querySelector(".pk__video");
-    if (!video) return;
-
-    // Hover sobre la card completa (si prefieres solo media: usa card.querySelector(".pk__media"))
-    card.addEventListener("mouseenter", () => {
-      // si el vídeo no está listo aún, play() puede fallar: ignoramos
-      video.play().catch(() => {});
+      setDays(min);
     });
 
-    card.addEventListener("mouseleave", () => {
-      video.pause();
-      video.currentTime = 0; // ← quita esta línea si quieres que continúe donde iba
-    });
-  });
-}
+    // ── Mostrar primer frame en todos los videos ───────────────
+    // Funciona en desktop y móvil. Fuerza el primer frame visible
+    // sin reproducir el vídeo.
+    function showFirstFrame(video) {
+      // Si ya tiene poster, el navegador lo usará — no hacemos nada
+      if (video.poster) return;
+
+      const trySeek = () => {
+        // readyState >= 1 significa que los metadatos están listos
+        if (video.readyState >= 1) {
+          video.currentTime = 0.001;
+        } else {
+          video.addEventListener("loadedmetadata", () => {
+            video.currentTime = 0.001;
+          }, { once: true });
+        }
+      };
+
+      trySeek();
+    }
+
+    root.querySelectorAll(".pk__video").forEach(showFirstFrame);
+
+    // ── Video hover (desktop only) ─────────────────────────────
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+    if (canHover) {
+      cards.forEach((card) => {
+        const video = card.querySelector(".pk__video");
+        if (!video) return;
+
+        card.addEventListener("mouseenter", () => {
+          video.play().catch(() => {});
+        });
+
+        card.addEventListener("mouseleave", () => {
+          video.pause();
+          // Volvemos al primer frame al salir del hover
+          video.currentTime = 0.001;
+        });
+      });
+    }
 
     // ── Toggle ────────────────────────────────────────────────
     const saved = localStorage.getItem("pk_discounted");
@@ -460,13 +439,11 @@ if (canHover) {
       setHidden("discounted", discounted ? "1" : "0");
       setHidden("writing_days", card.getAttribute("data-writing-days") || "0");
 
-      // pausa vídeos al abrir modal
       cards.forEach((c) => c.querySelector(".pk__video")?.pause());
 
       modal.hidden = false;
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
-
       form.querySelector('input[name="name"]')?.focus();
     }
 
@@ -476,10 +453,13 @@ if (canHover) {
       modal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
       cards.forEach((c) => {
-      const v = c.querySelector(".pk__video");
-      if (v) { v.pause(); v.currentTime = 0; }
-    });
-
+        const v = c.querySelector(".pk__video");
+        if (v) {
+          v.pause();
+          // Restaurar primer frame al cerrar modal
+          v.currentTime = 0.001;
+        }
+      });
     }
 
     root.addEventListener("click", (e) => {
@@ -506,12 +486,9 @@ if (canHover) {
       const detail = e.detail || {};
       if (!detail.packageId || !detail.packageTitle) return;
 
-      // Abrimos modal sin card (no hay writing/toggle aquí)
-      // Precio: usamos el que venga del evento, formateado
       const priceNumber = Number(detail.packagePrice || 0);
       const cents = Math.round(priceNumber * 100);
 
-      // Pintar título/subtitle
       const nameEl = modalTitle?.querySelector(".pkModal__titleName");
       if (nameEl) nameEl.textContent = String(detail.packageTitle).toUpperCase();
       if (modalSubtitle) modalSubtitle.textContent = root.getAttribute("data-modal-subtitle") || "";
@@ -525,15 +502,13 @@ if (canHover) {
       modal.hidden = false;
       modal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
-
       form?.querySelector('input[name="name"]')?.focus();
     });
 
   })();
-</script>
+  </script>
 
   <style>
-    /* Solo base mínima para que no se rompa */
     .pk__media { border-radius: 28px; overflow: hidden; }
     .pk__video { width: 100%; height: 100%; display: block; object-fit: cover; }
     .pk__subtitle { white-space: pre-line; }
@@ -541,12 +516,10 @@ if (canHover) {
     .pk__switch { display:inline-flex; align-items:center; }
     .pk__switch input{ position:absolute; opacity:0; pointer-events:none; }
     .pk__slider{
-      cursor: pointer;width:6.7rem; height:4rem; border:2px solid #111; border-radius:999px; position:relative; display:block;
+      cursor: pointer; width:6.7rem; height:4rem; border:2px solid #111; border-radius:999px; position:relative; display:block;
     }
     .pk__slider::after{
-      content:""; width: 3.3rem;
-    height: 3.3rem;
-     border-radius:999px; background: #111; position:absolute; top:50%; left:4px;
+      content:""; width: 3.3rem; height: 3.3rem; border-radius:999px; background: #111; position:absolute; top:50%; left:4px;
       transform:translateY(-50%); transition:transform .2s ease;
     }
     .pk__switch input:checked + .pk__slider::after{
@@ -554,4 +527,3 @@ if (canHover) {
     }
   </style>
 </section>
-
