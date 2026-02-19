@@ -2310,46 +2310,47 @@ body.nav-open {
   outline: none;
 }
 
+/* Bubble */
 .pk__stepperValue--hasTip::after{
   content: attr(data-tip);
   position: absolute;
-  left: calc(100% + 12px);
-  top: 50%;
-  transform: translateY(-50%);
-  width: 280px;
-  max-width: 70vw;
-  padding: 10px 12px;
-  border: 1px solid rgba(0,0,0,.15);
-  border-radius: 12px;
-  background: #fff;
-  color: #111;
+  bottom: calc(100% + 12px);   /* 👈 encima */
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  width: 300px;
+  max-width: 80vw;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: #111;
+  color: #fff;
   font-size: 12px;
-  line-height: 1.35;
-  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  line-height: 1.4;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,.18);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity .15s ease, transform .15s ease, visibility .15s ease;
-  z-index: 20;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 50;
 }
 
+/* Flechita */
 .pk__stepperValue--hasTip::before{
   content: "";
   position: absolute;
-  left: calc(100% + 6px);
-  top: 50%;
-  transform: translateY(-50%);
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%);
   border-width: 6px;
   border-style: solid;
-  border-color: transparent #fff transparent transparent;
-  filter: drop-shadow(-1px 0 0 rgba(0,0,0,.12));
+  border-color: #111 transparent transparent transparent;
   opacity: 0;
   visibility: hidden;
-  pointer-events: none;
-  transition: opacity .15s ease, visibility .15s ease;
-  z-index: 21;
+  transition: opacity .18s ease;
+  z-index: 51;
 }
 
+/* Visible */
 .pk__stepperValue--hasTip:hover::after,
 .pk__stepperValue--hasTip:focus::after,
 .pk__stepperValue--hasTip:focus-visible::after,
@@ -2363,5 +2364,6 @@ body.nav-open {
 .pk__stepperValue--hasTip:hover::after,
 .pk__stepperValue--hasTip:focus::after,
 .pk__stepperValue--hasTip:focus-visible::after{
-  transform: translateY(-50%) translateX(2px);
+  transform: translateX(-50%) translateY(0);
 }
+
