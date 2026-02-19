@@ -43,47 +43,29 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
         <div class="plt__videoCol" data-i={i}>
           <div class="plt__videoLabel">{v.label}</div>
 
-          <div class="plt__videoFrame">
-            {src ? (
-              <>
-                {/* Desktop: video con hover */}
-                <video
-                  class="plt__video plt__desktop"
-                  src={src}
-                  poster={v.poster || undefined}
-                  muted
-                  loop
-                  playsinline
-                  preload="metadata"
-                  data-link={hasLink ? link : undefined}
-                />
+        <div class="plt__videoFrame">
+        {src ? (
+          <>
+            <img
+              class="plt__poster"
+              src={v.poster && v.poster.trim() ? v.poster : "/images/aunty1.jpg"}
+              alt={v.label ?? ""}
+              loading="lazy"
+            />
 
-                {/* Mobile: solo imagen estática */}
-                {v.poster ? (
-                  <img
-                    class="plt__poster plt__mobile"
-                    src={v.poster}
-                    alt={v.label ?? ""}
-                    loading="lazy"
-                  />
-                ) : (
-                  // Si no hay poster, mostramos el video igual (sin autoplay)
-                  <video
-                    class="plt__video plt__mobile"
-                    src={src}
-                    muted
-                    playsinline
-                    preload="metadata"
-                    data-link={hasLink ? link : undefined}
-                  />
-                )}
-              </>
-            ) : (
-              <div class="plt__videoPlaceholder">
-                Add a video in Decap (mp4/webm) or paste a URL.
-              </div>
-            )}
+            <div
+              class="plt__videoMount"
+              data-src={src}
+              data-link={hasLink ? link : undefined}
+            ></div>
+          </>
+        ) : (
+          <div class="plt__videoPlaceholder">
+            Add a video in Decap (mp4/webm) or paste a URL.
           </div>
+        )}
+      </div>
+
         </div>
       );
     })}
@@ -91,48 +73,52 @@ const getVideoSrc = (v: PlatformVideo) => (v.src && v.src.trim() ? v.src : (v.ur
 
   <script is:inline>
   (function () {
-    const root = document.currentScript?.closest(".plt");
-    if (!root) return;
+  const root = document.currentScript?.closest(".plt");
+  if (!root) return;
 
-    const isDesktop = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const isDesktop = window.matchMedia("(min-width: 992px)").matches;
 
-    if (!isDesktop) {
-      // Móvil: forzar primer frame en videos mobile (los sin poster)
-      root.querySelectorAll(".plt__mobile video").forEach((video) => {
-        const seek = () => { video.currentTime = 0.001; };
-        if (video.readyState >= 1) seek();
-        else video.addEventListener("loadedmetadata", seek, { once: true });
+  if (!isDesktop) return; // 🔥 en mobile no hacemos nada
+
+  root.querySelectorAll(".plt__videoMount").forEach((mount) => {
+    const src = mount.getAttribute("data-src");
+    if (!src) return;
+
+    const link = mount.getAttribute("data-link");
+
+    const video = document.createElement("video");
+    video.className = "plt__video";
+    video.src = src;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = "metadata";
+
+    mount.appendChild(video);
+
+    // Primer frame
+    const seek = () => { video.currentTime = 0.001; };
+    if (video.readyState >= 1) seek();
+    else video.addEventListener("loadedmetadata", seek, { once: true });
+
+    if (link) {
+      video.style.cursor = "pointer";
+      video.addEventListener("click", () => {
+        window.open(link, "_blank", "noopener,noreferrer");
       });
-      return;
     }
 
-    // Desktop: comportamiento hover en los videos desktop
-    root.querySelectorAll(".plt__video.plt__desktop").forEach((video) => {
-      const link = video.getAttribute("data-link");
-
-      if (link) {
-        video.style.cursor = "pointer";
-        video.addEventListener("click", (e) => {
-          e.preventDefault();
-          window.open(link, "_blank", "noopener,noreferrer");
-        });
-      }
-
-      // Mostrar primer frame en reposo
-      const seek = () => { video.currentTime = 0.001; };
-      if (video.readyState >= 1) seek();
-      else video.addEventListener("loadedmetadata", seek, { once: true });
-
-      video.addEventListener("mouseenter", () => {
-        video.play().catch(() => {});
-      });
-
-      video.addEventListener("mouseleave", () => {
-        video.pause();
-        video.currentTime = 0.001;
-      });
+    video.addEventListener("mouseenter", () => {
+      video.play().catch(() => {});
     });
-  })();
+
+    video.addEventListener("mouseleave", () => {
+      video.pause();
+      video.currentTime = 0.001;
+    });
+  });
+})();
+
   </script>
 
   <style>

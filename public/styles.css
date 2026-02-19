@@ -1012,6 +1012,10 @@ section[id] {
 
 .up__block {
     margin-bottom: 3rem;
+
+    @media (max-width: 991px) {
+        margin-bottom: 0;
+    }
 }
 
 .up__blockTitle {
