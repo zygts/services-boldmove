@@ -381,7 +381,8 @@
         "mainFeatures": [
           {
             "icon": "/uploads/concept-moodboard.svg",
-            "text": "Concept Moodboard"
+            "text": "Concept Moodboard",
+            "tooltip": "help"
           },
           {
             "icon": "/uploads/vr-mapping.svg",
