@@ -408,6 +408,7 @@
           "enabled": true,
           "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
+          "tooltip": "Boldmove offers specialist deck writing from experienced industry writers to ensure your words leap off the page",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 750

@@ -56,6 +56,7 @@ const landing = defineCollection({
         enabled: z.boolean().optional().default(true),
         label: z.string().default("CUSTOM WRITING"),
         unitLabel: z.string().default("writing days"),
+        tooltip: z.string().optional().default(""),
         minDays: z.number().int().default(0),
         maxDays: z.number().int().default(3),
         pricePerDay: z.number().default(0),

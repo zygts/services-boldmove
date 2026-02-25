@@ -132,6 +132,7 @@ collections:
                     fields:
                       - { label: "Label", name: "label", widget: "string", default: "CUSTOM WRITING" }
                       - { label: "Unit label", name: "unitLabel", widget: "string", default: "writing days" }
+                      - { label: "Tooltip (optional)", name: "tooltip", widget: "text", required: false }
                       - { label: "Min days", name: "minDays", widget: "number", value_type: "int", default: 0, min: 0, max: 10 }
                       - { label: "Max days", name: "maxDays", widget: "number", value_type: "int", default: 3, min: 0, max: 10 }
                       - { label: "Price per day (number)", name: "pricePerDay", widget: "number", default: 0 }
