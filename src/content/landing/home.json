@@ -408,7 +408,7 @@
           "enabled": true,
           "label": "I NEED WRITING",
           "unitLabel": "Writing Days",
-          "tooltip": "Boldmove offers specialist deck writing from experienced industry writers to ensure your words leap off the page",
+          "tooltip": "Boldmove offers 20% off professional industry deck writing with this bundle - to help your words leap from the page.",
           "minDays": 0,
           "maxDays": 2,
           "pricePerDay": 750
@@ -470,7 +470,8 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 751
+          "pricePerDay": 751,
+          "tooltip": "Boldmove offers 20% off professional industry deck writing with this bundle - to help your words leap from the page."
         },
         "description": "Fast, bold and impactful, Blitz grabs your attention by the collar and makes executives lean forward."
       },
@@ -537,7 +538,8 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 751
+          "pricePerDay": 751,
+          "tooltip": "Boldmove offers 20% off professional industry deck writing with this bundle - to help your words leap from the page."
         },
         "description": "Not for the faint hearted, Gambit attacks with immersive world-building, refined design and positions your project as a serious contender."
       },
@@ -616,7 +618,8 @@
           "unitLabel": "Writing Days",
           "minDays": 0,
           "maxDays": 2,
-          "pricePerDay": 751
+          "pricePerDay": 751,
+          "tooltip": "Boldmove offers 20% off professional industry deck writing with this bundle - to help your words leap from the page."
         },
         "description": "Our trademark finishing move. Checkmate is a fully immersive premium experience. Engineered to close the deal and seal the fate of the competition. "
       }
