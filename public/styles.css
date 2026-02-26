@@ -798,6 +798,7 @@ section[id] {
 }
 
 .pk__stepper {
+    position: relative;
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
@@ -2294,7 +2295,6 @@ body.nav-open {
 }
 
 .pk__stepperValue--hasTip{
-  position: relative;
   display: inline-flex;
   align-items: baseline;
   gap: .35rem;
@@ -2305,7 +2305,7 @@ body.nav-open {
 .pk__stepperValue--hasTip::after{
   content: attr(data-tip);
   position: absolute;
-  left: 0;
+  left: -7px;
   bottom: calc(100% + 10px);
   transform: translateY(2px);
   width: 100%;
